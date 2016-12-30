@@ -1,0 +1,141 @@
+# spatstat.utils NAMESPACE file
+
+import(stats,graphics,grDevices,utils,methods)
+
+# Do not edit the following.
+# It is generated automatically.
+
+
+
+
+# .................................................. 
+# Automatically-generated list of entry points       
+# .................................................. 
+
+useDynLib(spatstat.utils, 
+"drevcumsum",
+"fastinterv",
+"irevcumsum")
+
+# .................................................. 
+# Automatically-generated list of documented objects 
+# .................................................. 
+export("adjustthinrange")
+export("apply23sum")
+export("articlebeforenumber")
+export("as2vector")
+export("asNumericMatrix")
+export("assignDFcolumn")
+export("badprobability")
+export("blockdiagarray")
+export("blockdiagmatrix")
+export("cat.factor")
+export("check.1.integer")
+export("check.1.real")
+export("check.1.string")
+export("check.finite")
+export("check.in.range")
+export("check.named.list")
+export("check.named.thing")
+export("check.named.vector")
+export("check.nvector")
+export("check.range")
+export("commasep")
+export("complaining")
+export("dont.complain.about")
+export("dotexpr.to.call")
+export("dropifsingle")
+export("dround")
+export("ensure2vector")
+export("ensure3Darray")
+export("equispaced")          
+export("evenly.spaced")
+export("exceedsMaxArraySize")
+export("fakecallstring")
+export("fastFindInterval")
+export("fave.order")
+export("fillseq")
+export("findfirstfactor")
+export("firstfactor")
+export("flat.deparse")
+export("fontify")
+export("forbidNA")
+export("geomseq")
+export("getdataobjects")
+export("good.names")
+export("gsubdot")
+export("ifelse0NA")
+export("ifelse1NA")
+export("ifelseAB")
+export("ifelseAX")
+export("ifelseNegPos")
+export("ifelseXB")
+export("ifelseXY")
+export("indexCartesian")
+export("inject.expr")
+export("insertinlist")     
+export("inside.range")     
+export("intersect.ranges")     
+export("is.blank")
+export("is.parseable")
+export("lty2char")
+export("make.parseable")
+export("mapstrings")
+export("matchNameOrPosition")
+export("matcolall")
+export("matcolany")
+export("matcolsum")
+export("matrixsample")
+export("matrowall")
+export("matrowany")
+export("matrowsum")
+export("natozero")
+export("niceround")
+export("numalign")
+export("nzpaste")
+export("orderstats")
+export("orderwhich")
+export("ordinal")
+export("ordinalsuffix")
+export("padtowidth")
+export("paren")
+export("paste.expr")
+export("pasteN")
+export("prange")
+export("prettydiscrete")
+export("prettyinside")
+export("prolongseq")
+export("ratiotweak")
+export("revcumsum")
+export("romansort")
+export("samefunction")
+export("sensiblevarname")
+export("short.deparse")
+export("simplenumber")              
+export("singlestring")              
+export("startinrange")
+export("strsplitretain")
+export("substringcount")
+export("there.is.no.try")
+export("trap.extra.arguments")
+export("truncline")
+export("unparen")
+export("uptrimat")
+export("validposint")
+export("variablesintext")
+export("verbalogic")
+export("warn.ignored.args")
+
+# .......  Special cases ........... 
+export("%orifnull%")
+# .......  End of special cases  ... 
+
+# ......................................... 
+# Automatically generated list of S3 methods
+# ......................................... 
+# ......................................... 
+#      Assignment methods                   
+# ......................................... 
+# ......................................... 
+#      End of methods                       
+# ......................................... 
