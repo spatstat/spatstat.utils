@@ -1,6 +1,6 @@
 Package: spatstat.utils
-Version: 1.0-0
-Date: 2016-12-30
+Version: 1.0-3
+Date: 2016-12-31
 Title: EXPERIMENTAL
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),

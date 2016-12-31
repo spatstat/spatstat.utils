@@ -22,6 +22,10 @@
 \alias{check.range}
 \alias{commasep}
 \alias{complaining}
+\alias{distpl}               
+\alias{distppl}
+\alias{distppll}
+\alias{distppllmin}
 \alias{dont.complain.about}
 \alias{dotexpr.to.call}
 \alias{dropifsingle}
@@ -29,6 +33,7 @@
 \alias{ensure2vector}
 \alias{ensure3Darray}
 \alias{equispaced}          
+\alias{eratosthenes}
 \alias{evenly.spaced}
 \alias{exceedsMaxArraySize}
 \alias{fakecallstring}
@@ -134,6 +139,10 @@ check.nvector(v, npoints, fatal, things, naok, warn, vname, oneok)
 check.range(x, fatal)
 commasep(x, join, flatten)
 complaining(whinge, fatal, value)
+distpl(p, l)               
+distppl(p, l)
+distppll(p, l, mintype, method, listit)
+distppllmin(p, l, big)
 dont.complain.about(\dots)
 dotexpr.to.call(expr, dot, evaluator)
 dropifsingle(x)
@@ -141,6 +150,7 @@ dround(x)
 ensure2vector(x)
 ensure3Darray(x)
 equispaced(z, reltol)
+eratosthenes(nmax, startset)
 evenly.spaced(x, tol)
 exceedsMaxArraySize(\dots)
 fakecallstring(fname, parlist)
