@@ -20,6 +20,8 @@
 \alias{check.named.vector}
 \alias{check.nvector}
 \alias{check.range}
+\alias{choptext}
+\alias{choptextline}
 \alias{commasep}
 \alias{complaining}
 \alias{distpl}               
@@ -36,6 +38,7 @@
 \alias{eratosthenes}
 \alias{evenly.spaced}
 \alias{exceedsMaxArraySize}
+\alias{exhibitStringList}
 \alias{fakecallstring}
 \alias{fastFindInterval}
 \alias{fave.order}
@@ -87,6 +90,7 @@
 \alias{padtowidth}
 \alias{paren}
 \alias{paste.expr}
+\alias{pasteFormula}
 \alias{pasteN}
 \alias{prange}
 \alias{prettydiscrete}
@@ -137,6 +141,8 @@ check.named.thing(x, nam, namopt, xtitle, valid, type, context, fatal)
 check.named.vector(x, nam, context, namopt, onError)
 check.nvector(v, npoints, fatal, things, naok, warn, vname, oneok)
 check.range(x, fatal)
+choptext(\dots, prefix, indent)
+choptextline(st, w, prefix, indent)
 commasep(x, join, flatten)
 complaining(whinge, fatal, value)
 distpl(p, l)               
@@ -152,6 +158,7 @@ ensure3Darray(x)
 equispaced(z, reltol)
 eratosthenes(nmax, startset)
 evenly.spaced(x, tol)
+exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)
 fakecallstring(fname, parlist)
 fastFindInterval(x, b, labels, reltol)
@@ -203,6 +210,7 @@ a \%orifnull\% b
 padtowidth(a, b, justify)
 paren(x, type)
 paste.expr(x)
+pasteFormula(f)
 pasteN(\dots)
 prange(x)
 prettydiscrete(x, n)
