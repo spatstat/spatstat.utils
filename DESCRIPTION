@@ -1,5 +1,5 @@
 Package: spatstat.utils
-Version: 1.0-5
+Version: 1.0-6
 Date: 2017-01-02
 Title: EXPERIMENTAL Subset of Spatstat
 Authors@R: c(person("Adrian", "Baddeley", 
