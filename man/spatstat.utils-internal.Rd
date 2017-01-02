@@ -28,6 +28,7 @@
 \alias{distppl}
 \alias{distppll}
 \alias{distppllmin}
+\alias{do.call.without}
 \alias{dont.complain.about}
 \alias{dotexpr.to.call}
 \alias{dropifsingle}
@@ -39,6 +40,7 @@
 \alias{evenly.spaced}
 \alias{exceedsMaxArraySize}
 \alias{exhibitStringList}
+\alias{explain.ifnot}
 \alias{fakecallstring}
 \alias{fastFindInterval}
 \alias{fave.order}
@@ -51,6 +53,7 @@
 \alias{geomseq}
 \alias{getdataobjects}
 \alias{good.names}
+\alias{graphicsPars}            
 \alias{gsubdot}
 \alias{ifelse0NA}
 \alias{ifelse1NA}
@@ -89,6 +92,7 @@
 %NAMESPACE export("%orifnull%")
 \alias{padtowidth}
 \alias{paren}
+\alias{passthrough}
 \alias{paste.expr}
 \alias{pasteFormula}
 \alias{pasteN}
@@ -116,9 +120,8 @@
 \alias{variablesintext}
 \alias{verbalogic}
 \alias{warn.ignored.args}
-
 \description{
-  Internal spatstat functions.
+  Internal spatstat utility functions.
 }
 \usage{
 adjustthinrange(ur,vstep,vr)
@@ -149,6 +152,7 @@ distpl(p, l)
 distppl(p, l)
 distppll(p, l, mintype, method, listit)
 distppllmin(p, l, big)
+do.call.without(fun, \dots, avoid)
 dont.complain.about(\dots)
 dotexpr.to.call(expr, dot, evaluator)
 dropifsingle(x)
@@ -160,6 +164,7 @@ eratosthenes(nmax, startset)
 evenly.spaced(x, tol)
 exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)
+explain.ifnot(expr, context)
 fakecallstring(fname, parlist)
 fastFindInterval(x, b, labels, reltol)
 fave.order(x)
@@ -172,6 +177,7 @@ forbidNA(x, context, xname, fatal, usergiven)
 geomseq(from, to, length.out)
 getdataobjects(nama, envir, datalist, fatal)
 good.names(nama, defaults, suffices)
+graphicsPars(key)
 gsubdot(replacement, x)
 ifelse0NA(test)
 ifelse1NA(test)
@@ -209,6 +215,7 @@ ordinalsuffix(k)
 a \%orifnull\% b
 padtowidth(a, b, justify)
 paren(x, type)
+passthrough(.Fun, \dots, .Fname)
 paste.expr(x)
 pasteFormula(f)
 pasteN(\dots)
