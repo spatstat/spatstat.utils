@@ -120,6 +120,17 @@
 \alias{variablesintext}
 \alias{verbalogic}
 \alias{warn.ignored.args}
+%% xypolygon %%%
+\alias{verify.xypolygon}
+\alias{inside.triangle}     
+\alias{inside.xypolygon}     
+\alias{is.hole.xypolygon}
+\alias{Area.xypolygon}       
+\alias{bdrylength.xypolygon} 
+\alias{reverse.xypolygon}    
+\alias{overlap.trapezium}
+\alias{overlap.xypolygon}    
+\alias{simplify.xypolygon}
 \description{
   Internal spatstat utility functions.
 }
@@ -243,6 +254,17 @@ validposint(n, caller, fatal)
 variablesintext(x)
 verbalogic(x, op)
 warn.ignored.args(\dots, context)
+%% xypolygon %%%
+verify.xypolygon(p, fatal=TRUE)
+inside.triangle(x, y, xx, yy)
+inside.xypolygon(pts, polly, test01, method)
+is.hole.xypolygon(polly)
+Area.xypolygon(polly)
+bdrylength.xypolygon(polly)
+reverse.xypolygon(p, adjust=FALSE)
+overlap.trapezium(xa, ya, xb, yb, verb = FALSE)
+overlap.xypolygon(P, Q)
+simplify.xypolygon(p, dmin)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called

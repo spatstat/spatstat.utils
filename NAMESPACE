@@ -13,8 +13,10 @@ import(stats,graphics,grDevices,utils,methods)
 # .................................................. 
 
 useDynLib(spatstat.utils, 
+"Cmatchxy",
 "drevcumsum",
 "fastinterv",
+"inxyp",
 "irevcumsum",
 "nndist2segs",
 "prdist2segs",
@@ -25,11 +27,13 @@ useDynLib(spatstat.utils,
 # .................................................. 
 export("adjustthinrange")
 export("apply23sum")
+export("Area.xypolygon")       
 export("articlebeforenumber")
 export("as2vector")
 export("asNumericMatrix")
 export("assignDFcolumn")
 export("badprobability")
+export("bdrylength.xypolygon") 
 export("blockdiagarray")
 export("blockdiagmatrix")
 export("can.be.formula")
@@ -94,8 +98,11 @@ export("indexCartesian")
 export("inject.expr")
 export("insertinlist")     
 export("inside.range")     
+export("inside.triangle")     
+export("inside.xypolygon")     
 export("intersect.ranges")     
 export("is.blank")
+export("is.hole.xypolygon")
 export("is.parseable")
 export("is.prime")
 export("least.common.multiple")
@@ -120,6 +127,8 @@ export("orderstats")
 export("orderwhich")
 export("ordinal")
 export("ordinalsuffix")
+export("overlap.trapezium")
+export("overlap.xypolygon")    
 export("padtowidth")
 export("paren")
 export("passthrough")
@@ -137,13 +146,16 @@ export("relatively.prime")
 export("resolve.1.default")
 export("resolve.defaults")
 export("revcumsum")
+export("reverse.xypolygon")    
 export("rhs.of.formula")
 export("romansort")
 export("samefunction")
 export("sensiblevarname")
 export("short.deparse")
 export("simplenumber")              
+export("simplify.xypolygon")
 export("singlestring")              
+export("spatstatLocator")
 export("splat")
 export("startinrange")
 export("strsplitretain")
@@ -159,6 +171,7 @@ export("validposint")
 export("variablesinformula")
 export("variablesintext")
 export("verbalogic")
+export("verify.xypolygon")
 export("warn.ignored.args")
 
 # .......  Special cases ........... 
