@@ -131,6 +131,8 @@
 \alias{overlap.trapezium}
 \alias{overlap.xypolygon}    
 \alias{simplify.xypolygon}
+%%
+\alias{xysegXcircle}
 \description{
   Internal spatstat utility functions.
 }
@@ -265,6 +267,8 @@ reverse.xypolygon(p, adjust=FALSE)
 overlap.trapezium(xa, ya, xb, yb, verb = FALSE)
 overlap.xypolygon(P, Q)
 simplify.xypolygon(p, dmin)
+%%
+xysegXcircle(xcentres, ycentres, radii, x0, y0, x1, y1, check)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called

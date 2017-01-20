@@ -13,6 +13,7 @@ import(stats,graphics,grDevices,utils,methods)
 # .................................................. 
 
 useDynLib(spatstat.utils, 
+"circXseg",
 "Cmatchxy",
 "drevcumsum",
 "fastinterv",
@@ -173,6 +174,7 @@ export("variablesintext")
 export("verbalogic")
 export("verify.xypolygon")
 export("warn.ignored.args")
+export("xysegXcircle")
 
 # .......  Special cases ........... 
 export("%orifnull%")
