@@ -10,14 +10,8 @@
 \alias{blockdiagarray}
 \alias{blockdiagmatrix}
 \alias{cat.factor}
-\alias{check.1.integer}
-\alias{check.1.real}
-\alias{check.1.string}
 \alias{check.finite}
 \alias{check.in.range}
-\alias{check.named.list}
-\alias{check.named.thing}
-\alias{check.named.vector}
 \alias{check.nvector}
 \alias{check.range}
 \alias{choptext}
@@ -149,14 +143,8 @@ badprobability(x, NAvalue)
 blockdiagarray(\dots)
 blockdiagmatrix(\dots)
 cat.factor(\dots, recursive=FALSE)
-check.1.integer(x, context, fatal)
-check.1.real(x, context, fatal)
-check.1.string(x, context, fatal)
 check.finite(x, context, xname, fatal, usergiven)
 check.in.range(x, r, fatal)
-check.named.list(x, nam, context, namopt, onError)
-check.named.thing(x, nam, namopt, xtitle, valid, type, context, fatal)
-check.named.vector(x, nam, context, namopt, onError)
 check.nvector(v, npoints, fatal, things, naok, warn, vname, oneok)
 check.range(x, fatal)
 choptext(\dots, prefix, indent)
