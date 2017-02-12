@@ -22,7 +22,6 @@
 \alias{distppl}
 \alias{distppll}
 \alias{distppllmin}
-\alias{do.call.without}
 \alias{dont.complain.about}
 \alias{dotexpr.to.call}
 \alias{dropifsingle}
@@ -155,7 +154,6 @@ distpl(p, l)
 distppl(p, l)
 distppll(p, l, mintype, method, listit)
 distppllmin(p, l, big)
-do.call.without(fun, \dots, avoid)
 dont.complain.about(\dots)
 dotexpr.to.call(expr, dot, evaluator)
 dropifsingle(x)
@@ -193,7 +191,7 @@ indexCartesian(nn)
 inject.expr(base, expr)
 insertinlist(x, i, y)
 inside.range(x, r)
-intersect.ranges(a,b,fatal)
+intersect.ranges(r,s,fatal)
 is.blank(s)
 is.parseable(x)
 lty2char(i)
@@ -222,7 +220,7 @@ passthrough(.Fun, \dots, .Fname)
 paste.expr(x)
 pasteFormula(f)
 pasteN(\dots)
-prange(x)
+prange(r)
 prettydiscrete(x, n)
 prettyinside(x, \dots)
 prolongseq(x, newrange, step)
