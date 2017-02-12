@@ -11,9 +11,7 @@
 \alias{blockdiagmatrix}
 \alias{cat.factor}
 \alias{check.finite}
-\alias{check.in.range}
 \alias{check.nvector}
-\alias{check.range}
 \alias{choptext}
 \alias{choptextline}
 \alias{commasep}
@@ -58,8 +56,6 @@
 \alias{indexCartesian}
 \alias{inject.expr}
 \alias{insertinlist}     
-\alias{inside.range}     
-\alias{intersect.ranges}     
 \alias{is.blank}
 \alias{is.parseable}
 \alias{lty2char}
@@ -89,7 +85,6 @@
 \alias{paste.expr}
 \alias{pasteFormula}
 \alias{pasteN}
-\alias{prange}
 \alias{prettydiscrete}
 \alias{prettyinside}
 \alias{prolongseq}
@@ -143,9 +138,7 @@ blockdiagarray(\dots)
 blockdiagmatrix(\dots)
 cat.factor(\dots, recursive=FALSE)
 check.finite(x, context, xname, fatal, usergiven)
-check.in.range(x, r, fatal)
 check.nvector(v, npoints, fatal, things, naok, warn, vname, oneok)
-check.range(x, fatal)
 choptext(\dots, prefix, indent)
 choptextline(st, w, prefix, indent)
 commasep(x, join, flatten)
@@ -190,8 +183,6 @@ ifelseXY(test, x, y)
 indexCartesian(nn)
 inject.expr(base, expr)
 insertinlist(x, i, y)
-inside.range(x, r)
-intersect.ranges(r,s,fatal)
 is.blank(s)
 is.parseable(x)
 lty2char(i)
@@ -220,7 +211,6 @@ passthrough(.Fun, \dots, .Fname)
 paste.expr(x)
 pasteFormula(f)
 pasteN(\dots)
-prange(r)
 prettydiscrete(x, n)
 prettyinside(x, \dots)
 prolongseq(x, newrange, step)

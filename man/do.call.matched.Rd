@@ -67,7 +67,8 @@
   \adrian
 }
 \seealso{
-  \code{\link{resolve.defaults}}
+  \code{\link{resolve.defaults}},
+  \code{\link{do.call.without}}.
   
   \code{\link[base]{do.call}}
 }

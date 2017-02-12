@@ -1,6 +1,6 @@
 Package: spatstat.utils
-Version: 1.2-1
-Date: 2017-02-10
+Version: 1.2-2
+Date: 2017-02-12
 Title: EXPERIMENTAL Subset of Spatstat Utilities
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
