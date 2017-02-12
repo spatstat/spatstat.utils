@@ -15,6 +15,8 @@
 */
 
 void primefax(int *, int *, int *);
+void ply2sum(int *, double *, int *, int *, int *, double *, int *, int *); 
+void ply3sum(int *, double *, int *, int *, int *, int *, double *, int *, int *, int *);
 void irevcumsum(int *, int *); void drevcumsum(double *, int *); 
 void fastinterv(double *, int *, double *, int *, int *);
 void Cmatchxy(int *, double *, double *, int *, double *, double *, int *); 

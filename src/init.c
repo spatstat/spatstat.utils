@@ -23,6 +23,8 @@ static const R_CMethodDef CEntries[] = {
     {"inxyp",       (DL_FUNC) &inxyp,        8},
     {"irevcumsum",  (DL_FUNC) &irevcumsum,   2},
     {"nndist2segs", (DL_FUNC) &nndist2segs, 11},
+    {"ply2sum",     (DL_FUNC) &ply2sum,      8},
+    {"ply3sum",     (DL_FUNC) &ply3sum,     10},
     {"prdist2segs", (DL_FUNC) &prdist2segs, 10},
     {"primefax",    (DL_FUNC) &primefax,     3},
     {NULL, NULL, 0}
