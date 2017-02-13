@@ -2,19 +2,15 @@
 \title{Internal spatstat.utils functions}
 \alias{adjustthinrange}
 \alias{apply23sum}
-\alias{articlebeforenumber}
 \alias{as2vector}
 \alias{asNumericMatrix}
 \alias{assignDFcolumn}
 \alias{badprobability}
 \alias{blockdiagarray}
 \alias{blockdiagmatrix}
-\alias{cat.factor}
 \alias{check.finite}
-\alias{check.nvector}
 \alias{choptext}
 \alias{choptextline}
-\alias{commasep}
 \alias{complaining}
 \alias{distpl}               
 \alias{distppl}
@@ -40,19 +36,12 @@
 \alias{firstfactor}
 \alias{flat.deparse}
 \alias{fontify}
-\alias{forbidNA}
+\alias{forbidNA} 
 \alias{geomseq}
 \alias{getdataobjects}
 \alias{good.names}
 \alias{graphicsPars}            
 \alias{gsubdot}
-\alias{ifelse0NA}
-\alias{ifelse1NA}
-\alias{ifelseAB}
-\alias{ifelseAX}
-\alias{ifelseNegPos}
-\alias{ifelseXB}
-\alias{ifelseXY}
 \alias{indexCartesian}
 \alias{inject.expr}
 \alias{insertinlist}     
@@ -75,12 +64,9 @@
 \alias{nzpaste}
 \alias{orderstats}
 \alias{orderwhich}
-\alias{ordinal}
-\alias{ordinalsuffix}
 \alias{\%orifnull\%}  %DoNotExport
 %NAMESPACE export("%orifnull%")
 \alias{padtowidth}
-\alias{paren}
 \alias{passthrough}
 \alias{paste.expr}
 \alias{pasteFormula}
@@ -89,7 +75,6 @@
 \alias{prettyinside}
 \alias{prolongseq}
 \alias{ratiotweak}
-\alias{revcumsum}
 \alias{romansort}
 \alias{samefunction}
 \alias{sensiblevarname}
@@ -102,7 +87,6 @@
 \alias{there.is.no.try}
 \alias{trap.extra.arguments}
 \alias{truncline}
-\alias{unparen}
 \alias{uptrimat}
 \alias{validposint}
 \alias{variablesintext}
@@ -129,19 +113,15 @@
 \usage{
 adjustthinrange(ur,vstep,vr)
 apply23sum(x)
-articlebeforenumber(k)
 as2vector(x)
 asNumericMatrix(x)
 assignDFcolumn(x, name, value, \dots)
 badprobability(x, NAvalue)
 blockdiagarray(\dots)
 blockdiagmatrix(\dots)
-cat.factor(\dots, recursive=FALSE)
 check.finite(x, context, xname, fatal, usergiven)
-check.nvector(v, npoints, fatal, things, naok, warn, vname, oneok)
 choptext(\dots, prefix, indent)
 choptextline(st, w, prefix, indent)
-commasep(x, join, flatten)
 complaining(whinge, fatal, value)
 distpl(p, l)               
 distppl(p, l)
@@ -173,13 +153,6 @@ getdataobjects(nama, envir, datalist, fatal)
 good.names(nama, defaults, suffices)
 graphicsPars(key)
 gsubdot(replacement, x)
-ifelse0NA(test)
-ifelse1NA(test)
-ifelseAB(test, a, b)
-ifelseAX(test, a, x)
-ifelseNegPos(test, x)
-ifelseXB(test, x, b)
-ifelseXY(test, x, y)
 indexCartesian(nn)
 inject.expr(base, expr)
 insertinlist(x, i, y)
@@ -202,11 +175,8 @@ numalign(i, nmax, zero)
 nzpaste(\dots, sep, collapse)
 orderstats(x, k, decreasing)
 orderwhich(x, k, decreasing)
-ordinal(k)
-ordinalsuffix(k)
 a \%orifnull\% b
 padtowidth(a, b, justify)
-paren(x, type)
 passthrough(.Fun, \dots, .Fname)
 paste.expr(x)
 pasteFormula(f)
@@ -215,7 +185,6 @@ prettydiscrete(x, n)
 prettyinside(x, \dots)
 prolongseq(x, newrange, step)
 ratiotweak(a, b, overzero, zerozero)
-revcumsum(x)
 romansort(x)
 samefunction(f, g)
 sensiblevarname(guess, fallback, maxlen)
@@ -228,7 +197,6 @@ substringcount(x,y)
 there.is.no.try(\dots)
 trap.extra.arguments(\dots, .Context, .Fatal)
 truncline(x, nc)
-unparen(x)
 uptrimat(x)
 validposint(n, caller, fatal)
 variablesintext(x)
