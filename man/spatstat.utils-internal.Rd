@@ -1,5 +1,5 @@
 \name{spatstat.utils-internal} 
-\title{Internal spatstat.utils functions}
+\title{Internal Functions of spatstat.utils Package}
 \alias{adjustthinrange}
 \alias{apply23sum}
 \alias{as2vector}
@@ -108,7 +108,7 @@
 \alias{xysegMcircle}
 \alias{xysegPcircle}
 \description{
-  Internal spatstat utility functions.
+  Internal utility functions of the \code{spatstat.utils} package.
 }
 \usage{
 adjustthinrange(ur,vstep,vr)
