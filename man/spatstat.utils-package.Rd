@@ -61,9 +61,21 @@
       \code{\link{check.in.range}},
       \code{\link{prange}}.
     }
-    \item{Utilities}{
-      \code{\link{cat.factor}} concatenates several factors,
-      merging the levels, to produce a new factor.
+    \item{Handling a formula}{
+      Tools for handling a formula in the \R language include
+      \code{\link{lhs.of.formula}},
+      \code{\link{rhs.of.formula}},
+      \code{\link{variablesinformula}},
+      \code{\link{termsinformula}},
+      \code{\link{offsetsinformula}},
+      \code{\link{can.be.formula}} and
+      \code{\link{identical.formulae}}.
+    }
+    \item{Polynomials}{
+      There are tools for creating and manipulating symbolic expressions
+      for polynomials, as they might appear in a formula
+      (\code{\link{sympoly}},
+      \code{\link{expand.polynom}}).
     }
     \item{Validating arguments}{
       There are many tools for validating an argument and
@@ -79,6 +91,22 @@
       \code{\link{do.call.matched}}, \code{\link{do.call.without}},
       \code{\link{resolve.defaults}}.
     }
+    \item{Traced optimization}{
+      \code{\link{optimizeWithTrace}} is a simple wrapper for
+      the one-dimensional optimization routine
+      \code{\link[stats]{optimize}}. It stores the values of the
+      function argument each time it is called, stores the resulting
+      function values, and returns them along with the optimal value.
+    }
+    \item{Workarounds}{
+      There are workarounds for known bugs or undesirable features in
+      other software.
+      \code{\link{spatstatLocator}} is a replacement for
+      \code{\link[graphics]{locator}} which works around a bug in the
+      \code{RStudio} graphics interface.
+      \code{\link{cat.factor}} concatenates several factors,
+      merging the levels, to produce a new factor.
+    }
   }
 }
 \section{Licence}{
@@ -91,4 +119,3 @@
 }
 \keyword{spatial}
 \keyword{package}
-
