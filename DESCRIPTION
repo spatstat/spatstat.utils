@@ -1,7 +1,7 @@
 Package: spatstat.utils
 Version: 1.2-6
 Date: 2017-02-15
-Title: EXPERIMENTAL subset of ‘spatstat’ utilities
+Title: EXPERIMENTAL subset of 'spatstat' utilities
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
        	            email = "Adrian.Baddeley@curtin.edu.au"),
@@ -14,7 +14,7 @@ Authors@R: c(person("Adrian", "Baddeley",
 Maintainer: Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>
 Depends: R (>= 3.3.0), stats, graphics, grDevices, utils, methods
 Suggests: spatstat
-Description: This is an experimental package containing a subset of ‘spatstat’.
+Description: This is an experimental package containing a subset of 'spatstat'.
 License: GPL (>= 2)
 URL: http://www.spatstat.org
 LazyData: true
