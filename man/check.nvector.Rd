@@ -65,6 +65,7 @@
   \adrian.
 }
 \seealso{
+  \code{\link{check.nmatrix}},
   \code{\link{check.1.real}}, \code{\link{check.named.vector}}.
 }
 \examples{
@@ -74,3 +75,4 @@
    check.nvector(y, 5, fatal=FALSE, oneok=TRUE)
 }
 \keyword{error}
+\keyword{utilities}
