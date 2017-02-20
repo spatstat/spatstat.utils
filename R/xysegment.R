@@ -1,7 +1,7 @@
 #
 #      xysegment.S
 #
-#     $Revision: 1.17 $    $Date: 2015/10/21 09:06:57 $
+#     $Revision: 1.18 $    $Date: 2017/02/20 06:27:10 $
 #
 # Low level utilities for analytic geometry for line segments
 #
@@ -193,32 +193,38 @@ distppll <- function(p, l, mintype=0,
     return(list(d=d, min.d=min.d, min.which=min.which))
 }
 
-# faster code if you don't want the n*m matrix 'd'
+# (distance to) nearest segment 
 
 distppllmin <- function(p, l, big=NULL) {
   np <- nrow(p)
   nl <- nrow(l)
-  # initialise squared distances to large value
   if(is.null(big)) {
     xdif <- diff(range(c(p[,1],l[, c(1,3)])))
     ydif <- diff(range(c(p[,2],l[, c(2,4)])))
     big <- 2 * (xdif^2 + ydif^2)
   }
-  dist2 <- rep.int(big, np)
-  #
+  z <- NNdist2segments(p[,1], p[,2],
+                       l[,1], l[,2], l[,3], l[,4],
+                       big)
+  return(list(min.d=sqrt(z$dist2), min.which=z$index))
+}
+
+NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue) {
+  np <- length(xp)
+  ns <- length(x0)
+  dist2 <- rep(bigvalue, np)
   z <- .C("nndist2segs",
-          xp=as.double(p[,1]),
-          yp=as.double(p[,2]),
+          xp=as.double(xp),
+          yp=as.double(yp),
           npoints=as.integer(np),
-          x0=as.double(l[,1]),
-          y0=as.double(l[,2]),
-          x1=as.double(l[,3]),
-          y1=as.double(l[,4]),
-          nsegments=as.integer(nl),
+          x0=as.double(x0),
+          y0=as.double(y0),
+          x1=as.double(x1),
+          y1=as.double(y1),
+          nsegments=as.integer(ns),
           epsilon=as.double(.Machine$double.eps),
           dist2=as.double(dist2),
           index=as.integer(integer(np)))
-  min.d <- sqrt(z$dist2)
-  min.which <- z$index+1L
-  return(list(min.d=min.d, min.which=min.which))
+  return(list(dist2=z$dist2,
+              index=z$index + 1L))
 }

@@ -60,6 +60,7 @@
 \alias{matrowsum}
 \alias{natozero}
 \alias{niceround}
+\alias{NNdist2segments}
 \alias{numalign}
 \alias{nzpaste}
 \alias{orderstats}
@@ -171,6 +172,7 @@ matrowany(x)
 matrowsum(x)
 natozero(x)
 niceround(x, m)
+NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue)
 numalign(i, nmax, zero)
 nzpaste(\dots, sep, collapse)
 orderstats(x, k, decreasing)
