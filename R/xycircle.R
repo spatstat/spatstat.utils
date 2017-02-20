@@ -3,7 +3,7 @@
 #'
 #'   Low-level utilities for circle geometry
 #'
-#'  $Revision: 1.8 $   $Date: 2017/01/21 10:57:04 $
+#'  $Revision: 1.9 $   $Date: 2017/02/20 02:03:33 $
 #'
 
 xysegXcircle <- function(xcentres, ycentres, radii, x0, y0, x1, y1,
@@ -42,7 +42,7 @@ xysegXcircle <- function(xcentres, ycentres, radii, x0, y0, x1, y1,
              Y1 = y1)
   result <- as.data.frame(z)
   #' indices i, j, k specify provenance of each intersection point
-  #' i = circle, j = segment, k = radius
+  #' i = centre, j = segment, k = radius
   names(result) <- c("x", "y", "i", "j", "k", "sinalpha")
   return(result)
 }
@@ -85,7 +85,7 @@ xysegMcircle <- function(xcentres, ycentres, radmat, x0, y0, x1, y1,
              Y1 = y1)
   result <- as.data.frame(z)
   #' indices i, j, k specify provenance of each intersection point
-  #' i = circle, j = segment, k = radius
+  #' i = centre, j = segment, k = radius
   names(result) <- c("x", "y", "i", "j", "k", "sinalpha")
   return(result)
 }
