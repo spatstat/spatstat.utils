@@ -1,6 +1,7 @@
 \name{primefactors}
 \alias{primefactors}
 \alias{primesbelow}
+\alias{divisors}
 \alias{is.prime}
 \alias{relatively.prime}
 \alias{greatest.common.divisor}
@@ -16,6 +17,7 @@
 }
 \usage{
 primefactors(n, method=c("C", "interpreted"))
+divisors(n)
 is.prime(n)
 relatively.prime(n, m)
 least.common.multiple(n,m)
@@ -41,6 +43,10 @@ primesbelow(nmax)
   \code{primefactors(n)} factorises the integer \code{n}
   into its prime number factors, and returns an integer vector
   containing these factors. Some factors may be repeated.
+
+  \code{divisors(n)} finds all the integers which divide
+  the integer \code{n}, and returns them as a sorted vector of integers
+  (beginning with \code{1} and ending with \code{n}).
 
   \code{relatively.prime(n, m)} returns \code{TRUE} if the integers
   \code{n} and \code{m} are relatively prime, that is, if they have no
@@ -71,6 +77,8 @@ primesbelow(nmax)
   relatively.prime(2, 3)
   
   primefactors(24) ## Note repeated factors
+
+  divisors(24)
 
   greatest.common.divisor(60, 100) 
 
