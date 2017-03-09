@@ -47,7 +47,8 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
           nb=as.integer(nedges),
           xb=as.double(xp),
           yb=as.double(yp),
-          match=as.integer(integer(npts)))
+          match=as.integer(integer(npts)),
+          PACKAGE = "spatstat.utils")
   is.vertex <- (z$match != 0)
   retain <- !is.vertex
   # Remove vertices from subsequent consideration; replace them later
@@ -73,7 +74,8 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
                         npts=as.integer(npts),
                         nedges=as.integer(nedges),
                         score=as.integer(score),
-                        onbndry=as.integer(on.boundary))
+                        onbndry=as.integer(on.boundary),
+                        PACKAGE = "spatstat.utils")
              score <- temp$score/2
              on.boundary <- as.logical(temp$onbndry)
            },

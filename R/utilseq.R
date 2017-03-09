@@ -37,12 +37,14 @@ revcumsum <- function(x) {
   if(identical(storage.mode(x), "integer")) {
     z <- .C("irevcumsum",
             x=as.integer(x),
-            as.integer(n))
+            as.integer(n),
+            PACKAGE = "spatstat.utils")
     return(z$x)
   } else {
     z <- .C("drevcumsum",
             x=as.double(x),
-            as.integer(n))
+            as.integer(n),
+            PACKAGE = "spatstat.utils")
     return(z$x)
   }
 }
@@ -269,7 +271,8 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001) {
              n          = as.integer(nx),
              brange     = as.double(range(b)),
              nintervals = as.integer(nintervals),
-             y          = as.integer(integer(nx))
+             y          = as.integer(integer(nx)),
+             PACKAGE = "spatstat.utils"
              )
     y <- zz$y
   } else {

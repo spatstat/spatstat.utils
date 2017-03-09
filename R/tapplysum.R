@@ -61,7 +61,8 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
                nout = as.integer(integer(1L)),
                xout = as.double(numeric(n)),
                iout = as.integer(integer(n)),
-               jout = as.integer(integer(n)))
+               jout = as.integer(integer(n)),
+               PACKAGE = "spatstat.utils")
       nout <- zz$nout
       if(nout > 0) {
         ijout <- cbind(zz$iout, zz$jout)[1:nout,,drop=FALSE]
@@ -83,7 +84,8 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
                xout = as.double(numeric(n)),
                iout = as.integer(integer(n)),
                jout = as.integer(integer(n)),
-               kout = as.integer(integer(n)))
+               kout = as.integer(integer(n)),
+               PACKAGE = "spatstat.utils")
       nout <- zz$nout
       if(nout > 0) {
         ijkout <- cbind(zz$iout, zz$jout, zz$kout)[1:nout,,drop=FALSE]
