@@ -175,7 +175,8 @@ distppll <- function(p, l, mintype=0,
                       y1=as.double(l[,4]),
                       nsegments=as.integer(nl),
                       epsilon=as.double(eps),
-                      dist2=as.double(numeric(np * nl)))
+                      dist2=as.double(numeric(np * nl)),
+                      PACKAGE = "spatstat.utils")
            d <- matrix(sqrt(temp$dist2), nrow=np, ncol=nl)
            if(mintype == 2) {
              min.which <- apply(d, 1, which.min)
@@ -224,7 +225,8 @@ NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue) {
           nsegments=as.integer(ns),
           epsilon=as.double(.Machine$double.eps),
           dist2=as.double(dist2),
-          index=as.integer(integer(np)))
+          index=as.integer(integer(np)),
+          PACKAGE = "spatstat.utils")
   return(list(dist2=z$dist2,
               index=z$index + 1L))
 }
