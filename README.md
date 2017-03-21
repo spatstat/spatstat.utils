@@ -1,7 +1,6 @@
 # spatstat.utils
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/spatstat.utils)](http://cran.r-project.org/web/packages/spatstat.utils)
-[![Research software impact](http://depsy.org/api/package/cran/spatstat.utils/badge.svg)](http://depsy.org/package/r/spatstat.utils)
 [![Travis-CI Build Status](https://travis-ci.org/spatstat/spatstat.utils.png?branch=master)](https://travis-ci.org/spatstat/spatstat.utils)
 [![codecov.io](https://codecov.io/github/spatstat/spatstat.utils/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.utils?branch=master)
 
