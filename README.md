@@ -1,8 +1,8 @@
 # spatstat.utils
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/spatstat.utils)](http://cran.r-project.org/web/packages/spatstat.utils)
+[![CRAN status](http://www.r-pkg.org/badges/version/spatstat.utils)](http://cran.r-project.org/web/packages/spatstat.utils)
 [![Travis-CI Build Status](https://travis-ci.org/spatstat/spatstat.utils.png?branch=master)](https://travis-ci.org/spatstat/spatstat.utils)
-[![codecov.io](https://codecov.io/github/spatstat/spatstat.utils/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.utils?branch=master)
+[![Code Coverage Score](https://codecov.io/github/spatstat/spatstat.utils/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.utils?branch=master)
 
 The `spatstat` package is in the process of being split into
 sub-packages. The first of these sub-packages is `spatstat.utils`.
