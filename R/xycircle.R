@@ -32,14 +32,15 @@ xysegXcircle <- function(xcentres, ycentres, radii, x0, y0, x1, y1,
   storage.mode(x0) <- storage.mode(y0) <- "double"
   storage.mode(x1) <- storage.mode(y1) <- "double"
   storage.mode(radii) <- "double"
-  z <- .Call("circXseg",
+  z <- .Call(C_circXseg,
              XC = xcentres,
              YC = ycentres,
              R  = radii,
              X0 = x0,
              Y0 = y0,
              X1 = x1,
-             Y1 = y1)
+             Y1 = y1,
+	     PACKAGE="spatstat.utils")
   result <- as.data.frame(z)
   #' indices i, j, k specify provenance of each intersection point
   #' i = centre, j = segment, k = radius
@@ -75,14 +76,15 @@ xysegMcircle <- function(xcentres, ycentres, radmat, x0, y0, x1, y1,
   storage.mode(x0) <- storage.mode(y0) <- "double"
   storage.mode(x1) <- storage.mode(y1) <- "double"
   storage.mode(radmat) <- "double"
-  z <- .Call("circMseg",
+  z <- .Call(C_circMseg,
              XC = xcentres,
              YC = ycentres,
              R  = radmat,
              X0 = x0,
              Y0 = y0,
              X1 = x1,
-             Y1 = y1)
+             Y1 = y1,
+	     PACKAGE="spatstat.utils")
   result <- as.data.frame(z)
   #' indices i, j, k specify provenance of each intersection point
   #' i = centre, j = segment, k = radius
@@ -117,14 +119,15 @@ xysegPcircle <- function(xc, yc, rc, x0, y0, x1, y1,
   storage.mode(x0) <- storage.mode(y0) <- "double"
   storage.mode(x1) <- storage.mode(y1) <- "double"
   storage.mode(rc) <- "double"
-  z <- .Call("circXseg",
+  z <- .Call(C_circXseg,
              XC = xc,
              YC = yc,
              RC = rc,
              X0 = x0,
              Y0 = y0,
              X1 = x1,
-             Y1 = y1)
+             Y1 = y1,
+	     PACKAGE="spatstat.utils")
   result <- as.data.frame(z)
   #' indices i, j specify provenance of each intersection point
   #' i = circle, j = segment

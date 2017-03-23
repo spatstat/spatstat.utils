@@ -40,7 +40,7 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
 
   # Check for points (x,y) that coincide with vertices (xp, yp)
   # Handle them separately
-  z <- .C("Cmatchxy",
+  z <- .C(C_Cmatchxy,
           na=as.integer(npts),
           xa=as.double(x),
           ya=as.double(y),
@@ -66,7 +66,7 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
     switch(method,
            C={
              #------------------ call C routine ------------------
-             temp <- .C("inxyp",
+             temp <- .C(C_inxyp,
                         x=as.double(x),
                         y=as.double(y),
                         xp=as.double(xp),

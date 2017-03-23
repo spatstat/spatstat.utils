@@ -132,7 +132,7 @@ primefactors <- function(n, method=c("C", "interpreted")) {
          C = {
            check.1.integer(n)
            kmax <- ceiling(log2(n))
-           z <- .C("primefax",
+           z <- .C(C_primefax,
                    n=as.integer(n),
                    factors=as.integer(integer(kmax)),
                    nfactors=as.integer(integer(1L)),

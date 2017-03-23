@@ -53,7 +53,7 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
     result <- matrix(0, mi, mj)
     if(n > 0) {
       oo <- order(ii, jj)
-      zz <- .C("ply2sum",
+      zz <- .C(C_ply2sum,
                nin = as.integer(n),
                xin = as.double(x[oo]),
                iin = as.integer(ii[oo]),
@@ -74,7 +74,7 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
     result <- array(0, dim=c(mi, mj, mk))
     if(n > 0) {
       oo <- order(ii, jj, kk)
-      zz <- .C("ply3sum",
+      zz <- .C(C_ply3sum,
                nin = as.integer(n),
                xin = as.double(x[oo]),
                iin = as.integer(ii[oo]),

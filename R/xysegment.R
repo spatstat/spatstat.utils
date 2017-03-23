@@ -165,7 +165,7 @@ distppll <- function(p, l, mintype=0,
 #         },
          C = {
            eps <- .Machine$double.eps
-           temp <- .C("prdist2segs",
+           temp <- .C(C_prdist2segs,
                       x=as.double(xp),
                       y=as.double(yp),
                       npoints =as.integer(np),
@@ -214,7 +214,7 @@ NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue) {
   np <- length(xp)
   ns <- length(x0)
   dist2 <- rep(bigvalue, np)
-  z <- .C("nndist2segs",
+  z <- .C(C_nndist2segs,
           xp=as.double(xp),
           yp=as.double(yp),
           npoints=as.integer(np),

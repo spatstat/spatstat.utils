@@ -35,13 +35,13 @@ revcumsum <- function(x) {
   }
   n <- length(x)
   if(identical(storage.mode(x), "integer")) {
-    z <- .C("irevcumsum",
+    z <- .C(C_irevcumsum,
             x=as.integer(x),
             as.integer(n),
             PACKAGE = "spatstat.utils")
     return(z$x)
   } else {
-    z <- .C("drevcumsum",
+    z <- .C(C_drevcumsum,
             x=as.double(x),
             as.integer(n),
             PACKAGE = "spatstat.utils")
@@ -266,7 +266,7 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001) {
   ##
   if(equispaced(b, reltol)) {
     ## breaks are equally spaced
-    zz <- .C("fastinterv",
+    zz <- .C(C_fastinterv,
              x          = as.double(x),
              n          = as.integer(nx),
              brange     = as.double(range(b)),
