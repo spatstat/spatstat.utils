@@ -27,6 +27,8 @@ static const R_CMethodDef CEntries[] = {
     {"ply3sum",     (DL_FUNC) &ply3sum,     10},
     {"prdist2segs", (DL_FUNC) &prdist2segs, 10},
     {"primefax",    (DL_FUNC) &primefax,     3},
+    {"Cmatch2int",  (DL_FUNC) &Cmatch2int,   7},
+    {"Cmatch3int",  (DL_FUNC) &Cmatch3int,   9},
     {NULL, NULL, 0}
 };
 

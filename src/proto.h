@@ -23,6 +23,10 @@ void Cmatchxy(int *, double *, double *, int *, double *, double *, int *);
 void inxyp(double *, double *, double *, double *, int *, int *, int *, int *);
 void prdist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *); 
 void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *);
+
+void Cmatch2int(int *, int *, int *, int *, int *, int *, int *); 
+void Cmatch3int(int *, int *, int *, int *, int *, int *, int *, int *, int *); 
+
 /*
 
              Functions invoked by .Call

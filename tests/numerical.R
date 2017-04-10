@@ -14,3 +14,12 @@ if(any(yy != zz))
   stop("tapplysum does not agree with tapply(, sum)")
 #' tapplysum with zero-length data
 tapplysum(xx[FALSE], list(A=aa[FALSE], B=bb[FALSE]), do.names=TRUE)
+
+#' validity of matchIntegerDataFrames
+
+A <- data.frame(a=sample(1:5), b=sample(1:5, replace=TRUE))
+B <- data.frame(u=sample(1:3), w=3:1)
+acode <- paste(A[,1], A[,2])
+bcode <- paste(B[,1], B[,2])
+stopifnot(identical(matchIntegerDataFrames(A,B), match(acode,bcode)))
+

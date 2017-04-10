@@ -16,7 +16,10 @@ useDynLib(spatstat.utils, .registration=TRUE, .fixes="C_")
 
 # .................................................. 
 # Automatically-generated list of documented objects 
-# .................................................. 
+# ..................................................
+
+export("matchIntegerDataFrames")
+
 export("adjustthinrange")
 export("apply23sum")
 export("Area.xypolygon")       

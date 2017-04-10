@@ -108,6 +108,8 @@
 \alias{xysegXcircle}
 \alias{xysegMcircle}
 \alias{xysegPcircle}
+%%
+\alias{matchIntegerDataFrames}
 \description{
   Internal utility functions of the \code{spatstat.utils} package.
 }
@@ -219,6 +221,8 @@ simplify.xypolygon(p, dmin)
 xysegXcircle(xcentres, ycentres, radii, x0, y0, x1, y1, check)
 xysegMcircle(xcentres, ycentres, radmat, x0, y0, x1, y1, check)
 xysegPcircle(xc, yc, rc, x0, y0, x1, y1, check)
+%%
+matchIntegerDataFrames(X,Y)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called
