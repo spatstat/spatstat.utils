@@ -270,6 +270,7 @@ verbalogic <- function(x, op="and") {
            x[isfalse] <- "TRUE"
            x[istrue] <- "FALSE"
            x[isvariable] <- paste("not {", y, "}")
+	   return(x)
          },
          stop(paste("Unrecognised operation", sQuote(op))))
 }
