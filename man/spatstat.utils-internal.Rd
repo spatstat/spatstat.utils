@@ -80,7 +80,6 @@
 \alias{samefunction}
 \alias{sensiblevarname}
 \alias{short.deparse}
-\alias{simplenumber}              
 \alias{singlestring}              
 \alias{startinrange}
 \alias{strsplitretain}
@@ -91,19 +90,10 @@
 \alias{uptrimat}
 \alias{validposint}
 \alias{variablesintext}
-\alias{verbalogic}
 \alias{warn.ignored.args}
-%% xypolygon %%%
-\alias{verify.xypolygon}
-\alias{inside.triangle}     
-\alias{inside.xypolygon}     
-\alias{is.hole.xypolygon}
-\alias{Area.xypolygon}       
-\alias{bdrylength.xypolygon} 
-\alias{reverse.xypolygon}    
+%%
+\alias{inside.triangle}
 \alias{overlap.trapezium}
-\alias{overlap.xypolygon}    
-\alias{simplify.xypolygon}
 %%
 \alias{xysegXcircle}
 \alias{xysegMcircle}
@@ -193,7 +183,6 @@ romansort(x)
 samefunction(f, g)
 sensiblevarname(guess, fallback, maxlen)
 short.deparse(x, maxlen)
-simplenumber(x, unit, multiply, tol)
 singlestring(s, coll)
 startinrange(x0, dx, r)
 strsplitretain(x, split)
@@ -204,25 +193,16 @@ truncline(x, nc)
 uptrimat(x)
 validposint(n, caller, fatal)
 variablesintext(x)
-verbalogic(x, op)
 warn.ignored.args(\dots, context)
 %% xypolygon %%%
-verify.xypolygon(p, fatal=TRUE)
 inside.triangle(x, y, xx, yy)
-inside.xypolygon(pts, polly, test01, method)
-is.hole.xypolygon(polly)
-Area.xypolygon(polly)
-bdrylength.xypolygon(polly)
-reverse.xypolygon(p, adjust=FALSE)
 overlap.trapezium(xa, ya, xb, yb, verb = FALSE)
-overlap.xypolygon(P, Q)
-simplify.xypolygon(p, dmin)
 %%
 xysegXcircle(xcentres, ycentres, radii, x0, y0, x1, y1, check)
 xysegMcircle(xcentres, ycentres, radmat, x0, y0, x1, y1, check)
 xysegPcircle(xc, yc, rc, x0, y0, x1, y1, check)
 %%
-matchIntegerDataFrames(X,Y)
+matchIntegerDataFrames(X,Y,sort)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called
