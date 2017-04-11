@@ -24,8 +24,10 @@ void inxyp(double *, double *, double *, double *, int *, int *, int *, int *);
 void prdist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *); 
 void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *);
 
-void Cmatch2int(int *, int *, int *, int *, int *, int *, int *); 
-void Cmatch3int(int *, int *, int *, int *, int *, int *, int *, int *, int *); 
+void CUmatch2int(int *, int *, int *, int *, int *, int *, int *); 
+void CSmatch2int(int *, int *, int *, int *, int *, int *, int *); 
+void CUmatch3int(int *, int *, int *, int *, int *, int *, int *, int *, int *); 
+void CSmatch3int(int *, int *, int *, int *, int *, int *, int *, int *, int *); 
 
 /*
 

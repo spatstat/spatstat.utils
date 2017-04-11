@@ -19,6 +19,8 @@ useDynLib(spatstat.utils, .registration=TRUE, .fixes="C_")
 # ..................................................
 
 export("matchIntegerDataFrames")
+export("lhs.of.formula<-")
+export("rhs.of.formula<-")
 
 export("adjustthinrange")
 export("apply23sum")
