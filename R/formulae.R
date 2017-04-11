@@ -77,6 +77,21 @@ rhs.of.formula <- function(x, tilde=TRUE) {
   return(x)
 }
 
+"lhs.of.formula<-" <- function(x, value) {
+   if(!inherits(x, "formula"))
+      stop("x must be a formula")
+   if(length(as.list(x)) == 2) 
+      x[[3L]] <- x[[2L]]
+   x[[2L]] <- value
+   return(x)
+}
+
+"rhs.of.formula<-" <- function(x, value) {
+   if(!inherits(x, "formula"))
+      stop("x must be a formula")
+   x[[3L]] <- value
+   return(x)
+}
 
 sympoly <- function(x,y,n) {
 
