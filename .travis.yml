@@ -1,30 +1,18 @@
 language: r
-matrix:
-  include:
-    - os: osx
-      env: R_CODECOV_TEST=true _R_CHECK_FORCE_SUGGESTS_=false
-    - os: osx
-      env: R_CODECOV_EXAMPLE=true _R_CHECK_FORCE_SUGGESTS_=false
-    - os: osx
-      env: R_CODECOV_VIGNETTE=true _R_CHECK_FORCE_SUGGESTS_=false
+os:
+- linux
+- osx
+r:
+- release
+- devel
+env:
+- _R_CHECK_FORCE_SUGGESTS_=false
 sudo: false
-cache: packages
-warnings_are_errors: false
-before_install:
-- if [ "$TRAVIS_OS_NAME" == "linux" ]; then tlmgr install anysize; fi
-addons:
-  apt:
-    packages:
-    - libgsl0-dev
-    - bwidget
-brew_packages:
-- gsl
 r_packages:
 - covr
 after_success:
- - if [[ "${R_CODECOV_TEST}" ]]; then R -e 'covr::codecov(type = "test", quiet = FALSE)'; fi
- - if [[ "${R_CODECOV_EXAMPLE}" ]]; then R -e 'covr::codecov(type = "example", quiet = FALSE)'; fi
- - if [[ "${R_CODECOV_VIGNETTE}" ]]; then R -e 'covr::codecov(type = "vignette", quiet = FALSE)'; fi
+- if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "osx") ]]; then R CMD INSTALL --build $PKG_TARBALL; fi
+- if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "linux") ]]; then R -e 'covr::codecov(type = "all")'; fi
 deploy:
   provider: releases
   api_key:
