@@ -258,7 +258,7 @@ adjustthinrange <- function(ur,vstep,vr) {
   return(ur)
 }
 
-fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001) {
+fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab = 3L) {
   nintervals <- length(b) - 1
   nx <- length(x)
   if(nx == 0)
@@ -280,10 +280,16 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001) {
     y <- findInterval(x, b, rightmost.closed=TRUE)
   }
   if(labels) {
+    # Digits in labels code copied from base::cut.default (with small adaptions):
+    for (dig in dig.lab:max(12L, dig.lab)) {
+      ch.br <- formatC(0 + b, digits = dig, width = 1L)
+      if (ok <- all(ch.br[-1L] != ch.br[1L:nintervals])) 
+        break
+    }
     blab <- paste0("[",
-                   b[1:nintervals],
+                   ch.br[1L:nintervals],
                    ",",
-                   b[-1],
+                   ch.br[-1],
                    c(rep(")", nintervals-1), "]"))
     y <- as.integer(y)
     levels(y) <- as.character(blab)
