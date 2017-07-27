@@ -2,9 +2,11 @@
 #
 #   formulae.R
 #
+#   THIS FILE IS NOW PART OF spatstat.utils
+#
 #   Functions for manipulating model formulae
 #
-#	$Revision: 1.25 $	$Date: 2017/02/07 07:22:47 $
+#	$Revision: 1.27 $	$Date: 2017/07/27 02:46:37 $
 #
 #   identical.formulae()
 #          Test whether two formulae are identical
@@ -20,7 +22,6 @@
 #
 # -------------------------------------------------------------------
 #	
-
 
 identical.formulae <- function(x, y) {
   # workaround for bug in all.equal.formula in R 2.5.0
@@ -77,20 +78,24 @@ rhs.of.formula <- function(x, tilde=TRUE) {
   return(x)
 }
 
-"lhs.of.formula<-" <- function(x, value) {
-   if(!inherits(x, "formula"))
-      stop("x must be a formula")
-   if(length(as.list(x)) == 2) 
-      x[[3L]] <- x[[2L]]
-   x[[2L]] <- value
-   return(x)
+#' assignment operators
+
+"lhs.of.formula<-" <- function (x, value) 
+{
+  if (!inherits(x, "formula")) 
+    stop("x must be a formula")
+  if (length(as.list(x)) == 2) 
+    x[[3L]] <- x[[2L]]
+  x[[2L]] <- value
+  return(x)
 }
 
-"rhs.of.formula<-" <- function(x, value) {
-   if(!inherits(x, "formula"))
-      stop("x must be a formula")
-   x[[3L]] <- value
-   return(x)
+"rhs.of.formula<-" <- function (x, value) 
+{
+  if (!inherits(x, "formula")) 
+    stop("x must be a formula")
+  x[[3L]] <- value
+  return(x)
 }
 
 sympoly <- function(x,y,n) {
@@ -131,23 +136,32 @@ sympoly <- function(x,y,n) {
 
 
 expand.polynom <- local({
+
+  Iprefix <- function(x) { paste0("I", x) }
+  Iparen <- function(x) { Iprefix(paren(x)) }
+
   powername <- function(x, n) {
     ifelse(n == 0, "",
            ifelse(n == 1,
                   x,
                   paste0(x, "^", n)))
   }
-  power1name <- function(x, n) {
-    px <- powername(x, n)
-    ifelse(n <= 1, px, paste0("I", paren(px)))
+
+  power1name <- function(x, n, xisname) {
+    z <- powername(x, n)
+    z[n > 1] <- Iparen(z[n > 1])
+    if(!xisname) 
+      z[n == 1] <- Iprefix(z[n == 1])
+    return(z)
   }
-  power2name <- function(x, y, n, m) {
+  
+  power2name <- function(x, y, n, m, xisname, yisname) {
     ifelse(n == 0,
-           power1name(y, m),
+           power1name(y, m, yisname),
            ifelse(m == 0,
-                  power1name(x, n),
-                  paste0("I", paren(paste(powername(x, n),
-                                          powername(y, m), sep="*")))))
+                  power1name(x, n, xisname),
+                  Iparen(paste(powername(x, n),
+                               powername(y, m), sep="*"))))
   }
 
   haspolynom <- function(z) { 'polynom' %in% all.names(z) }
@@ -178,8 +192,9 @@ expand.polynom <- local({
     if(n == 3) {
       ## polynom(x, d)
       xlang <- f[[2L]]
-      xstring <- if(length(xlang) == 1) paste(xlang) else paren(format(xlang))
-      xpowers <- power1name(xstring, 1:degree)
+      xisname <- (length(xlang) == 1)
+      xstring <- if(xisname) paste(xlang) else paren(format(xlang))
+      xpowers <- power1name(xstring, 1:degree, xisname)
       xpolystring <- paste(xpowers, collapse=" + ")
       xpolylang <- as.formula(paste("~", xpolystring))[[2L]]
       return(xpolylang)
@@ -187,15 +202,18 @@ expand.polynom <- local({
       ## polynom(x, y, d)
       xlang <- f[[2L]]
       ylang <- f[[3L]]
-      xstring <- if(length(xlang) == 1) paste(xlang) else paren(format(xlang))
-      ystring <- if(length(ylang) == 1) paste(ylang) else paren(format(ylang))
+      xisname <- (length(xlang) == 1)
+      yisname <- (length(ylang) == 1)
+      xstring <- if(xisname) paste(xlang) else paren(format(xlang))
+      ystring <- if(yisname) paste(ylang) else paren(format(ylang))
       mat <- matrix(, 1+degree, 1+degree)
       totdeg <- col(mat) - 1
       yd <- row(mat) - 1
       xd <- totdeg - yd
       xdeg <- xd[xd >= 0]
       ydeg <- yd[xd >= 0]
-      xypowers <- power2name(xstring, ystring, xdeg, ydeg)[xdeg + ydeg > 0]
+      xypowers <- power2name(xstring, ystring, xdeg, ydeg,
+                             xisname, yisname)[xdeg + ydeg > 0]
       xypolystring <- paste(xypowers, collapse=" + ")
       xypolylang <- as.formula(paste("~", xypolystring))[[2L]]
       return(xypolylang)
