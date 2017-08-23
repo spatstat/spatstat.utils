@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.32 $ $Date: 2017/01/02 04:48:09 $
+#  $Revision: 1.33 $ $Date: 2017/08/23 01:50:30 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -140,7 +140,7 @@ graphicsPars <- local({
            "font.axis", "font.lab",
            "mgp", "xaxp", "yaxp", "tck", "tcl", "las", "fg", "xpd"),
          owin = c(
-           "sub",
+           "main", "sub",
            "xlim", "ylim",
            "cex", "font", "col",
            "border", "box", 
