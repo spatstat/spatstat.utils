@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.34 $ $Date: 2017/08/23 06:52:21 $
+#  $Revision: 1.35 $ $Date: 2017/08/31 08:23:54 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -166,7 +166,8 @@ graphicsPars <- local({
                              TheTable$symbols,
                              "pch", "cex", "lty", "lwd",
                              "etch",
-                             "annotate", "labelmap"))
+                             "annotate", "labelmap",
+                             "markrange", "marklevels"))
 
   graphicsPars <- function(key) {
     n <- pmatch(key, names(TheTable))

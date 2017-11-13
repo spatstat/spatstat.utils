@@ -36,7 +36,8 @@
   values. The sum is zero if this combination does not occur.
 
   Currently this is implemented for the cases where \code{flist}
-  has length 2 or 3 (resulting in a matrix or 3D array, respectively).
+  has length 1, 2 or 3 (resulting in a vector, matrix or 3D array,
+  respectively).
   For other cases we fall back on \code{\link[base]{tapply}}.
 }
 \value{

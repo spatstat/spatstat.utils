@@ -12,10 +12,6 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/*  
-   See proto.h for declarations for the native routines registered below.
-*/
-
 static const R_CMethodDef CEntries[] = {
     {"Cmatchxy",    (DL_FUNC) &Cmatchxy,     7},
     {"drevcumsum",  (DL_FUNC) &drevcumsum,   2},
@@ -23,14 +19,15 @@ static const R_CMethodDef CEntries[] = {
     {"inxyp",       (DL_FUNC) &inxyp,        8},
     {"irevcumsum",  (DL_FUNC) &irevcumsum,   2},
     {"nndist2segs", (DL_FUNC) &nndist2segs, 11},
+    {"ply1sum",     (DL_FUNC) &ply1sum,      6},
     {"ply2sum",     (DL_FUNC) &ply2sum,      8},
     {"ply3sum",     (DL_FUNC) &ply3sum,     10},
     {"prdist2segs", (DL_FUNC) &prdist2segs, 10},
     {"primefax",    (DL_FUNC) &primefax,     3},
-    {"CUmatch2int", (DL_FUNC) &CUmatch2int,   7},
-    {"CSmatch2int", (DL_FUNC) &CSmatch2int,   7},
-    {"CUmatch3int", (DL_FUNC) &CUmatch3int,   9},
-    {"CSmatch3int", (DL_FUNC) &CSmatch3int,   9},
+    {"CSmatch2int", (DL_FUNC) &CSmatch2int,  7},
+    {"CUmatch2int", (DL_FUNC) &CUmatch2int,  7},
+    {"CSmatch3int", (DL_FUNC) &CSmatch3int,  9},
+    {"CUmatch3int", (DL_FUNC) &CUmatch3int,  9},
     {NULL, NULL, 0}
 };
 

@@ -1,13 +1,13 @@
 Package: spatstat.utils
-Version: 1.7-1
-Date: 2017-08-23
+Version: 1.8-0
+Date: 2017-11-13
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
        	            email = "Adrian.Baddeley@curtin.edu.au"),
 	     person("Rolf", "Turner", 
                     role = "aut",
- 	            email="r.turner@auckland.az.nz"),
+ 	            email="r.turner@auckland.ac.nz"),
 	     person("Ege",   "Rubak", 
                     role = "aut",
 		    email = "rubak@math.aau.dk"))

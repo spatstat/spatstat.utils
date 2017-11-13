@@ -6,41 +6,51 @@
 
     Macros used:
     FNAME     Name of C routine
-    NDIM      Number of dimensions of result (2 or 3)
+    NDIM      Number of dimensions of result (1, 2 or 3)
 
     Adrian Baddeley and Tilman Davies
 
-    $Revision: 1.1 $  $Date: 2016/08/15 02:29:15 $
+    $Revision: 1.3 $  $Date: 2017/11/13 08:43:37 $
 
 */
 
 
 void FNAME(nin, 
 	   xin,  
-	   iin,  
+	   iin,
+#if (NDIM > 1)	   
 	   jin,
 #if (NDIM > 2)
 	   kin,  
 #endif
+#endif	   
 	   nout,
 	   xout, 
-	   iout, 
-	   jout
+	   iout	
+#if (NDIM > 1)	      
+	   , jout
 #if (NDIM > 2)
 	   , kout
+#endif
 #endif
 ) 
      int *nin, *nout;
      double *xin, *xout;
-     int *iin, *jin, *iout, *jout;
+     int *iin, *iout;
+#if (NDIM > 1)     
+     int *jin, *jout;
 #if (NDIM > 2)
      int *kin, *kout;
 #endif
+#endif
 {
-  int Nin, l, m, icur, jcur;
+  int Nin, l, m, icur;
+#if (NDIM > 1)  
+  int jcur;
 #if (NDIM > 2)
   int kcur;
 #endif
+#endif  
   double xsum;
   Nin = *nin;
   if(Nin == 0) {
@@ -50,17 +60,22 @@ void FNAME(nin,
   /* initialise first cell using first entry */
   m = 0;
   iout[0] = icur = iin[0];
+#if (NDIM > 1)
   jout[0] = jcur = jin[0];
 #if (NDIM > 2)
   kout[0] = kcur = kin[0];
+#endif
 #endif
   xout[0] = xsum = xin[0];
   /* process subsequent entries */
   if(Nin > 1) {
     for(l = 1; l < Nin; l++) {
-      if(iin[l] == icur && jin[l] == jcur 
+      if(iin[l] == icur
+#if (NDIM > 1)
+	 && jin[l] == jcur 
 #if (NDIM > 2)
 	 && kin[l] == kcur
+#endif
 #endif
 	 ) {
 	/* increment current sum */
@@ -71,9 +86,11 @@ void FNAME(nin,
 	/* initialise next cell */
 	++m;
 	iout[m] = icur = iin[l];
+#if (NDIM > 1)
 	jout[m] = jcur = jin[l];
 #if (NDIM > 2)
 	kout[m] = kcur = kin[l];
+#endif
 #endif
 	xsum = xin[l];
       }

@@ -15,6 +15,7 @@
 */
 
 void primefax(int *, int *, int *);
+void ply1sum(int *, double *, int *, int *, double *, int *); 
 void ply2sum(int *, double *, int *, int *, int *, double *, int *, int *); 
 void ply3sum(int *, double *, int *, int *, int *, int *, double *, int *, int *, int *);
 void CSmatch2int(int *, int *, int *, int *, int *, int *, int *); 

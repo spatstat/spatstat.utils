@@ -4,7 +4,7 @@
 #'
 #'  Adrian Baddeley and Tilman Davies
 #' 
-#'  $Revision: 1.11 $  $Date: 2016/12/12 09:07:06 $
+#'  $Revision: 1.13 $  $Date: 2017/11/13 08:48:53 $
 
 tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
   stopifnot(is.numeric(x))
@@ -14,31 +14,43 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
   nfac <- length(flist)
   goodx <- is.finite(x)
   if(na.rm) goodx <- goodx | is.na(x)
-  if(!(nfac %in% 2:3) || !all(goodx)) {
+  if(nfac > 3 || !all(goodx)) {
     y <- tapply(x, flist, sum)
     y[is.na(y)] <- 0
     return(y)
   }
+  #' extract data
   ifac <- flist[[1L]]
-  jfac <- flist[[2L]]
   mi <- length(levels(ifac))
-  mj <- length(levels(jfac))
   ii <- as.integer(ifac)
-  jj <- as.integer(jfac)
+  if(nfac >= 2) {
+    jfac <- flist[[2L]]
+    mj <- length(levels(jfac))
+    jj <- as.integer(jfac)
+  }
   if(nfac == 3) {
     kfac <- flist[[3L]]
     mk <- length(levels(kfac))
     kk <- as.integer(kfac)
   }
-  #' remove NA's
-  if(nfac == 2) {
+  #' remove NA entries
+  switch(nfac,
+  {  # case 1
+    if(anyNA(x) || anyNA(ii)) {
+      ok <- !(is.na(x) | is.na(ii))
+      ii <- ii[ok]
+      x <- x[ok]
+    }
+  },
+  {  # case 2
     if(anyNA(x) || anyNA(ii) || anyNA(jj)) {
       ok <- !(is.na(x) | is.na(ii) | is.na(jj))
       ii <- ii[ok]
       jj <- jj[ok]
       x <- x[ok]
     }
-  } else {
+  },
+  {
     if(anyNA(x) || anyNA(ii) || anyNA(jj) || anyNA(kk)) {
       ok <- !(is.na(x) | is.na(ii) | is.na(jj) | is.na(kk))
       ii <- ii[ok]
@@ -46,10 +58,30 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
       kk <- kk[ok]
       x <- x[ok]
     }
-  }
+  })
+  #' process data
   n <- length(ii)
-  #' 
-  if(nfac == 2) {
+  switch(nfac,
+  {  # case 1
+    result <- numeric(mi)
+    if(n > 0) {
+      oo <- order(ii)
+      zz <- .C(C_ply1sum,
+               nin = as.integer(n),
+               xin = as.double(x[oo]),
+               iin = as.integer(ii[oo]),
+               nout = as.integer(integer(1L)),
+               xout = as.double(numeric(n)),
+               iout = as.integer(integer(n)))
+      nout <- zz$nout
+      if(nout > 0) {
+        iout <- zz$iout
+        xout  <- zz$xout[1:nout]
+        result[iout] <- xout
+      }
+    }
+  },
+  {  # case 2
     result <- matrix(0, mi, mj)
     if(n > 0) {
       oo <- order(ii, jj)
@@ -61,8 +93,7 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
                nout = as.integer(integer(1L)),
                xout = as.double(numeric(n)),
                iout = as.integer(integer(n)),
-               jout = as.integer(integer(n)),
-               PACKAGE = "spatstat.utils")
+               jout = as.integer(integer(n)))
       nout <- zz$nout
       if(nout > 0) {
         ijout <- cbind(zz$iout, zz$jout)[1:nout,,drop=FALSE]
@@ -70,7 +101,8 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
         result[ijout] <- xout
       }
     }
-  } else {
+  },
+  { # case 3
     result <- array(0, dim=c(mi, mj, mk))
     if(n > 0) {
       oo <- order(ii, jj, kk)
@@ -84,8 +116,7 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
                xout = as.double(numeric(n)),
                iout = as.integer(integer(n)),
                jout = as.integer(integer(n)),
-               kout = as.integer(integer(n)),
-               PACKAGE = "spatstat.utils")
+               kout = as.integer(integer(n)))
       nout <- zz$nout
       if(nout > 0) {
         ijkout <- cbind(zz$iout, zz$jout, zz$kout)[1:nout,,drop=FALSE]
@@ -93,7 +124,7 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
         result[ijkout] <- xout
       }
     }
-  }
+  })
   if(do.names) 
     dimnames(result) <- lapply(flist, levels)
   return(result)
