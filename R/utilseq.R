@@ -3,10 +3,10 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.1 $ $Date: 2017/02/12 09:08:55 $
+#'       $Revision: 1.5 $ $Date: 2018/01/23 03:15:36 $
 #'
 
-dropifsingle <- function(x) if(length(x) == 1) x[[1]] else x
+dropifsingle <- function(x) if(length(x) == 1) x[[1L]] else x
 
 #' ...............  ordering ......................
 
@@ -37,14 +37,12 @@ revcumsum <- function(x) {
   if(identical(storage.mode(x), "integer")) {
     z <- .C(C_irevcumsum,
             x=as.integer(x),
-            as.integer(n),
-            PACKAGE = "spatstat.utils")
+            as.integer(n))
     return(z$x)
   } else {
     z <- .C(C_drevcumsum,
             x=as.double(x),
-            as.integer(n),
-            PACKAGE = "spatstat.utils")
+            as.integer(n))
     return(z$x)
   }
 }
@@ -91,7 +89,7 @@ ensure2vector <- function(x) {
 
 prolongseq <- function(x, newrange, step=NULL) {
   ## Extend a sequence x so that it covers the new range.
-  stopifnot(length(newrange) == 2 && newrange[1] < newrange[2])
+  stopifnot(length(newrange) == 2 && newrange[1L] < newrange[2L])
   ## Check 'x' is an evenly-spaced sequence
   if(length(x) > 1) {
     dx <- diff(x)
@@ -109,28 +107,28 @@ prolongseq <- function(x, newrange, step=NULL) {
   } else stop("step is needed when x is a single value")
 
   ## 
-  if(max(x) < newrange[1] || min(x) > newrange[2])
+  if(max(x) < newrange[1L] || min(x) > newrange[2L])
     stop("x lies entirely outside the desired range")
     
   ## add or trim data to left
-  if(x[1] > newrange[1]) {
-    leftbit <- seq(from=x[1], to=newrange[1], by= -step)[-1]
+  if(x[1L] > newrange[1L]) {
+    leftbit <- seq(from=x[1L], to=newrange[1L], by= -step)[-1L]
     x <- c(rev(leftbit), x)
     nleft <- length(leftbit)
   } else {
     nx <- length(x)
-    x <- x[x >= newrange[1]]
+    x <- x[x >= newrange[1L]]
     nleft <- length(x) - nx
   }
 
   # add or trim data to right
   nx <- length(x)
-  if(newrange[2] > x[nx]) {
-    rightbit <- seq(from=x[nx], to=newrange[2], by= step)[-1]
+  if(newrange[2L] > x[nx]) {
+    rightbit <- seq(from=x[nx], to=newrange[2L], by= step)[-1L]
     x <- c(x, rightbit)
     nright <- length(rightbit)
   } else {
-    x <- x[x <= newrange[2]]
+    x <- x[x <= newrange[2L]]
     nright <- length(x) - nx
   }
   attr(x, "nleft") <- nleft
@@ -153,10 +151,10 @@ fillseq <- function(x, step=NULL) {
     step <- min(dx[dx > eps])
   }
   ## make new sequence
-  y <- seq(rx[1], rx[2], by=step)
+  y <- seq(rx[1L], rx[2L], by=step)
   ny <- length(y)
   ## mapping from x to y
-  i <- round((x - rx[1])/step) + 1L
+  i <- round((x - rx[1L])/step) + 1L
   i <- pmin(ny, pmax(1, i))
   return(list(xnew=y, i=i))
 }
@@ -164,7 +162,7 @@ fillseq <- function(x, step=NULL) {
 geomseq <- function(from, to, length.out) {
   if(from <= 0 || to <= 0) stop("range limits must be positive")
   y <- exp(seq(from=log(from), to=log(to), length.out=length.out))
-  y[1] <- from  #' avoid numerical error
+  y[1L] <- from  #' avoid numerical error
   y[length.out] <- to
   return(y)
 }
@@ -173,8 +171,8 @@ geomseq <- function(from, to, length.out) {
 
 intersect.ranges <- function(r, s, fatal=TRUE) {
   if(!is.null(r) && !is.null(s)) {
-    lo <- max(r[1],s[1])
-    hi <- min(r[2],s[2])
+    lo <- max(r[1L],s[1L])
+    hi <- min(r[2L],s[2L])
     if(lo <= hi)
       return(c(lo, hi))
   }
@@ -183,8 +181,8 @@ intersect.ranges <- function(r, s, fatal=TRUE) {
 }
 
 inside.range <- function(x, r) {
-  stopifnot(length(r) == 2 && r[1] <= r[2])
-  return(x >= r[1] & x <= r[2])
+  stopifnot(length(r) == 2 && r[1L] <= r[2L])
+  return(x >= r[1L] & x <= r[2L])
 }
 
 check.in.range <- function(x, r, fatal=TRUE) {
@@ -193,7 +191,7 @@ check.in.range <- function(x, r, fatal=TRUE) {
     return(TRUE)
   if(fatal) 
     stop(paste(xname, "should be a number between",
-               r[1], "and", r[2]),
+               r[1L], "and", r[2L]),
          call.=FALSE)
   return(FALSE)
 }
@@ -209,7 +207,7 @@ startinrange <- function(x0, dx, r) {
 
 prettyinside <- function(x, ...) {
   r <- range(x, na.rm=TRUE)
-  if(diff(r) == 0) return(r[1])
+  if(diff(r) == 0) return(r[1L])
   p <- pretty(x, ...)
   ok <- inside.range(p, r)
   return(p[ok])
@@ -253,12 +251,12 @@ equispaced <- function(z, reltol=0.001) {
 adjustthinrange <- function(ur,vstep,vr) {
   if(diff(ur) >= vstep) return(ur)
   ur <- mean(ur) + c(-1,1) * vstep/2
-  if(ur[1] < vr[1]) ur <- vr[1] + c(0,1)*vstep
-  if(ur[2] > vr[2]) ur <- vr[2] - c(1,0)*vstep
+  if(ur[1L] < vr[1L]) ur <- vr[1L] + c(0,1)*vstep
+  if(ur[2L] > vr[2L]) ur <- vr[2L] - c(1,0)*vstep
   return(ur)
 }
 
-fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab = 3L) {
+fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
   nintervals <- length(b) - 1
   nx <- length(x)
   if(nx == 0)
@@ -271,8 +269,7 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab = 3L) {
              n          = as.integer(nx),
              brange     = as.double(range(b)),
              nintervals = as.integer(nintervals),
-             y          = as.integer(integer(nx)),
-             PACKAGE = "spatstat.utils"
+             y          = as.integer(integer(nx))
              )
     y <- zz$y
   } else {
@@ -280,16 +277,16 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab = 3L) {
     y <- findInterval(x, b, rightmost.closed=TRUE)
   }
   if(labels) {
-    # Digits in labels code copied from base::cut.default (with small adaptions):
-    for (dig in dig.lab:max(12L, dig.lab)) {
+    #' digits in labels code copied from base::cut.default (with adaptations)
+    for(dig in dig.lab:max(12L, dig.lab)) {
       ch.br <- formatC(0 + b, digits = dig, width = 1L)
-      if (ok <- all(ch.br[-1L] != ch.br[1L:nintervals])) 
+      if(ok <- all(ch.br[-1L] != ch.br[1L:nintervals]))
         break
     }
     blab <- paste0("[",
-                   ch.br[1L:nintervals],
+                   ch.br[1:nintervals],
                    ",",
-                   ch.br[-1],
+                   ch.br[-1L],
                    c(rep(")", nintervals-1), "]"))
     y <- as.integer(y)
     levels(y) <- as.character(blab)
@@ -384,7 +381,7 @@ insertinlist <- function(x, i, y) {
   i <- m[[i]] # convert 'i' to integer index
   stopifnot(length(i) == 1)
   if(n == 1) return(y)
-  xleft <- x[seq_len(i-1)]
+  xleft <- x[seq_len(i-1L)]
   xright <- x[i + seq_len(n-i)]
   z <- c(xleft, y, xright)
   return(z)
