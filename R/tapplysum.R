@@ -4,9 +4,15 @@
 #'
 #'  Adrian Baddeley and Tilman Davies
 #' 
-#'  $Revision: 1.13 $  $Date: 2017/11/13 08:48:53 $
+#'  $Revision: 1.14 $  $Date: 2018/06/14 03:23:16 $
 
 tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
+  if(is.complex(x)) {
+    zr <- tapplysum(Re(x), flist, do.names=do.names, na.rm=na.rm)
+    zi <- tapplysum(Im(x), flist, do.names=do.names, na.rm=na.rm)
+    z <- zr + zi * 1i ## preserves names and dimensions
+    return(z)
+  }
   stopifnot(is.numeric(x))
   stopifnot(is.list(flist))
   stopifnot(all(lengths(flist) == length(x)))

@@ -3,13 +3,41 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.2 $  $Date: 2016/12/30 03:32:21 $
+#'  $Revision: 1.3 $  $Date: 2018/07/06 03:02:03 $
 #'
 
 "%orifnull%" <- function(a, b) {
   if(!is.null(a)) return(a)
   # b is evaluated only now
   return(b)
+}
+
+check.anyvector <- function(v, npoints=NULL, fatal=TRUE, things="data points",
+                            naok=FALSE, warn=FALSE, vname, oneok=FALSE) {
+  # vector or factor of values for each point/thing
+  if(missing(vname))
+    vname <- sQuote(deparse(substitute(v)))
+  whinge <- NULL
+  nv <- length(v)
+  if(!is.atomic(v) || !is.null(dim(v)))  # vector with attributes
+    whinge <- paste(vname, "is not a vector or factor")
+  else if(!(is.null(npoints) || (nv == npoints)) &&
+          !(oneok && nv == 1)) 
+    whinge <- paste("The length of", vname,
+                    paren(paste0("=", nv)), 
+                    "should equal the number of", things,
+                    paren(paste0("=", npoints)))
+  else if(!naok && anyNA(v))
+    whinge <- paste("Some values of", vname, "are NA or NaN")
+  #
+  if(!is.null(whinge)) {
+    if(fatal) stop(whinge)
+    if(warn) warning(whinge)
+    ans <- FALSE
+    attr(ans, "whinge") <- whinge
+    return(ans)
+  }
+  return(TRUE)
 }
 
 check.nvector <- function(v, npoints=NULL, fatal=TRUE, things="data points",

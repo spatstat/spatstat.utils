@@ -11,7 +11,7 @@
 }
 \arguments{
   \item{x}{
-    Numeric vector.
+    Vector of numeric or complex values.
   }
   \item{flist}{
     A list of \code{factor}s of the same length as \code{x}.
@@ -56,6 +56,7 @@
    ff <- list(a, b)
    tapply(x, ff, sum)
    tapplysum(x, ff, do.names=TRUE)
+   tapplysum(x + 2i, ff, do.names=TRUE)
 }
 \keyword{arith}
 \keyword{utilities}

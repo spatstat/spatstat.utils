@@ -1,16 +1,16 @@
-\name{check.nvector}
-\alias{check.nvector}
+\name{check.anyvector}
+\alias{check.anyvector}
 \title{
-  Check For Numeric Vector With Correct Length
+  Check For Vector or Factor With Correct Length
 }
 \description{
   This is a programmer's utility function
-  to check whether the argument is a numeric
-  vector of the correct length.
+  to check whether the argument is a 
+  vector or factor of the correct length.
 }
 \usage{
-     check.nvector(v, npoints = NULL, fatal = TRUE, things = "data points",
-                   naok = FALSE, warn = FALSE, vname, oneok = FALSE)
+     check.anyvector(v, npoints = NULL, fatal = TRUE, things = "data points",
+                     naok = FALSE, warn = FALSE, vname, oneok = FALSE)
 }
 \arguments{
   \item{v}{
@@ -43,7 +43,7 @@
   }
 }
 \details{
-  This function checks whether \code{v} is a numeric vector with
+  This function checks whether \code{v} is a vector or factor with
   length equal to \code{npoints} (or length equal to 1 if
   \code{oneok=TRUE}), not containing any \code{NA} values (unless
   \code{naok=TRUE}).
@@ -65,15 +65,14 @@
   \adrian.
 }
 \seealso{
-  \code{\link{check.anyvector}},
-  \code{\link{check.nmatrix}},
-  \code{\link{check.1.real}}, \code{\link{check.named.vector}}.
+  \code{\link{check.nvector}},
+  \code{\link{check.named.vector}}.
 }
 \examples{
-   z <- 1:10
-   check.nvector(z, 5, fatal=FALSE)
-   y <- 42
-   check.nvector(y, 5, fatal=FALSE, oneok=TRUE)
+   z <- factor(1:10)
+   check.anyvector(z, 5, fatal=FALSE)
+   y <- z[1]
+   check.anyvector(y, 5, oneok=TRUE)
 }
 \keyword{error}
 \keyword{utilities}

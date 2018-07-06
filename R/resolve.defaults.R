@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.35 $ $Date: 2017/08/31 08:23:54 $
+#  $Revision: 1.36 $ $Date: 2018/03/06 08:26:57 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -68,10 +68,13 @@ do.call.matched <- function(fun, arglist, funargs,
   if(matchfirst && !nzchar(givenargs[1]))
     matched[1] <- TRUE
   # apply 'fun' to matched arguments
-  out <- do.call(fun, arglist[matched])
+  usedargs <- arglist[matched]
+  out <- do.call(fun, usedargs)
   # retain un-matched arguments?
   if(sieve)
-    out <- list(result=out, otherargs=arglist[!matched])
+    out <- list(result=out,
+                otherargs=arglist[!matched],
+                usedargs=usedargs)
   return(out)
 }
 
