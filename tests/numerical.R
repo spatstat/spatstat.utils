@@ -3,6 +3,13 @@
 
 require(spatstat.utils)
 
+#' validity of orderstats, orderwhich
+x <- unique(runif(100))
+if(!all(orderstats(x, 2:5) == sort(x)[2:5]))
+  stop("Incorrect result from orderstats()")
+if(!all(orderwhich(x, 2:5) == order(x)[2:5]))
+  stop("Incorrect result from orderwhich()")
+
 #' validity of 'tapplysum'
 aa <- factor(letters[1:3])
 bb <- factor(letters[1:4])[c(1,2,2)]

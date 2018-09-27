@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.6 $ $Date: 2018/09/27 02:53:13 $
+#'       $Revision: 1.7 $ $Date: 2018/09/27 03:12:23 $
 #'
 
 dropifsingle <- function(x) if(length(x) == 1) x[[1L]] else x
@@ -18,10 +18,10 @@ orderstats <- function(x, k, decreasing=FALSE) {
   sort(x, decreasing=decreasing, na.last=TRUE, partial=1:max(k))[k]
 }
 
-# ranks (which value is k-th smallest)
+# ranks (for use in lapply calls) 
 orderwhich <- function(x, k, decreasing=FALSE) {
-  # argument 'partial' is not yet implemented!!  
-  sort.list(x, decreasing=decreasing, method="quick", na.last=NA)[k]
+  sort.int(x, decreasing=decreasing, method="quick", na.last=NA,
+            index.return=TRUE)$ix[k]
 }
 
 
