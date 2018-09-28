@@ -80,7 +80,8 @@
 \alias{samefunction}
 \alias{sensiblevarname}
 \alias{short.deparse}
-\alias{singlestring}              
+\alias{singlestring}
+\alias{sortunique}
 \alias{startinrange}
 \alias{strsplitretain}
 \alias{substringcount}
@@ -184,6 +185,7 @@ samefunction(f, g)
 sensiblevarname(guess, fallback, maxlen)
 short.deparse(x, maxlen)
 singlestring(s, coll)
+sortunique(x)
 startinrange(x0, dx, r)
 strsplitretain(x, split)
 substringcount(x,y)

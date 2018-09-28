@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.7 $ $Date: 2018/09/27 03:12:23 $
+#'       $Revision: 1.8 $ $Date: 2018/09/28 04:58:31 $
 #'
 
 dropifsingle <- function(x) if(length(x) == 1) x[[1L]] else x
@@ -24,6 +24,9 @@ orderwhich <- function(x, k, decreasing=FALSE) {
             index.return=TRUE)$ix[k]
 }
 
+## faster than sort(unique(x)) for numeric
+
+sortunique <- function(x) { rle(sort(x))$values }
 
 ## ................ reverse cumulative sum .....................
 
