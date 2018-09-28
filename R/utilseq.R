@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.8 $ $Date: 2018/09/28 04:58:31 $
+#'       $Revision: 1.9 $ $Date: 2018/09/28 05:54:57 $
 #'
 
 dropifsingle <- function(x) if(length(x) == 1) x[[1L]] else x
@@ -15,7 +15,8 @@ fave.order <- function(x) { sort.list(x, method="quick", na.last=NA) }
 
 # order statistic (for use in lapply calls) 
 orderstats <- function(x, k, decreasing=FALSE) {
-  sort(x, decreasing=decreasing, na.last=TRUE, partial=1:max(k))[k]
+  if(decreasing) k <- length(x) + 1L - k
+  sort(x, na.last=!decreasing, partial=k)[k]
 }
 
 # ranks (for use in lapply calls) 

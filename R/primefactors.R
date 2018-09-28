@@ -1,7 +1,7 @@
 #
 #  primefactors.R
 #
-#  $Revision: 1.8 $   $Date: 2016/12/31 08:58:36 $
+#  $Revision: 1.10 $   $Date: 2018/09/28 06:00:12 $
 #
 
 # all primes below 2^13=8192
@@ -135,8 +135,7 @@ primefactors <- function(n, method=c("C", "interpreted")) {
            z <- .C(C_primefax,
                    n=as.integer(n),
                    factors=as.integer(integer(kmax)),
-                   nfactors=as.integer(integer(1L)),
-                   PACKAGE = "spatstat.utils")
+                   nfactors=as.integer(integer(1L)))
            result <- z$factors[seq_len(z$nfactors)]
          },
          stop("Unrecognised method"))
@@ -164,7 +163,7 @@ relatively.prime <- function(n, m) {
 least.common.multiple <- function(n, m) {
   nf <- primefactors(n)
   mf <- primefactors(m)
-  p <- sort(unique(c(nf,mf)))
+  p <- sortunique(c(nf,mf))
   nfac <- table(factor(nf, levels=p))
   mfac <- table(factor(mf, levels=p))
   prod(p^pmax.int(nfac,mfac))
@@ -173,7 +172,7 @@ least.common.multiple <- function(n, m) {
 greatest.common.divisor <- function(n, m) {
   nf <- primefactors(n)
   mf <- primefactors(m)
-  p <- sort(unique(c(nf,mf)))
+  p <- sortunique(c(nf,mf))
   nfac <- table(factor(nf, levels=p))
   mfac <- table(factor(mf, levels=p))
   prod(p^pmin.int(nfac,mfac))
@@ -183,7 +182,7 @@ divisors <- local({
 
   divisors <- function(n) {
     p <- primefactors(n)
-    up <- sort(unique(p))
+    up <- sortunique(p)
     k <- table(factor(p, levels=up))
     return(rest(k, up))
   }
@@ -194,7 +193,7 @@ divisors <- local({
       return(powers)
     rr <- rest(kk[-1], uu[-1])
     products <- as.vector(outer(powers, rr, "*"))
-    return(sort(unique(products)))
+    return(sortunique(products))
   }
 
   divisors

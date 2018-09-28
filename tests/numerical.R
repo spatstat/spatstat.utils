@@ -9,6 +9,10 @@ if(!all(orderstats(x, 2:5) == sort(x)[2:5]))
   stop("Incorrect result from orderstats()")
 if(!all(orderwhich(x, 2:5) == order(x)[2:5]))
   stop("Incorrect result from orderwhich()")
+if(!all(orderstats(x, 2:5, decreasing=TRUE) == sort(x, decreasing=TRUE)[2:5]))
+  stop("Incorrect result from orderstats(decreasing=TRUE)")
+if(!all(orderwhich(x, 2:5, decreasing=TRUE) == order(x, decreasing=TRUE)[2:5]))
+  stop("Incorrect result from orderwhich(decreasing=TRUE)")
 
 #' validity of 'tapplysum'
 aa <- factor(letters[1:3])
