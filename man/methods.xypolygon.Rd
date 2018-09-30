@@ -123,5 +123,19 @@ inside.xypolygon(pts, polly, test01, method)
   is.hole.xypolygon(p)
   Area.xypolygon(p)
   bdrylength.xypolygon(p)
+  overlap.xypolygon(p, list(x=p$x+1, y=p$y+1))
+  reverse.xypolygon(p)
+
+  plot(c(0,5),c(0,3),type="n",xlab="x", ylab="y")
+  polygon(p)
+  polygon(simplify.xypolygon(p, 1.1), lty=3)
+
+  plot(c(0,5),c(0,3),type="n",xlab="x", ylab="y")
+  polygon(p)
+  xx <- runif(10, max=5)
+  yy <- runif(10, max=3)
+  points(xx, yy)
+  ok <- as.logical(inside.xypolygon(list(x=xx, y=yy), p))
+  points(xx[ok], yy[ok], pch=16)
 }
 \keyword{math}
