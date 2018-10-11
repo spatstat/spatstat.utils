@@ -9,6 +9,8 @@ env:
 - _R_CHECK_FORCE_SUGGESTS_=false
 sudo: false
 cache: packages
+brew_packages:
+- libgit2
 r_packages:
 - covr
 after_success:
