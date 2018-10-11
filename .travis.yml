@@ -8,6 +8,7 @@ r:
 env:
 - _R_CHECK_FORCE_SUGGESTS_=false
 sudo: false
+cache: packages
 r_packages:
 - covr
 after_success:
