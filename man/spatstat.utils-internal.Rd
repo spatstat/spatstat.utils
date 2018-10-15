@@ -36,7 +36,8 @@
 \alias{firstfactor}
 \alias{flat.deparse}
 \alias{fontify}
-\alias{forbidNA} 
+\alias{forbidNA}
+\alias{getSpatstatLocatorQueue}
 \alias{geomseq}
 \alias{getdataobjects}
 \alias{good.names}
@@ -75,6 +76,7 @@
 \alias{prettydiscrete}
 \alias{prettyinside}
 \alias{prolongseq}
+\alias{putSpatstatLocatorQueue}
 \alias{ratiotweak}
 \alias{romansort}
 \alias{samefunction}
@@ -142,6 +144,7 @@ firstfactor(x)
 flat.deparse(x)
 fontify(x, font)
 forbidNA(x, context, xname, fatal, usergiven)
+getSpatstatLocatorQueue()
 geomseq(from, to, length.out)
 getdataobjects(nama, envir, datalist, fatal)
 good.names(nama, defaults, suffices)
@@ -179,6 +182,7 @@ pasteN(\dots)
 prettydiscrete(x, n)
 prettyinside(x, \dots)
 prolongseq(x, newrange, step)
+putSpatstatLocatorQueue(x)
 ratiotweak(a, b, overzero, zerozero)
 romansort(x)
 samefunction(f, g)

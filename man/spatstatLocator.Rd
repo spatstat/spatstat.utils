@@ -32,6 +32,13 @@ spatstatLocator(n, type = c("p", "l", "o", "n"), \dots)
   See \code{\link[graphics]{locator}} for a description of the
   behaviour.
 }
+\section{Software Testing}{
+  Programmers may like to know that
+  code which depends on \code{spatstatLocator}
+  can be tested in a non-interactive session,
+  if the coordinates are previously queued using
+  \code{\link{queueSpatstatLocator}}.
+}
 \value{
   A list containing components \code{x} and \code{y} which are vectors
   giving the coordinates of the identified points in the
@@ -41,7 +48,9 @@ spatstatLocator(n, type = c("p", "l", "o", "n"), \dots)
   \spatstatAuthors.
 }
 \seealso{
-  \code{\link[graphics]{locator}}
+  \code{\link[graphics]{locator}}.
+
+  \code{\link{queueSpatstatLocator}}
 }
 \examples{
    if(interactive()) locator(1, type="p")

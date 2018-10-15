@@ -1,10 +1,46 @@
 #'
 #'     locator.R
 #'
-#'    $Revision: 1.1 $  $Date: 2017/01/07 09:23:51 $
+#'    Replacement for locator()
+#' 
+#'    $Revision: 1.6 $  $Date: 2018/10/15 10:50:16 $
+
+.spatstatLocatorEnv <- new.env()
+
+getSpatstatLocatorQueue <- function() {
+  get("locatorqueue", envir=.spatstatLocatorEnv)
+}
+
+putSpatstatLocatorQueue <- function(x) {
+  assign("locatorqueue", x, envir=.spatstatLocatorEnv)
+}
+  
+putSpatstatLocatorQueue(data.frame(x=numeric(0), y=numeric(0)))
+
+queueSpatstatLocator <- function(x, y) {
+  locatorqueue <- getSpatstatLocatorQueue()
+  locatorqueue <- rbind(locatorqueue,
+                        data.frame(x=x, y=y))
+  putSpatstatLocatorQueue(locatorqueue)
+  return(nrow(locatorqueue))
+}
 
 spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
-  #' remedy for failure of locator(type="p") in RStudio
+  #' Replacement for locator()
+  #' Remedy for failure of locator(type="p") in RStudio
+  #' Also allows software testing in non-interactive sessions
+  if(!interactive()) {
+    #' Return previously-queued coordinates
+    if(missing(n) || is.null(n)) n <- Inf
+    locatorqueue <- getSpatstatLocatorQueue()
+    navail <- nrow(locatorqueue)
+    popoff <- (seq_len(navail) <= n)
+    result <- locatorqueue[popoff, , drop=FALSE]
+    locatorqueue <- locatorqueue[!popoff, , drop=FALSE]
+    putSpatstatLocatorQueue(locatorqueue)
+    return(as.list(result))
+  }
+  # ............... interactive ......................
   if(!identical(TRUE, dev.capabilities()$locator))
     stop("Sorry, this graphics device does not support the locator() function")
   # validate
@@ -33,4 +69,4 @@ spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
   }
   return(res)
 }
-  
+
