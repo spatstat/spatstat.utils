@@ -14,7 +14,8 @@ queueSpatstatLocator(x, y)
 \arguments{
   \item{x,y}{
     Numeric values, or vectors of the same length,
-    containing spatial coordinates.
+    containing spatial coordinates. Any data acceptable to
+    \code{\link[grDevices]{xy.coords}}.
   }
 }
 \details{
