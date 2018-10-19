@@ -3,7 +3,7 @@
 #'
 #'    Replacement for locator()
 #' 
-#'    $Revision: 1.6 $  $Date: 2018/10/15 10:50:16 $
+#'    $Revision: 1.7 $  $Date: 2018/10/19 04:19:09 $
 
 .spatstatLocatorEnv <- new.env()
 
@@ -19,6 +19,10 @@ putSpatstatLocatorQueue(data.frame(x=numeric(0), y=numeric(0)))
 
 queueSpatstatLocator <- function(x, y) {
   locatorqueue <- getSpatstatLocatorQueue()
+  if(missing(y)) y <- NULL
+  xy <- xy.coords(x,y)
+  x <- xy$x
+  y <- xy$y
   locatorqueue <- rbind(locatorqueue,
                         data.frame(x=x, y=y))
   putSpatstatLocatorQueue(locatorqueue)

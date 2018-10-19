@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.3 $ $Date: 2017/02/13 08:37:21 $
+#'   $Revision: 1.5 $ $Date: 2018/10/19 03:06:03 $
 #'
 
 # text magic
@@ -52,6 +52,11 @@ unparen <- function(x) {
   if(any(enclosed))
     x[enclosed] <- substr(x[enclosed], 2, n-1)
   return(x)
+}
+
+percentage <- function(x, digits=3) {
+  # works when x is a fraction or a logical vector
+  paste0(signif(100 * mean(x), digits), "%")
 }
 
 strsplitretain <- local({
@@ -270,7 +275,6 @@ verbalogic <- function(x, op="and") {
            x[isfalse] <- "TRUE"
            x[istrue] <- "FALSE"
            x[isvariable] <- paste("not {", y, "}")
-	   return(x)
          },
          stop(paste("Unrecognised operation", sQuote(op))))
 }
@@ -358,11 +362,10 @@ paste.expr <- function(x) {
 }
 
 pasteFormula <- function(f) {
-  ## convert formula to a single string
+  ## convert formula or function to a single string
   sf <- paste(format(f), collapse=" ")
   ## remove excessive blanks
-  sf <- gsub("   ", " ", sf)
-  sf <- gsub("  ", " ", sf)
+  sf <- gsub("[ ]* ", " ", sf)
   return(sf)
 }
 

@@ -1,4 +1,16 @@
 
+        CHANGES IN spatstat.utils VERSION 1.12-0
+
+NEW FUNCTIONS
+
+    o percentage
+    Programmer's utility to convert a number to a percentage.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o queueSpatstatLocator
+    Handles any data acceptable to xy.coords()
+    
         CHANGES IN spatstat.utils VERSION 1.11-0
 
 NEW FUNCTIONS
