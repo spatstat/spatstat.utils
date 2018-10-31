@@ -3,8 +3,9 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.9 $ $Date: 2018/09/28 05:54:57 $
+#'       $Revision: 1.14 $ $Date: 2018/10/31 03:26:52 $
 #'
+#'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
 dropifsingle <- function(x) if(length(x) == 1) x[[1L]] else x
 
@@ -16,7 +17,7 @@ fave.order <- function(x) { sort.list(x, method="quick", na.last=NA) }
 # order statistic (for use in lapply calls) 
 orderstats <- function(x, k, decreasing=FALSE) {
   if(decreasing) k <- length(x) + 1L - k
-  sort(x, na.last=!decreasing, partial=k)[k]
+  if(anyNA(x)) sort(x, na.last=!decreasing)[k] else sort(x, partial=k)[k]
 }
 
 # ranks (for use in lapply calls) 

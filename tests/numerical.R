@@ -15,6 +15,18 @@ if(!all(orderwhich(x, 2:5, decreasing=TRUE) == order(x, decreasing=TRUE)[2:5]))
   stop("Incorrect result from orderwhich(decreasing=TRUE)")
 y <- fave.order(x)
 
+#' must handle NA's without exiting
+x[c(4, 7, 42)] <- NA
+aa <- orderstats(x, 2:5)
+aa <- orderstats(x, 2:5, decreasing=TRUE)
+bb <- orderwhich(x, 2:5)
+bb <- orderwhich(x, 2:5, decreasing=TRUE)
+x[] <- NA
+uu <- orderstats(x, 2:5)
+uu <- orderstats(x, 2:5, decreasing=TRUE)
+vv <- orderwhich(x, 2:5)
+vv <- orderwhich(x, 2:5, decreasing=TRUE)
+
 #' validity of 'tapplysum'
 aa <- factor(letters[1:3])
 bb <- factor(letters[1:4])[c(1,2,2)]
