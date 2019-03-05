@@ -6,7 +6,7 @@
 #
 #   Functions for manipulating model formulae
 #
-#	$Revision: 1.27 $	$Date: 2017/07/27 02:46:37 $
+#	$Revision: 1.29 $	$Date: 2019/02/20 03:34:50 $
 #
 #   identical.formulae()
 #          Test whether two formulae are identical
@@ -27,7 +27,7 @@ identical.formulae <- function(x, y) {
   # workaround for bug in all.equal.formula in R 2.5.0
   if(is.null(y) && !is.null(x))
     return(FALSE)
-  return(identical(all.equal(x,y), TRUE))
+  return(isTRUE(all.equal(x,y)))
 }
 
 termsinformula <- function(x) {
@@ -167,6 +167,8 @@ expand.polynom <- local({
   haspolynom <- function(z) { 'polynom' %in% all.names(z) }
 
   fiddle <- function(f) {
+    if(!haspolynom(f))
+      return(f)
     opname <- f[[1L]]
     if(identical(opname, as.name('I'))) {
       ## expressions enclosed in I() are protected
