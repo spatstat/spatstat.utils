@@ -10,7 +10,10 @@
 
   circPseg: parallel vectors of centres and radii
 
-  $Revision: 1.8 $     $Date: 2017/01/21 10:50:32 $
+  $Revision: 1.9 $     $Date: 2018/12/18 02:43:11 $
+
+  Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
+  Licence: GNU Public Licence >= 2
 
  */
 

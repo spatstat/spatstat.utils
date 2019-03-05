@@ -7,9 +7,12 @@
        nndist2segs: minimum distance from point to any line segment
        prdist2segs: pairwise distances from each point to each line segment
 
-       $Revision: 1.9 $ $Date: 2012/03/27 05:38:51 $
+       $Revision: 1.10 $ $Date: 2018/12/18 02:43:11 $
 
        Author: Adrian Baddeley
+
+  Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
+  Licence: GNU Public Licence >= 2
 
 */
 
