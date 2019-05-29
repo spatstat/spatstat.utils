@@ -1,14 +1,15 @@
 Package: spatstat.utils
-Version: 1.14-0
-Date: 2019-03-05
+Version: 1.14-1
+Date: 2019-05-29
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
-       	            email = "Adrian.Baddeley@curtin.edu.au"),
+       	            email = "Adrian.Baddeley@curtin.edu.au",
+		    comment = c(ORCID="0000-0001-9499-8382")),
 	     person("Rolf", "Turner", 
                     role = "aut",
  	            email="r.turner@auckland.ac.nz"),
-	     person("Ege",   "Rubak", 
+	    person("Ege",   "Rubak", 
                     role = "aut",
 		    email = "rubak@math.aau.dk"))
 Maintainer: Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>
