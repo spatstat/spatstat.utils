@@ -1,7 +1,7 @@
 #'
 #'   taperoff.R
 #'
-#'  $Revision: 1.1 $ $Date: 2019/03/05 08:16:36 $
+#'  $Revision: 1.3 $ $Date: 2019/03/05 09:26:25 $
 #'
 
 taperoff <- function(x, zeropoint=0, onepoint=1,
