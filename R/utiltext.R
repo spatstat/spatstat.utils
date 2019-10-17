@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.5 $ $Date: 2018/10/19 03:06:03 $
+#'   $Revision: 1.6 $ $Date: 2019/10/17 00:51:32 $
 #'
 
 # text magic
@@ -507,5 +507,25 @@ lty2char <- function(i) {
                       "dotdash", "longdash", "twodash")[(i %% 7) + 1] else i
 }
 
-
-
+##
+makeCutLabels <- function(breaks,
+                          dig.lab=3L, right=TRUE, include.lowest=FALSE) {
+  #' copied from cut.default
+  breaks <- as.double(sort.int(breaks))
+  nb <- length(breaks)
+  nb1 <- nb - 1L
+  for(dig in dig.lab:max(12L, dig.lab)) {
+    ch.br <- formatC(0 + breaks, digits = dig, width = 1L)
+    if (ok <- all(ch.br[-1L] != ch.br[-nb])) 
+      break
+  }
+  if(ok) {
+    rightparen <- rep.int(if(right) "]" else ")", nb1)
+    leftparen <- rep.int(if(right) "(" else "[", nb1)
+    if(include.lowest) {
+      if(right) leftparen[1L] <- "[" else rightparen[nb1] <- "]"
+    }
+    labels <- paste0(leftparen, ch.br[-nb], ",", ch.br[-1L], rightparen)
+  } else labels <- paste0("Range_", seq_len(nb1))
+  return(labels)
+}

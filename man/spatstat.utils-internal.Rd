@@ -49,6 +49,7 @@
 \alias{is.blank}
 \alias{is.parseable}
 \alias{lty2char}
+\alias{makeCutLabels}
 \alias{make.parseable}
 \alias{mapstrings}
 \alias{matchNameOrPosition}
@@ -156,6 +157,7 @@ insertinlist(x, i, y)
 is.blank(s)
 is.parseable(x)
 lty2char(i)
+makeCutLabels(breaks, dig.lab, right, include.lowest)
 make.parseable(x)
 mapstrings(x, map)
 matchNameOrPosition(expected, avail)
