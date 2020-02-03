@@ -3,7 +3,7 @@
 #'
 #'  Utilities for matrices and arrays
 #'
-#'       $Revision: 1.1 $ $Date: 2016/12/30 03:22:46 $
+#'       $Revision: 1.2 $ $Date: 2020/02/03 10:04:42 $
 #'
 
 matrowsum <- function(x) {
@@ -132,8 +132,8 @@ blockdiagarray <- function(...) {
   dims3 <- unlist(lapply(dims, "[", i=3))
   result <- array(0, dim=c(dim1, sum(dims2), sum(dims3)))
   dn <- lapply(x, dimnames)
-  dimnames(result)[[2]] <- unlist(lapply(dn, "[[", i=2))
-  dimnames(result)[[3]] <- unlist(lapply(dn, "[[", i=3))
+  dimnames(result)[[2]] <- list(as.character(lapply(dn, "[[", i=2)))
+  dimnames(result)[[3]] <- list(as.character(lapply(dn, "[[", i=3)))
   rowend <- cumsum(dims2)
   rowstart <- c(0, rowend) + 1
   colend <- cumsum(dims3)
