@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.6 $ $Date: 2019/10/17 00:51:32 $
+#'   $Revision: 1.7 $ $Date: 2020/02/06 07:35:31 $
 #'
 
 # text magic
@@ -262,21 +262,23 @@ verbalogic <- function(x, op="and") {
              return("FALSE")
            if(all(istrue))
              return("TRUE")
-           return(paste(y, collapse=" and "))
+           z <- paste(y, collapse=" and ")
          },
          or={
            if(all(isfalse))
              return("FALSE")
            if(any(istrue))
              return("TRUE")
-           return(paste(y, collapse=" or "))
+           z <- paste(y, collapse=" or ")
          },
          not={
            x[isfalse] <- "TRUE"
            x[istrue] <- "FALSE"
            x[isvariable] <- paste("not {", y, "}")
+           z <- x
          },
          stop(paste("Unrecognised operation", sQuote(op))))
+  return(z)
 }
 
 sensiblevarname <- function(guess, fallback, maxlen=12) {
