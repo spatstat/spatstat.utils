@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.36 $ $Date: 2018/03/06 08:26:57 $
+#  $Revision: 1.37 $ $Date: 2020/11/14 04:55:32 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -34,19 +34,20 @@ resolve.defaults <- function(..., .MatchNull=TRUE, .StripNull=FALSE) {
   return(argue)
 }
 
-do.call.without <- function(fun, ..., avoid) {
+do.call.without <- function(fun, ..., avoid, envir=parent.frame()) {
   argh <- list(...)
   nama <- names(argh)
   if(!is.null(nama))
     argh <- argh[!(nama %in% avoid)]
-  do.call(fun, argh)
+  do.call(fun, argh, envir=envir)
 }
 
 do.call.matched <- function(fun, arglist, funargs,
                             extrargs=NULL,
                             matchfirst=FALSE,
                             sieve=FALSE,
-                            skipargs=NULL) {
+                            skipargs=NULL,
+                            envir=parent.frame()) {
   if(!is.function(fun) && !is.character(fun))
     stop("Internal error: wrong argument type in do.call.matched")
   if(is.character(fun)) {
@@ -69,7 +70,7 @@ do.call.matched <- function(fun, arglist, funargs,
     matched[1] <- TRUE
   # apply 'fun' to matched arguments
   usedargs <- arglist[matched]
-  out <- do.call(fun, usedargs)
+  out <- do.call(fun, usedargs, envir=envir)
   # retain un-matched arguments?
   if(sieve)
     out <- list(result=out,

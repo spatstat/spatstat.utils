@@ -1,4 +1,28 @@
 
+        CHANGES IN spatstat.utils VERSION 1.18-0
+
+OVERVIEW
+
+    o Minor improvements.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o do.call.matched, do.call.without
+    New argument 'envir' determines the environment in which
+    the call will be evaluated.
+
+        CHANGES IN spatstat.utils VERSION 1.17-0
+
+OVERVIEW
+
+    o Bug fixes in internal code.
+
+        CHANGES IN spatstat.utils VERSION 1.16-0
+
+OVERVIEW
+
+    o Bug fixes in internal code.
+
         CHANGES IN spatstat.utils VERSION 1.15-0
 
 OVERVIEW

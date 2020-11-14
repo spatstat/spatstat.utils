@@ -8,7 +8,7 @@
   inappropriate to the function.
 }
 \usage{
-  do.call.without(fun, \dots, avoid)
+  do.call.without(fun, \dots, avoid, envir=parent.frame())
 }
 \arguments{
   \item{fun}{
@@ -22,6 +22,10 @@
   \item{avoid}{
     Vector of character strings, giving the names of arguments that should
     \emph{not} be passed to \code{fun}.
+  }
+  \item{envir}{
+    An environment within which to evaluate the call,
+    if any entries of \code{arglist} are quoted expressions.
   }
 }
 \details{

@@ -9,7 +9,8 @@
 }
 \usage{
   do.call.matched(fun, arglist, funargs, extrargs = NULL,
-                  matchfirst = FALSE, sieve = FALSE, skipargs = NULL)
+                  matchfirst = FALSE, sieve = FALSE, skipargs = NULL,
+                  envir=parent.frame())
 }
 \arguments{
   \item{fun}{
@@ -41,6 +42,10 @@
     Logical value indicating whether to return the
     un-used arguments as well as the result of the function call.
     See Details.
+  }
+  \item{envir}{
+    An environment within which to evaluate the call,
+    if any entries of \code{arglist} are quoted expressions.
   }
 }
 \details{
