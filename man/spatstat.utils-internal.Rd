@@ -79,7 +79,6 @@
 \alias{prolongseq}
 \alias{putSpatstatLocatorQueue}
 \alias{ratiotweak}
-\alias{romansort}
 \alias{samefunction}
 \alias{sensiblevarname}
 \alias{short.deparse}
@@ -186,7 +185,6 @@ prettyinside(x, \dots)
 prolongseq(x, newrange, step)
 putSpatstatLocatorQueue(x)
 ratiotweak(a, b, overzero, zerozero)
-romansort(x)
 samefunction(f, g)
 sensiblevarname(guess, fallback, maxlen)
 short.deparse(x, maxlen)
