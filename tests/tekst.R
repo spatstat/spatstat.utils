@@ -56,5 +56,4 @@ simplenumber(1/3, unit="km")
 simplenumber(2/3, unit="km")
 simplenumber(-2, unit="km")
 
-romansort(c("Eb", "Au"))
 makeCutLabels(0:3)

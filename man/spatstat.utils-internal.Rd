@@ -65,8 +65,6 @@
 \alias{NNdist2segments}
 \alias{numalign}
 \alias{nzpaste}
-\alias{orderstats}
-\alias{orderwhich}
 \alias{\%orifnull\%}  %DoNotExport
 %NAMESPACE export("%orifnull%")
 \alias{padtowidth}
@@ -172,8 +170,6 @@ niceround(x, m)
 NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue)
 numalign(i, nmax, zero)
 nzpaste(\dots, sep, collapse)
-orderstats(x, k, decreasing)
-orderwhich(x, k, decreasing)
 a \%orifnull\% b
 padtowidth(a, b, justify)
 passthrough(.Fun, \dots, .Fname)
