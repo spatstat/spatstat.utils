@@ -1,4 +1,22 @@
 
+        CHANGES IN spatstat.utils VERSION 1.20-0
+
+OVERVIEW
+
+    o Computation is slightly accelerated.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o general
+    Overall speed of computation is slightly increased.
+
+        CHANGES IN spatstat.utils VERSION 1.19-0
+
+OVERVIEW
+
+    o Minor improvements.
+
+
         CHANGES IN spatstat.utils VERSION 1.18-0
 
 OVERVIEW

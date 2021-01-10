@@ -10,6 +10,7 @@ import(stats,graphics,grDevices,utils,methods)
 # .................................................. 
 #  load dynamic library
 #      (native routines are now registered in init.c)
+#      (entry points are symbols)
 # .................................................. 
 
 useDynLib(spatstat.utils, .registration=TRUE, .fixes="C_")
