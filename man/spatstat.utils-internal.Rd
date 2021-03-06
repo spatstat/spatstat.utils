@@ -101,6 +101,14 @@
 \alias{xysegPcircle}
 %%
 \alias{matchIntegerDataFrames}
+%% indices 
+\alias{grokIndexVector}
+\alias{strictIndexSequence}
+\alias{fullIndexSequence}
+\alias{replacementIndex}
+\alias{positiveIndex}
+\alias{logicalIndex}
+%%
 \description{
   Internal utility functions of the \code{spatstat.utils} package.
 }
@@ -205,6 +213,13 @@ xysegMcircle(xcentres, ycentres, radmat, x0, y0, x1, y1, check)
 xysegPcircle(xc, yc, rc, x0, y0, x1, y1, check)
 %%
 matchIntegerDataFrames(X,Y,sort)
+%% indices
+grokIndexVector(ind, len, nama)
+strictIndexSequence(g)
+fullIndexSequence(g)
+replacementIndex(ii, stuff)
+positiveIndex(i, nama, len)
+logicalIndex(i, nama, len)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called

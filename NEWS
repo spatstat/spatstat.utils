@@ -1,4 +1,34 @@
 
+        CHANGES IN spatstat.utils VERSION 2.0-1
+
+OVERVIEW
+
+    o Several new functions.
+
+NEW FUNCTIONS
+
+    o RelevantNA
+    Return a missing value of the appropriate type.
+
+    o RelevantEmpty
+    Return a zero-length vector of the appropriate type.
+
+    o RelevantZero
+    Return a value equivalent to 0, of the appropriate type.
+
+
+        CHANGES IN spatstat.utils VERSION 2.0-0
+
+OVERVIEW
+
+    o Updated to new spatstat family.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o package dependence
+    spatstat.utils now suggests the package spatstat.core
+    which is part of the new spatstat family.
+
         CHANGES IN spatstat.utils VERSION 1.20-0
 
 OVERVIEW
