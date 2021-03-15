@@ -1,10 +1,10 @@
 
-        CHANGES IN spatstat.utils VERSION 2.0-1
+        CHANGES IN spatstat.utils VERSION 2.1-0
 
 OVERVIEW
 
     o Several new functions.
-
+    
 NEW FUNCTIONS
 
     o RelevantNA
@@ -16,6 +16,12 @@ NEW FUNCTIONS
     o RelevantZero
     Return a value equivalent to 0, of the appropriate type.
 
+
+        CHANGES IN spatstat.utils VERSION 2.0-1
+
+OVERVIEW
+
+    o Tweaks.
 
         CHANGES IN spatstat.utils VERSION 2.0-0
 
