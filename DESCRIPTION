@@ -1,6 +1,6 @@
 Package: spatstat.utils
-Version: 2.1-0
-Date: 2021-03-15
+Version: 2.1-1
+Date: 2021-03-28
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
@@ -21,7 +21,6 @@ Description: Contains utility functions for the 'spatstat' family of packages
              which may also be useful for other purposes.
 License: GPL (>= 2)
 URL: http://spatstat.org/
-LazyData: true
 NeedsCompilation: yes
 ByteCompile: true
 BugReports: https://github.com/spatstat/spatstat.utils/issues
