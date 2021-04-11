@@ -16,8 +16,6 @@ jobs:
             rversion: "4.0"
           - os: ubuntu-latest
             rversion: "4.0"
-          - os: ubuntu-latest
-            rversion: "3.5"
 
     runs-on: ${{ matrix.os }}
     
