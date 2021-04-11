@@ -10,19 +10,23 @@ on:
 jobs:
   ci:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: macOS-latest
             rversion: "4.0"
+            bspm: "true"
           - os: ubuntu-latest
             rversion: "4.0"
+            bspm: "true"
           - os: ubuntu-18.04
             rversion: "3.5"
+            bspm: "false"
 
     runs-on: ${{ matrix.os }}
     
     env:
-      USE_BSPM: "true"
+      USE_BSPM: ${{ matrix.bspm }}
       _R_CHECK_FORCE_SUGGESTS_: "false"
       COVERAGE_TYPE: "all"
       R_VERSION: ${{ matrix.rversion }}
