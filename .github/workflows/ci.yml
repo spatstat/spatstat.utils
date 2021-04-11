@@ -17,7 +17,7 @@ jobs:
       matrix:
         include:
           - {os: macOS-latest}
-          - {os: ubuntu-latest}
+          - {os: ubuntu-latest, env: COVERAGE_TYPE=all}
           - {os: ubuntu-latest, env: R_VERSION=3.5}
 
     runs-on: ${{ matrix.os }}
@@ -27,7 +27,7 @@ jobs:
 
       - name: Bootstrap
         run: |
-          curl -OLs https://eddelbuettel.github.io/r-ci/run.sh
+          curl -OLs https://raw.githubusercontent.com/rubak/r-ci/master/docs/run.sh
           chmod 0755 run.sh
           ./run.sh bootstrap
 
