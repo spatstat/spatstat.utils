@@ -10,6 +10,8 @@ on:
 env:
   USE_BSPM: "true"
   _R_CHECK_FORCE_SUGGESTS_: "false"
+  R_VERSION: ${{ matrix.r-version }}
+  COVERAGE_TYPE: "all"
 
 jobs:
   ci:
@@ -17,8 +19,8 @@ jobs:
       matrix:
         include:
           - {os: macOS-latest}
-          - {os: ubuntu-latest, COVERAGE_TYPE: "all"}
-          - {os: ubuntu-latest, R_VERSION: "3.5"}
+          - {os: ubuntu-latest}
+          - {os: ubuntu-latest, r-version: "3.5"}
 
     runs-on: ${{ matrix.os }}
 
