@@ -19,7 +19,7 @@ jobs:
           - os: ubuntu-latest
             rversion: "4.0"
             bspm: "true"
-          - os: ubuntu-18.04
+          - os: ubuntu-16.04
             rversion: "3.5"
             bspm: "false"
 
