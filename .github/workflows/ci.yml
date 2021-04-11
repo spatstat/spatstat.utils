@@ -7,22 +7,25 @@ on:
   push:
   pull_request:
 
-env:
-  USE_BSPM: "true"
-  _R_CHECK_FORCE_SUGGESTS_: "false"
-  COVERAGE_TYPE: "all"
-
 jobs:
   ci:
     strategy:
       matrix:
         include:
           - os: macOS-latest
+            rversion: "4.0"
           - os: ubuntu-latest
+            rversion: "4.0"
           - os: ubuntu-latest
-            R_VERSION: "3.5"
+            rversion: "3.5"
 
     runs-on: ${{ matrix.os }}
+    
+    env:
+      USE_BSPM: "true"
+      _R_CHECK_FORCE_SUGGESTS_: "false"
+      COVERAGE_TYPE: "all"
+      R_VERSION: ${{ matrix.rversion }}
 
     steps:
       - uses: actions/checkout@v2
