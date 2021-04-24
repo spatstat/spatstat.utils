@@ -96,3 +96,9 @@ insertinlist(letters[1:5], 4, rep("hoppity", 3))
 
 dround(pi)
 niceround(pi)
+
+## prime numbers
+
+## code coverage of special cases
+
+primefactors(8209 * 3)

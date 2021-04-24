@@ -6,7 +6,7 @@
 #
 #   Functions for manipulating model formulae
 #
-#	$Revision: 1.29 $	$Date: 2019/02/20 03:34:50 $
+#	$Revision: 1.30 $	$Date: 2021/04/24 11:35:51 $
 #
 #   identical.formulae()
 #          Test whether two formulae are identical
@@ -32,21 +32,21 @@ identical.formulae <- function(x, y) {
 
 termsinformula <- function(x) {
   if(is.null(x)) return(character(0))
-  if(class(x) != "formula")
+  if(!inherits(x, "formula"))
     stop("argument is not a formula")
   attr(terms(x), "term.labels")
 }
 
 variablesinformula <- function(x) {
   if(is.null(x)) return(character(0))
-  if(class(x) != "formula")
+  if(!inherits(x, "formula"))
     stop("argument is not a formula")
   all.vars(as.expression(x))
 }
 
 offsetsinformula <- function(x) {
   if(is.null(x)) return(character(0))
-  if(class(x) != "formula")
+  if(!inherits(x, "formula"))
     stop("argument is not a formula")
   tums <- terms(x)
   offs <- attr(tums, "offset")
