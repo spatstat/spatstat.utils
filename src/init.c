@@ -26,6 +26,7 @@ static const R_CMethodDef CEntries[] = {
     {"fastinterv",  (DL_FUNC) &fastinterv,   5},
     {"inxyp",       (DL_FUNC) &inxyp,        8},
     {"irevcumsum",  (DL_FUNC) &irevcumsum,   2},
+    {"nnd2segs",    (DL_FUNC) &nnd2segs,    10},
     {"nndist2segs", (DL_FUNC) &nndist2segs, 11},
     {"ply1sum",     (DL_FUNC) &ply1sum,      6},
     {"ply2sum",     (DL_FUNC) &ply2sum,      8},

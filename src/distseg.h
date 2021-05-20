@@ -1,42 +1,31 @@
 /*
-       distseg.c
+  distseg.h
 
-       Distances from point pattern to line segment pattern
-       Distance transform of a line segment pattern
+  Distance to nearest line segment
 
-       nnd2segs:    minimum distance from point to any line segment
-       nndist2segs: minimum distance from point to any line segment (with index)
-       prdist2segs: pairwise distances from each point to each line segment
+  This is #included multiple times in distseg.c
+  
+  Macros used:
 
-       $Revision: 1.11 $ $Date: 2021/05/20 08:27:04 $
+      FNAME       Function name
 
-       Author: Adrian Baddeley
+      WANT_INDEX  #defined if the output vector 'index' is required
 
-  Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
+  Author: Adrian Baddeley 2018-2021
+
+  Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2021
   Licence: GNU Public Licence >= 2
+
+  $Revision: 1.1 $ $Date: 2021/05/20 08:29:45 $
 
 */
 
-#include <R.h>
-#include <Rmath.h>
-#include <R_ext/Utils.h>
-#include <math.h>
-
-#include "chunkloop.h"
-
-#define FNAME nndist2segs
-#define WANT_INDEX
-#include "distseg.h"
-#undef WANT_INDEX
-#undef FNAME
-
-#define FNAME nnd2segs
-#include "distseg.h"
-#undef FNAME
-
-
 void
-prdist2segs(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2)
+FNAME(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2
+#ifdef WANT_INDEX      
+      , index
+#endif      
+      )
      /* input */
      double	*xp, *yp;		/* point/pixel coordinates */
      int	*npoints;
@@ -44,8 +33,13 @@ prdist2segs(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2)
      int	*nsegments;
      double     *epsilon;               /* tolerance for short segments */
      /* output */
-     double	*dist2;		        /* squared distances from each pixel 
-                                        to each line segment */
+     double	*dist2;		        /* squared distance from pixel 
+                                        to nearest line segment 
+					  INITIALISED TO LARGE VALUE 
+					*/
+#ifdef WANT_INDEX
+     int	*index;		        /* which line segment is closest */
+#endif
 {
   int	i,j, np, nseg, maxchunk;
   double dx,dy,leng,co,si;  /* parameters of segment */
@@ -86,10 +80,15 @@ prdist2segs(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2)
 	    dsqperp = ypr * ypr;
 	    if(dsqperp < dsq) dsq = dsqperp;
 	  }
-	  dist2[i + j * np] = dsq;
+	  if(dist2[i] > dsq) {
+	    dist2[i] = dsq;
+#ifdef WANT_INDEX	    
+	    index[i] = j;
+#endif	    
+	  }
 	}
       } else {
-	/* short segment */
+	/* short segment - use endpoints only */
 	for(i = 0; i < np; i++) {
 	  /* vectors from pixel to segment endpoints */
 	  xdif0 =  xp[i] - x0[j];
@@ -100,10 +99,15 @@ prdist2segs(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2)
 	  dsq0 = xdif0 * xdif0 + ydif0 * ydif0;
 	  dsq1 = xdif1 * xdif1 + ydif1 * ydif1;
 	  dsq = (dsq0 < dsq1) ? dsq0 : dsq1;
-	  dist2[i + j * np] = dsq;
+	  if(dist2[i] > dsq) {
+	    dist2[i] = dsq;
+#ifdef WANT_INDEX	    
+	    index[i] = j;
+#endif	    
+	  }
 	}
       }
     }
-  }	
+  }
 }
 

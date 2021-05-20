@@ -1,7 +1,7 @@
 #
 #      xysegment.S
 #
-#     $Revision: 1.18 $    $Date: 2017/02/20 06:27:10 $
+#     $Revision: 1.20 $    $Date: 2021/05/20 09:10:00 $
 #
 # Low level utilities for analytic geometry for line segments
 #
@@ -22,6 +22,11 @@
 #       to each of a list of line segments l[i,] 
 #       [interpreted code uses large matrices and 'outer()']
 #       [Fortran implementation included!]
+#
+# NNdist2segs
+#       distance to nearest line segment, from each point in a list.
+
+
 
 distpl <- function(p, l) {
   xp <- p[1]
@@ -133,36 +138,6 @@ distppll <- function(p, l, mintype=0,
            if(mintype == 2)
              min.which <- apply(d, 1, which.min)
          },
-# Fortran code removed!         
-#         Fortran={
-#           eps <- .Machine$double.eps
-#           if(mintype > 0) {
-#             big <- sqrt(2)*diff(range(c(p,l)))
-#             xmin <- rep.int(big,np)
-#           } else {
-#             xmin <- 1
-#           } 
-#           n2 <- if(mintype > 1) np else 1
-#           temp <- DOTFortran("dppll",
-#                            x=as.double(xp),
-#                            y=as.double(yp),
-#                            l1=as.double(l[,1]),
-#                            l2=as.double(l[,2]),
-#                            l3=as.double(l[,3]),
-#                            l4=as.double(l[,4]),
-#                            np=as.integer(np),
-#                            nl=as.integer(nl),
-#                            eps=as.double(eps),
-#                            mint=as.integer(mintype),
-#                            rslt=double(np*nl),
-#                            xmin=as.double(xmin),
-#                            jmin=integer(n2))
-#           d <- matrix(temp$rslt, nrow=np, ncol=nl)
-#           if(mintype >= 1)
-#             min.d <- temp$xmin
-#           if(mintype == 2)
-#             min.which <- temp$jmin
-#         },
          C = {
            eps <- .Machine$double.eps
            temp <- .C(C_prdist2segs,
@@ -175,8 +150,7 @@ distppll <- function(p, l, mintype=0,
                       y1=as.double(l[,4]),
                       nsegments=as.integer(nl),
                       epsilon=as.double(eps),
-                      dist2=as.double(numeric(np * nl)),
-                      PACKAGE = "spatstat.utils")
+                      dist2=as.double(numeric(np * nl)))
            d <- matrix(sqrt(temp$dist2), nrow=np, ncol=nl)
            if(mintype == 2) {
              min.which <- apply(d, 1, which.min)
@@ -210,23 +184,37 @@ distppllmin <- function(p, l, big=NULL) {
   return(list(min.d=sqrt(z$dist2), min.which=z$index))
 }
 
-NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue) {
+NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue, wantindex=TRUE) {
   np <- length(xp)
   ns <- length(x0)
   dist2 <- rep(bigvalue, np)
-  z <- .C(C_nndist2segs,
-          xp=as.double(xp),
-          yp=as.double(yp),
-          npoints=as.integer(np),
-          x0=as.double(x0),
-          y0=as.double(y0),
-          x1=as.double(x1),
-          y1=as.double(y1),
-          nsegments=as.integer(ns),
-          epsilon=as.double(.Machine$double.eps),
-          dist2=as.double(dist2),
-          index=as.integer(integer(np)),
-          PACKAGE = "spatstat.utils")
-  return(list(dist2=z$dist2,
-              index=z$index + 1L))
+  if(wantindex) {
+    z <- .C(C_nndist2segs,
+            xp=as.double(xp),
+            yp=as.double(yp),
+            npoints=as.integer(np),
+            x0=as.double(x0),
+            y0=as.double(y0),
+            x1=as.double(x1),
+            y1=as.double(y1),
+            nsegments=as.integer(ns),
+            epsilon=as.double(.Machine$double.eps),
+            dist2=as.double(dist2),
+            index=as.integer(integer(np)))
+    return(list(dist2=z$dist2,
+                index=z$index + 1L))
+  } else {
+    z <- .C(C_nnd2segs,
+            xp=as.double(xp),
+            yp=as.double(yp),
+            npoints=as.integer(np),
+            x0=as.double(x0),
+            y0=as.double(y0),
+            x1=as.double(x1),
+            y1=as.double(y1),
+            nsegments=as.integer(ns),
+            epsilon=as.double(.Machine$double.eps),
+            dist2=as.double(dist2))
+    return(list(dist2=z$dist2))
+  }
 }

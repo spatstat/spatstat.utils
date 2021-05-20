@@ -27,7 +27,8 @@ void fastinterv(double *, int *, double *, int *, int *);
 void Cmatchxy(int *, double *, double *, int *, double *, double *, int *); 
 void inxyp(double *, double *, double *, double *, int *, int *, int *, int *);
 void prdist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *); 
-void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *);
+void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *); 
+void nnd2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *);
 /*
 
              Functions invoked by .Call

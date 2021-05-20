@@ -1,10 +1,9 @@
 
-        CHANGES IN spatstat.utils VERSION 2.1-0.002
+        CHANGES IN spatstat.utils VERSION 2.1-0.003
 
 OVERVIEW
 
-    o Tweaks.
-    
+    o Internal tweaks to improve efficiency.
 
         CHANGES IN spatstat.utils VERSION 2.1-0
 

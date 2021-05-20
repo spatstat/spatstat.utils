@@ -175,7 +175,7 @@ matrowany(x)
 matrowsum(x)
 natozero(x)
 niceround(x, m)
-NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue)
+NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue, wantindex)
 numalign(i, nmax, zero)
 nzpaste(\dots, sep, collapse)
 a \%orifnull\% b
