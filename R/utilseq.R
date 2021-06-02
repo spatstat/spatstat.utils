@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.14 $ $Date: 2018/10/31 03:26:52 $
+#'       $Revision: 1.15 $ $Date: 2021/06/02 10:20:02 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -404,6 +404,37 @@ niceround <- function(x, m=c(1,2,5,10)) {
   y <- m * expo
   z <- y[which.min(abs(y - x))]
   return(z)
+}
+
+## ..............................................
+
+exactCutBreaks <- function(x, breaks) {
+  ## determine the exact breakpoints used in cut.default
+  ## This code is extracted from base::cut.default
+  stopifnot(is.numeric(x))
+  if(length(breaks) > 1L) {
+    ## numeric vector of breaks
+    breaks <- sort.int(as.double(breaks))
+    if(anyDuplicated(breaks)) 
+      stop("'breaks' are not unique")
+  } else if(length(breaks) == 1L) {
+    ## number of breaks
+    if (is.na(breaks) || breaks < 2L) 
+      stop("invalid number of intervals")
+    nb <- as.integer(breaks + 1)
+    dx <- diff(rx <- range(x, na.rm = TRUE))
+    if(dx == 0) {
+      dx <- if(rx[1L] != 0) abs(rx[1L]) else 1
+      breaks <- seq.int(rx[1L] - dx/1000,
+                        rx[2L] + dx/1000, 
+                        length.out = nb)
+    } else {
+      breaks <- seq.int(rx[1L], rx[2L], length.out = nb)
+      breaks[c(1L, nb)] <- c(rx[1L] - dx/1000,
+                             rx[2L] + dx/1000)
+    }
+  } else stop("breaks must be specified")
+  return(breaks)
 }
 
 

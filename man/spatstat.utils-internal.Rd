@@ -25,6 +25,7 @@
 \alias{equispaced}          
 \alias{eratosthenes}
 \alias{evenly.spaced}
+\alias{exactCutBreaks}
 \alias{exceedsMaxArraySize}
 \alias{exhibitStringList}
 \alias{explain.ifnot}
@@ -138,6 +139,7 @@ ensure3Darray(x)
 equispaced(z, reltol)
 eratosthenes(nmax, startset)
 evenly.spaced(x, tol)
+exactCutBreaks(x, breaks)
 exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)
 explain.ifnot(expr, context)
