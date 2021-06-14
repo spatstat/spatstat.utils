@@ -1,15 +1,24 @@
 
-        CHANGES IN spatstat.utils VERSION 2.1-0.004
+        CHANGES IN spatstat.utils VERSION 2.2-0
 
 OVERVIEW
 
+    o New function to compute breakpoints for a cut operation.
+
     o Internal tweaks to improve efficiency.
 
+NEW FUNCTIONS
+
+    o exactCutBreaks
+    Compute the exact numerical values of the breakpoints
+    used in cut.default.
+    
         CHANGES IN spatstat.utils VERSION 2.1-0
 
 OVERVIEW
 
-    o Several new functions.
+    o New functions providing NA and zero values, and empty vectors,
+    of the appropriate type.
     
 NEW FUNCTIONS
 
