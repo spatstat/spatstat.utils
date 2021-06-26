@@ -1,7 +1,7 @@
 #
 #  primefactors.R
 #
-#  $Revision: 1.10 $   $Date: 2018/09/28 06:00:12 $
+#  $Revision: 1.11 $   $Date: 2021/06/26 10:06:25 $
 #
 
 # all primes below 2^13=8192
@@ -99,7 +99,9 @@ primestable <-
     8011, 8017, 8039, 8053, 8059, 8069, 8081, 8087, 8089, 8093, 8101,
     8111, 8117, 8123, 8147, 8161, 8167, 8171, 8179, 8191)
 
-primestableMax <- 8192
+storage.mode(primestable) <- "integer"
+
+primestableMax <- 8192L
 
 primesbelow <- function(nmax) {
   if(nmax <= primestableMax) return(primestable[primestable <= nmax])
@@ -108,8 +110,8 @@ primesbelow <- function(nmax) {
 
 eratosthenes <- function(nmax, startset=2:nmax) {
   # The Sieve of Eratosthenes
-  if(nmax < 2) return(numeric(0))
-  numbers <- startset
+  if(nmax < 2) return(integer(0))
+  numbers <- as.integer(startset)
   prime <- startset[1]
   repeat{
     retain <-  (numbers <= prime) | (numbers %% prime != 0)
@@ -149,7 +151,7 @@ findprimefactors <- function(n, primes) {
   divisors <- primes[divides.n]
   m <- n/prod(divisors)
   if(m == 1) return(divisors)
-  mfactors <- findprimefactors(m, divisors)
+  mfactors <- findprimefactors(as.integer(m), divisors)
   return(sort(c(divisors, mfactors)))
 }
 

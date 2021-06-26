@@ -1,4 +1,16 @@
 
+        CHANGES IN spatstat.utils VERSION 2.2-0.001
+
+OVERVIEW
+
+    o Internal tweaks and minor bug fixes.
+
+BUG FIXES
+
+    o tapplysum
+    Crashed if do.names=TRUE when 'flist' contained only one factor.
+    Fixed.
+
         CHANGES IN spatstat.utils VERSION 2.2-0
 
 OVERVIEW

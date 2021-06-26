@@ -38,15 +38,41 @@ if(any(yy != zz))
   stop("tapplysum does not agree with tapply(, sum)")
 #' tapplysum with zero-length data
 tapplysum(xx[FALSE], list(A=aa[FALSE], B=bb[FALSE]), do.names=TRUE)
+#' tapplysum with NA values in x
+xx <- runif(12)
+aa <- rep(aa, 4)
+bb <- rep(bb, 4)
+ee <- sample(aa)
+ff <- sample(bb)
+xx[2] <- NA
+uu1 <- tapplysum(xx, list(aa),             do.names=TRUE)
+uu2 <- tapplysum(xx, list(aa, bb),         do.names=TRUE)
+uu3 <- tapplysum(xx, list(aa, bb, ee),     do.names=TRUE)
+uu4 <- tapplysum(xx, list(aa, bb, ee, ff), do.names=TRUE)
 
 #' validity of matchIntegerDataFrames
-
-A <- data.frame(a=sample(1:5), b=sample(1:5, replace=TRUE))
-B <- data.frame(u=sample(1:3), w=3:1)
+#' 3 columns
+A <- data.frame(a=sample(1:5), b=sample(1:5, replace=TRUE), c=3)
+B <- data.frame(u=sample(1:3), w=3:1,                       v=1)
 A[4,] <- B[2,]
-acode <- paste(A[,1], A[,2])
-bcode <- paste(B[,1], B[,2])
-stopifnot(identical(matchIntegerDataFrames(A,B), match(acode,bcode)))
+a3code <- paste(A[,1], A[,2], A[,3])
+b3code <- paste(B[,1], B[,2], B[,3])
+stopifnot(identical(matchIntegerDataFrames(A,B,TRUE), match(a3code,b3code)))
+stopifnot(identical(matchIntegerDataFrames(A,B,FALSE), match(a3code,b3code)))
+#' 2 columns
+A <- A[,1:2]
+B <- B[,1:2]
+a2code <- paste(A[,1], A[,2])
+b2code <- paste(B[,1], B[,2])
+stopifnot(identical(matchIntegerDataFrames(A,B,TRUE), match(a2code,b2code)))
+stopifnot(identical(matchIntegerDataFrames(A,B,FALSE), match(a2code,b2code)))
+#' 1 column
+A <- A[,1, drop=FALSE]
+B <- B[,1, drop=FALSE]
+a1code <- paste(A[,1])
+b1code <- paste(B[,1])
+stopifnot(identical(matchIntegerDataFrames(A,B,TRUE), match(a1code,b1code)))
+stopifnot(identical(matchIntegerDataFrames(A,B,FALSE), match(a1code,b1code)))
 
 #'  code in utilseq.R
 
@@ -97,8 +123,14 @@ insertinlist(letters[1:5], 4, rep("hoppity", 3))
 dround(pi)
 niceround(pi)
 
-## prime numbers
+## prime numbers 
 
 ## code coverage of special cases
 
+eratosthenes(20)
+
 primefactors(8209 * 3)
+
+stopifnot(identical(primefactors(42),
+                    primefactors(42, "interpreted")))
+

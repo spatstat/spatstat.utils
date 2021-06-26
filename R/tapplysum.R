@@ -4,7 +4,7 @@
 #'
 #'  Adrian Baddeley and Tilman Davies
 #' 
-#'  $Revision: 1.14 $  $Date: 2018/06/14 03:23:16 $
+#'  $Revision: 1.15 $  $Date: 2021/06/26 09:55:45 $
 
 tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
   if(is.complex(x)) {
@@ -131,8 +131,11 @@ tapplysum <- function(x, flist, do.names=FALSE, na.rm=TRUE) {
       }
     }
   })
-  if(do.names) 
-    dimnames(result) <- lapply(flist, levels)
+  if(do.names) {
+    #' factor levels provide dimnames
+    lev <- lapply(flist, levels)
+    if(nfac == 1L) names(result) <- lev[[1L]] else dimnames(result) <- lev
+  }
   return(result)
 }
 

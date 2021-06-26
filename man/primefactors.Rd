@@ -82,6 +82,8 @@ primesbelow(nmax)
 
   greatest.common.divisor(60, 100) 
 
+  least.common.multiple(10, 15) 
+
   primesbelow(20)
 }
 \keyword{math}
