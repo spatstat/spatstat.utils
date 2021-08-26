@@ -1,10 +1,12 @@
 
-        CHANGES IN spatstat.utils VERSION 2.2-0.001
+        CHANGES IN spatstat.utils VERSION 2.2-0.002
 
 OVERVIEW
 
     o Internal tweaks and minor bug fixes.
 
+    o Some code accelerated.
+    
 BUG FIXES
 
     o tapplysum
