@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.9 $ $Date: 2021/08/26 06:36:47 $
+#'   $Revision: 1.10 $ $Date: 2021/08/26 10:24:47 $
 #'
 
 # text magic
@@ -308,7 +308,7 @@ flat.deparse <- function(x) {
 good.names <- function(nama, defaults, suffices) {
   ## ensure sensible, unique names
   result <- nama
-  if(!all(nzchar(result))) {
+  if(length(result) == 0 || !all(nzchar(result))) {
     ## compute defaults
     stopifnot(is.character(defaults))
     if(!missing(suffices))
