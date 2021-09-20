@@ -11,3 +11,7 @@ d <- distppll(p, l, mintype=2, method="C")
 if(a$min.which != d$min.which)
   stop("conflict between C and interpreted code in distppll")
 
+#' check consistency between different C routines
+b <- distppllmin(p, l)
+if(a$min.which != b$min.which)
+  stop("conflict between distppll and distppllmin")
