@@ -3,7 +3,7 @@
 #'
 #'   Utilities for optimization
 #'
-#'  $Revision: 1.3 $  $Date: 2017/02/09 00:46:51 $
+#'  $Revision: 1.4 $  $Date: 2021/10/03 08:17:51 $
 #'
 
 optimizeWithTrace <- local({
@@ -32,3 +32,20 @@ optimizeWithTrace <- local({
 
   optimizeWithTrace
 })
+
+which.min.fair <- function(x) {
+  a <- min(x, na.rm=TRUE)
+  i <- which(x == a)
+  if(length(i) > 1)
+    i <- sample(i, 1)
+  return(i)
+}
+
+which.max.fair <- function(x) {
+  a <- max(x, na.rm=TRUE)
+  i <- which(x == a)
+  if(length(i) > 1)
+    i <- sample(i, 1)
+  return(i)
+}
+

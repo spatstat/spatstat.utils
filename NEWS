@@ -1,11 +1,18 @@
 
-        CHANGES IN spatstat.utils VERSION 2.2-0.004
+        CHANGES IN spatstat.utils VERSION 2.2-0.005
 
 OVERVIEW
 
     o Internal tweaks and minor bug fixes.
 
     o Some code accelerated.
+
+NEW FUNCTIONS
+
+    o which.min.fair, which.max.fair
+    Find the location of the minimum or maximum,
+    and if there are multiple minima or maxima,
+    choose one of them at random.
     
 BUG FIXES
 
