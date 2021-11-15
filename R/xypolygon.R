@@ -1,7 +1,7 @@
 #
 #    xypolygon.R
 #
-#    $Revision: 1.67 $    $Date: 2017/01/08 00:38:10 $
+#    $Revision: 1.68 $    $Date: 2021/11/15 00:53:37 $
 #
 #    low-level functions defined for polygons in list(x,y) format
 #
@@ -48,7 +48,7 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
           xb=as.double(xp),
           yb=as.double(yp),
           match=as.integer(integer(npts)),
-          PACKAGE = "spatstat.utils")
+          PACKAGE="spatstat.utils")
   is.vertex <- (z$match != 0)
   retain <- !is.vertex
   # Remove vertices from subsequent consideration; replace them later
@@ -75,7 +75,7 @@ inside.xypolygon <- function(pts, polly, test01=TRUE, method="C") {
                         nedges=as.integer(nedges),
                         score=as.integer(score),
                         onbndry=as.integer(on.boundary),
-                        PACKAGE = "spatstat.utils")
+                        PACKAGE="spatstat.utils")
              score <- temp$score/2
              on.boundary <- as.logical(temp$onbndry)
            },
