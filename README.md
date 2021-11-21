@@ -3,7 +3,7 @@
 ## Utility functions
 
 [![CRAN status](http://www.r-pkg.org/badges/version/spatstat.utils)](http://cran.r-project.org/web/packages/spatstat.utils)
-![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.utils)
+[![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.utils)](https://github.com/spatstat/spatstat.utils)
 [![Travis-CI Build Status](https://travis-ci.org/spatstat/spatstat.utils.png?branch=master)](https://travis-ci.org/spatstat/spatstat.utils)
 [![Code Coverage Score](https://codecov.io/github/spatstat/spatstat.utils/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.utils?branch=master)
 
