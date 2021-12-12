@@ -1,9 +1,9 @@
 
-        CHANGES IN spatstat.utils VERSION 2.2-0.006
+        CHANGES IN spatstat.utils VERSION 2.3-0
 
 OVERVIEW
 
-    o Internal tweaks and minor bug fixes.
+    o Minor improvements and bug fixes.
 
     o Some code accelerated.
 
