@@ -1,7 +1,7 @@
 #
 #  primefactors.R
 #
-#  $Revision: 1.11 $   $Date: 2021/06/26 10:06:25 $
+#  $Revision: 1.12 $   $Date: 2022/04/06 07:52:22 $
 #
 
 # all primes below 2^13=8192
@@ -125,6 +125,8 @@ eratosthenes <- function(nmax, startset=2:nmax) {
 }
 
 primefactors <- function(n, method=c("C", "interpreted")) {
+  check.1.integer(n)
+  if(n <= 0) return(integer(0))
   method <- match.arg(method)
   switch(method,
          interpreted = {
@@ -158,6 +160,7 @@ findprimefactors <- function(n, primes) {
 is.prime <- function(n) { length(primefactors(n)) == 1 }
 
 relatively.prime <- function(n, m) {
+  if(n == 0 || m == 0) return(FALSE)
   cf <- intersect(primefactors(n), primefactors(m))
   return(length(cf) == 0)
 }
