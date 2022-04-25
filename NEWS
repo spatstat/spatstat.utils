@@ -1,10 +1,15 @@
 
-        CHANGES IN spatstat.utils VERSION 2.3-0.001
+        CHANGES IN spatstat.utils VERSION 2.3-0.002
 
 OVERVIEW
 
     o Minor improvements and bug fixes.
 
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o check.1.real, check.1.integer, check.1.string
+    New argument 'warn'.
+    
         CHANGES IN spatstat.utils VERSION 2.3-0
 
 OVERVIEW

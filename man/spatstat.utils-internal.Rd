@@ -9,6 +9,7 @@
 \alias{blockdiagarray}
 \alias{blockdiagmatrix}
 \alias{check.finite}
+\alias{check.satisfies}
 \alias{choptext}
 \alias{choptextline}
 \alias{complaining}
@@ -122,6 +123,7 @@ badprobability(x, NAvalue)
 blockdiagarray(\dots)
 blockdiagmatrix(\dots)
 check.finite(x, context, xname, fatal, usergiven)
+check.satisfies(cond, xname, should, context, fatal, warn)
 choptext(\dots, prefix, indent)
 choptextline(st, w, prefix, indent)
 complaining(whinge, fatal, value)

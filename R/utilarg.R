@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.3 $  $Date: 2018/07/06 03:02:03 $
+#'  $Revision: 1.4 $  $Date: 2022/04/25 01:50:09 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -223,40 +223,57 @@ check.finite <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE) {
   return(TRUE)
 }
 
+check.satisfies <- function(cond, xname, should, context="",
+                            fatal=TRUE, warn=TRUE) {
+  if(cond) return(TRUE)
+  if(fatal || warn) {
+    whinge <-  paste(sQuote(xname), should)
+    if(nzchar(context)) whinge <- paste(context, whinge)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
+  }
+  return(FALSE)
+}
+
+check.1.real <- function(x, context="", fatal=TRUE, warn=TRUE) {
+  xname <- deparse(substitute(x))
+  if(is.numeric(x) && length(x) == 1)
+    return(TRUE)
+  if(fatal || warn) {
+    whinge <- paste(sQuote(xname, "should be a single number"))
+    if(nzchar(context)) whinge <- paste(context, whinge)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
+  }
+  return(FALSE)
+}
+
+check.1.integer <- function(x, context="", fatal=TRUE, warn=TRUE) {
+  xname <- deparse(substitute(x))
+  if(is.numeric(x) && length(x) == 1 && is.finite(x) && x %% 1 == 0)
+    return(TRUE)
+  if(fatal || warn) {
+    whinge <- paste(sQuote(xname, "should be a single finite integer"))
+    if(nzchar(context)) whinge <- paste(context, whinge)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
+  }
+  return(FALSE)
+}
+  
+check.1.string <- function(x, context="", fatal=TRUE, warn=TRUE) {
+  xname <- deparse(substitute(x))
+  if(is.character(x) && length(x) == 1)
+    return(TRUE)
+  if(fatal || warn) {
+    whinge <- paste(sQuote(xname, "should be a single character string"))
+    if(nzchar(context)) whinge <- paste(context, whinge)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
+  }
+  return(FALSE)
+}
+
 complaining <- function(whinge, fatal=FALSE, value=NULL) {
   if(fatal) stop(whinge, call.=FALSE)
   warning(whinge, call.=FALSE)
   return(value)
-}
-
-check.1.real <- function(x, context="", fatal=TRUE) {
-  xname <- deparse(substitute(x))
-  if(!is.numeric(x) || length(x) != 1) {
-    whinge <-  paste(sQuote(xname), "should be a single number")
-    if(nzchar(context)) whinge <- paste(context, whinge)
-    return(complaining(whinge, fatal=fatal, value=FALSE))
-  }
-  return(TRUE)
-}
-
-check.1.integer <- function(x, context="", fatal=TRUE) {
-  xname <- deparse(substitute(x))
-  if(!is.numeric(x) || length(x) != 1 || !is.finite(x) || x %% 1 != 0) {
-    whinge <-  paste(sQuote(xname), "should be a single finite integer")
-    if(nzchar(context)) whinge <- paste(context, whinge)
-    return(complaining(whinge, fatal=fatal, value=FALSE))
-  }
-  return(TRUE)
-}
-
-check.1.string <- function(x, context="", fatal=TRUE) {
-  xname <- deparse(substitute(x))
-  if(!is.character(x) || length(x) != 1) {
-    whinge <-  paste(sQuote(xname), "should be a single character string")
-    if(nzchar(context)) whinge <- paste(context, whinge)
-    return(complaining(whinge, fatal=fatal, value=FALSE))
-  }
-  return(TRUE)
 }
 
 explain.ifnot <- function(expr, context="") {
