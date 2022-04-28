@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.15 $ $Date: 2021/06/02 10:20:02 $
+#'       $Revision: 1.16 $ $Date: 2022/04/28 03:27:21 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -286,7 +286,7 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
     #' digits in labels code copied from base::cut.default (with adaptations)
     for(dig in dig.lab:max(12L, dig.lab)) {
       ch.br <- formatC(0 + b, digits = dig, width = 1L)
-      if(ok <- all(ch.br[-1L] != ch.br[1L:nintervals]))
+      if(all(ch.br[-1L] != ch.br[1L:nintervals]))
         break
     }
     blab <- paste0("[",

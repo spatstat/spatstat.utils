@@ -10,7 +10,8 @@
 }
 \usage{
 check.nmatrix(m, npoints = NULL, fatal = TRUE, things = "data points",
-              naok = FALSE, squarematrix = TRUE, matchto = "nrow", warn = FALSE)
+              naok = FALSE, squarematrix = TRUE, matchto = "nrow",
+              warn = FALSE, mname)
 }
 \arguments{
   \item{m}{
@@ -41,6 +42,10 @@ check.nmatrix(m, npoints = NULL, fatal = TRUE, things = "data points",
   \item{warn}{
     Logical value indicating whether to issue a warning
     if \code{v} does not satisfy all requirements.
+  }
+  \item{mname}{
+    Optional character string giving the name of \code{m}
+    for use in error messages and warnings.
   }
 }
 \details{

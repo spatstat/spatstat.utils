@@ -1,9 +1,11 @@
 
-        CHANGES IN spatstat.utils VERSION 2.3-0.002
+        CHANGES IN spatstat.utils VERSION 2.3-0.003
 
 OVERVIEW
 
     o Minor improvements and bug fixes.
+
+    o Some argument-checking code now runs faster.
 
 SIGNIFICANT USER-VISIBLE CHANGES
 

@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.4 $  $Date: 2022/04/25 01:50:09 $
+#'  $Revision: 1.5 $  $Date: 2022/04/28 03:20:22 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -72,9 +72,9 @@ check.nvector <- function(v, npoints=NULL, fatal=TRUE, things="data points",
 
 check.nmatrix <- function(m, npoints=NULL, fatal=TRUE, things="data points",
                           naok=FALSE, squarematrix=TRUE, matchto="nrow",
-                          warn=FALSE) {
+                          warn=FALSE, mname) {
   ## matrix of values for each thing or each pair of things
-  mname <- sQuote(deparse(substitute(m)))
+  if(missing(mname)) mname <- sQuote(deparse(substitute(m)))
   whinge <- NULL
   if(!is.matrix(m))
     whinge <- paste(mname, "should be a matrix")
@@ -182,45 +182,52 @@ validposint <- function(n, caller, fatal=TRUE) {
 
 # errors and checks
 
-forbidNA <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE) {
-  if(missing(xname)) xname <- sQuote(deparse(substitute(x)))
-  if(anyNA(x)) {
+forbidNA <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE, warn=TRUE) {
+  if(!anyNA(x)) return(TRUE)
+  if(fatal || warn) {
+    if(missing(xname)) xname <- sQuote(deparse(substitute(x)))
     if(usergiven) {
-      # argument came from user
+      ## argument came from user
       offence <- ngettext(length(x), "be NA", "contain NA values")
       whinge <- paste(context, xname, "must not", offence)
     } else {
-      # argument was computed internally
+      ## argument was computed internally
       violates <- ngettext(length(x), "is NA", "contains NA values")
       whinge <- paste(context, xname, violates)
     }
-    if(fatal) stop(whinge, call.=FALSE)
-    warning(whinge, call.=FALSE)
-    return(FALSE)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
   }
-  return(TRUE)
+  return(FALSE)
 }
 
-check.finite <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE) {
-  if(missing(xname)) xname <- sQuote(deparse(substitute(x)))
-  forbidNA(x, context, xname, fatal=fatal, usergiven=usergiven)
-  if(any(!is.finite(x))) {
+check.finite <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE, warn=TRUE) {
+  offence <- if(anyNA(x)) "na" else if(any(!is.finite(x))) "NaNInf" else NULL
+  if(is.null(offence)) return(TRUE)
+  if(fatal || warn) {
+    if(missing(xname)) xname <- sQuote(deparse(substitute(x)))     
     if(usergiven) {
-      # argument came from user
-      oblige <- ngettext(length(x),
-                         "be a finite value", "contain finite values")
-      whinge <- paste(context, xname, "must", oblige)
+      ## argument came from user
+      violates <- switch(offence,
+                         na     = ngettext(length(x),
+                                           "must not be NA",
+                                           "must not contain NA values"),
+                         NaNInf = ngettext(length(x),
+                                           "must be a finite value",
+                                           "must contain finite values"))
     } else {
-      # argument was computed internally
-      violates <- ngettext(length(x),
-                           "is not finite", "contains non-finite values")
-      whinge <- paste(context, xname, violates)
+      ## argument was computed internally
+      violates <- switch(offence,
+                         na     = ngettext(length(x),
+                                           "is NA",
+                                           "contains NA values"),
+                         NaNInf = ngettext(length(x),
+                                           "is not finite",
+                                           "contains non-finite values"))
     }
-    if(fatal) stop(whinge, call.=FALSE)
-    warning(whinge, call.=FALSE)
-    return(FALSE)
+    whinge <- paste(context, xname, violates)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
   }
-  return(TRUE)
+  return(FALSE)
 }
 
 check.satisfies <- function(cond, xname, should, context="",
@@ -235,10 +242,10 @@ check.satisfies <- function(cond, xname, should, context="",
 }
 
 check.1.real <- function(x, context="", fatal=TRUE, warn=TRUE) {
-  xname <- deparse(substitute(x))
   if(is.numeric(x) && length(x) == 1)
     return(TRUE)
   if(fatal || warn) {
+    xname <- deparse(substitute(x))
     whinge <- paste(sQuote(xname, "should be a single number"))
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
@@ -247,10 +254,10 @@ check.1.real <- function(x, context="", fatal=TRUE, warn=TRUE) {
 }
 
 check.1.integer <- function(x, context="", fatal=TRUE, warn=TRUE) {
-  xname <- deparse(substitute(x))
   if(is.numeric(x) && length(x) == 1 && is.finite(x) && x %% 1 == 0)
     return(TRUE)
   if(fatal || warn) {
+    xname <- deparse(substitute(x))
     whinge <- paste(sQuote(xname, "should be a single finite integer"))
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
@@ -259,10 +266,10 @@ check.1.integer <- function(x, context="", fatal=TRUE, warn=TRUE) {
 }
   
 check.1.string <- function(x, context="", fatal=TRUE, warn=TRUE) {
-  xname <- deparse(substitute(x))
   if(is.character(x) && length(x) == 1)
     return(TRUE)
   if(fatal || warn) {
+    xname <- deparse(substitute(x))
     whinge <- paste(sQuote(xname, "should be a single character string"))
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
@@ -277,10 +284,11 @@ complaining <- function(whinge, fatal=FALSE, value=NULL) {
 }
 
 explain.ifnot <- function(expr, context="") {
-  ex <- deparse(substitute(expr))
   ans <- expr
-  if(!(is.logical(ans) && length(ans) == 1 && ans))
+  if(!(is.logical(ans) && length(ans) == 1 && ans)) {
+    ex <- deparse(substitute(expr))
     stop(paste(context, "it must be TRUE that", sQuote(ex)), call.=FALSE)
+  }
 }
 
 warn.ignored.args <- function(..., context=NULL) {

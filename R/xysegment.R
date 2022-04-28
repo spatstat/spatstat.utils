@@ -1,7 +1,7 @@
 #
 #      xysegment.S
 #
-#     $Revision: 1.21 $    $Date: 2022/03/18 09:43:32 $
+#     $Revision: 1.22 $    $Date: 2022/04/28 03:25:59 $
 #
 # Low level utilities for analytic geometry for line segments
 #
@@ -171,8 +171,6 @@ distppll <- function(p, l, mintype=0,
 # (distance to) nearest segment 
 
 distppllmin <- function(p, l, big=NULL) {
-  np <- nrow(p)
-  nl <- nrow(l)
   if(is.null(big)) {
     xdif <- diff(range(c(p[,1],l[, c(1,3)])))
     ydif <- diff(range(c(p[,2],l[, c(2,4)])))
