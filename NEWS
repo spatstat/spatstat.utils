@@ -1,5 +1,5 @@
 
-        CHANGES IN spatstat.utils VERSION 2.3-0.004
+        CHANGES IN spatstat.utils VERSION 2.3-0.005
 
 OVERVIEW
 
@@ -7,6 +7,14 @@ OVERVIEW
 
     o Some argument-checking code now runs faster.
 
+NEW FUNCTIONS
+
+    o fastFindInterval
+    Faster alternative to 'findInterval' for equally-spaced intervals.
+
+    o geomseq
+    Make a geometric sequence.
+    
 SIGNIFICANT USER-VISIBLE CHANGES
 
     o check.1.real, check.1.integer, check.1.string

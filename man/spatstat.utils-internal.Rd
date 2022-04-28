@@ -30,7 +30,6 @@
 \alias{exhibitStringList}
 \alias{explain.ifnot}
 \alias{fakecallstring}
-\alias{fastFindInterval}
 \alias{fave.order}
 \alias{fillseq}
 \alias{findfirstfactor}
@@ -39,7 +38,6 @@
 \alias{fontify}
 \alias{forbidNA}
 \alias{getSpatstatLocatorQueue}
-\alias{geomseq}
 \alias{getdataobjects}
 \alias{good.names}
 \alias{graphicsPars}            
@@ -144,7 +142,6 @@ exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)
 explain.ifnot(expr, context)
 fakecallstring(fname, parlist)
-fastFindInterval(x, b, labels, reltol, dig.lab)
 fave.order(x)
 fillseq(x, step)
 findfirstfactor(x)
@@ -153,7 +150,6 @@ flat.deparse(x)
 fontify(x, font)
 forbidNA(x, context, xname, fatal, usergiven, warn)
 getSpatstatLocatorQueue()
-geomseq(from, to, length.out)
 getdataobjects(nama, envir, datalist, fatal)
 good.names(nama, defaults, suffices)
 graphicsPars(key)
