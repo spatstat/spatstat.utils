@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.5 $  $Date: 2022/04/28 03:20:22 $
+#'  $Revision: 1.6 $  $Date: 2022/04/28 03:35:44 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -246,7 +246,7 @@ check.1.real <- function(x, context="", fatal=TRUE, warn=TRUE) {
     return(TRUE)
   if(fatal || warn) {
     xname <- deparse(substitute(x))
-    whinge <- paste(sQuote(xname, "should be a single number"))
+    whinge <- paste(sQuote(xname), "should be a single number")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
   }
@@ -258,7 +258,7 @@ check.1.integer <- function(x, context="", fatal=TRUE, warn=TRUE) {
     return(TRUE)
   if(fatal || warn) {
     xname <- deparse(substitute(x))
-    whinge <- paste(sQuote(xname, "should be a single finite integer"))
+    whinge <- paste(sQuote(xname), "should be a single finite integer")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
   }
@@ -270,7 +270,7 @@ check.1.string <- function(x, context="", fatal=TRUE, warn=TRUE) {
     return(TRUE)
   if(fatal || warn) {
     xname <- deparse(substitute(x))
-    whinge <- paste(sQuote(xname, "should be a single character string"))
+    whinge <- paste(sQuote(xname), "should be a single character string")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
   }
