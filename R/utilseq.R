@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.16 $ $Date: 2022/04/28 03:27:21 $
+#'       $Revision: 1.18 $ $Date: 2022/05/05 02:16:49 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -26,9 +26,10 @@ orderwhich <- function(x, k, decreasing=FALSE) {
             index.return=TRUE)$ix[k]
 }
 
-## faster than sort(unique(x)) for numeric
-
-sortunique <- function(x) { rle(sort(x))$values }
+sortunique <- function(x) {
+  ## WAS FASTER: rle(sort(x))$values
+  sort(unique(x))
+}
 
 ## ................ reverse cumulative sum .....................
 
@@ -238,19 +239,18 @@ check.range <- function(r, fatal=TRUE) {
 }
 
 evenly.spaced <- function(x, tol=1e-07) {
-  # test whether x is evenly spaced and increasing
+  ## test whether x is evenly spaced and increasing
   dx <- diff(x)
   if(any(dx <= .Machine$double.eps))
     return(FALSE)
-  # The following test for equal spacing is used in hist.default
-  if(diff(range(dx)) > tol * mean(dx))
+  ## The following test for equal spacing is used in hist.default
+  if(length(dx) && (diff(range(dx)) > tol * mean(dx)))
     return(FALSE)
   return(TRUE)
 }
 
 equispaced <- function(z, reltol=0.001) {
-  dz <- diff(z)
-  return(diff(range(dz)) < reltol * mean(dz))
+  evenly.spaced(z, reltol)
 }
 
 

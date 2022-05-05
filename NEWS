@@ -5,8 +5,10 @@ OVERVIEW
 
     o Minor improvements and bug fixes.
 
-    o Some argument-checking code now runs faster.
+    o Some code now runs faster.
 
+    o More of the existing functions are documented.
+    
 NEW FUNCTIONS
 
     o fastFindInterval
