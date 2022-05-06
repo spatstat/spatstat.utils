@@ -64,8 +64,6 @@
 \alias{NNdist2segments}
 \alias{numalign}
 \alias{nzpaste}
-\alias{\%orifnull\%}  %DoNotExport
-%NAMESPACE export("%orifnull%")
 \alias{padtowidth}
 \alias{passthrough}
 \alias{paste.expr}
@@ -176,7 +174,6 @@ niceround(x, m)
 NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue, wantindex)
 numalign(i, nmax, zero)
 nzpaste(\dots, sep, collapse)
-a \%orifnull\% b
 padtowidth(a, b, justify)
 passthrough(.Fun, \dots, .Fname)
 paste.expr(x)

@@ -1,5 +1,5 @@
 
-        CHANGES IN spatstat.utils VERSION 2.3-0.006
+        CHANGES IN spatstat.utils VERSION 2.3-0.007
 
 OVERVIEW
 
@@ -16,6 +16,9 @@ NEW FUNCTIONS
 
     o geomseq
     Make a geometric sequence.
+
+    o "%orifnull%"
+    Specify a value with a default.
     
 SIGNIFICANT USER-VISIBLE CHANGES
 
