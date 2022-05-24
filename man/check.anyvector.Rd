@@ -66,13 +66,15 @@
 }
 \seealso{
   \code{\link{check.nvector}},
-  \code{\link{check.named.vector}}.
+  \code{\link{check.nmatrix}},
+  \code{\link{check.1.real}}, \code{\link{check.named.vector}}.
 }
 \examples{
-   z <- factor(1:10)
-   check.anyvector(z, 5, fatal=FALSE)
+   z <- factor(letters[1:10])
    y <- z[1]
+   check.anyvector(z, 5, fatal=FALSE)
    check.anyvector(y, 5, oneok=TRUE)
+   check.anyvector(42, 5, fatal=FALSE)
 }
 \keyword{error}
 \keyword{utilities}

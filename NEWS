@@ -1,4 +1,16 @@
 
+        CHANGES IN spatstat.utils VERSION 2.3-1.001
+
+OVERVIEW
+
+    o Minor change to package information.
+    
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Package dependence
+    'spatstat.utils' now suggests the new package 'spatstat.model'
+    instead of the old 'spatstat.core'.
+
         CHANGES IN spatstat.utils VERSION 2.3-1
 
 OVERVIEW
