@@ -39,7 +39,7 @@
   If \code{f} is a formula containing a term of the form
   \code{polynom(\dots)} then \code{expand.polynom(f)} replaces this term
   by its expansion as a sum of homogeneous terms, as defined in
-  the help for \code{\link[spatstat.core]{polynom}}.
+  the help for \code{\link[spatstat.model]{polynom}}.
 }
 \value{
   A \code{formula}.
@@ -48,7 +48,7 @@
   \spatstatAuthors.
 }
 \seealso{
-   \code{\link[spatstat.core]{polynom}}
+   \code{\link[spatstat.model]{polynom}}
 }
 \examples{
    sympoly(A, 4)
