@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.37 $ $Date: 2020/11/14 04:55:32 $
+#  $Revision: 1.38 $ $Date: 2022/06/15 09:03:42 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -63,11 +63,11 @@ do.call.matched <- function(fun, arglist, funargs,
   funargs <- c(funargs, extrargs)
   funargs <- setdiff(funargs, skipargs)
   ## identify which arguments in the call actually match a formal argument
-  givenargs <- names(arglist)
+  givenargs <- names(arglist) %orifnull% rep("", length(arglist))
   matched <- givenargs %in% funargs
-  # deem the first argument to be matched?
-  if(matchfirst && !nzchar(givenargs[1]))
-    matched[1] <- TRUE
+  ## deem the first argument to be matched?
+  if(length(givenargs) && matchfirst && !nzchar(givenargs[1L]))
+    matched[1L] <- TRUE
   # apply 'fun' to matched arguments
   usedargs <- arglist[matched]
   out <- do.call(fun, usedargs, envir=envir)
