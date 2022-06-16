@@ -1,11 +1,18 @@
 
-        CHANGES IN spatstat.utils VERSION 2.3-1.003
+        CHANGES IN spatstat.utils VERSION 2.3-1.004
 
 OVERVIEW
 
     o Minor changes to package information.
 
+    o Harmonic mean.
+
     o Bug fixes
+
+NEW FUNCTIONS
+
+    o harmonicmean, harmonicsum
+    The harmonic mean of a set of numbers, calculated robustly.
     
 SIGNIFICANT USER-VISIBLE CHANGES
 

@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.18 $ $Date: 2022/05/05 02:16:49 $
+#'       $Revision: 1.19 $ $Date: 2022/06/16 05:37:48 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -438,3 +438,26 @@ exactCutBreaks <- function(x, breaks) {
 }
 
 
+## ....  Harmonic mean ..........
+
+harmonicmean <- function(x, na.rm=TRUE) {
+  ## harmonic mean, robust against zeroes and small values
+  if(anyNA(x)) {
+    if(na.rm) x <- x[!is.na(x)] else return(NA)
+  }
+  if(length(x) == 0) return(NaN) # consistent with mean()
+  mx <- min(abs(x))
+  if(mx == 0) return(mx)
+  return(mx/mean(mx/x))
+}
+
+harmonicsum <- function(x, na.rm=TRUE) {
+  # computes 1/sum(1/x) robustly
+  if(anyNA(x)) {
+    if(na.rm) x <- x[!is.na(x)] else return(NA)
+  }
+  if(length(x) == 0) return(0) # consistent with sum()
+  mx <- min(abs(x))
+  if(mx == 0) return(mx)
+  return(mx/sum(mx/x))
+}
