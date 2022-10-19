@@ -2,7 +2,7 @@
 
   matchindices.c
 
-  $Revision$  $Date$
+  $Revision: 1.3 $  $Date: 2022/10/19 03:35:51 $
 
   CSmatch2int    Find matches between two sorted lists of pairs of integers
   CSmatch3int    Find matches between two sorted lists of triples of integers
@@ -28,16 +28,19 @@
 
  */
 
-void CUmatch2int(na, xa, ya, nb, xb, yb, match)
+void CUmatch2int(
   /* inputs */
-  int *na, *nb;
-  int *xa, *ya; 
-  int *xb, *yb; 
+  int *na,
+  int *xa,
+  int *ya, 
+  int *nb,
+  int *xb,
+  int *yb,
   /* output */
-  int *match; 
+  int *match 
   /* match[i] = j+1 if xb[j], yb[j] matches xa[i], ya[i] */
   /* match[i] = 0   if no such point matches xa[i], ya[i] */
-{ 
+) { 
   int i, j, Na, Nb, maxchunk; 
   int xai, yai;
 
@@ -69,16 +72,21 @@ void CUmatch2int(na, xa, ya, nb, xb, yb, match)
 
  */
 
-void CUmatch3int(na, xa, ya, za, nb, xb, yb, zb, match)
+void CUmatch3int(
   /* inputs */
-  int *na, *nb;
-  int *xa, *ya, *za; 
-  int *xb, *yb, *zb; 
+  int *na,
+  int *xa,
+  int *ya,
+  int *za, 
+  int *nb,
+  int *xb,
+  int *yb,
+  int *zb, 
   /* output */
-  int *match; 
+  int *match 
   /* match[i] = j+1 if xb[j], yb[j], zb[j] matches xa[i], ya[i], za[i] */
   /* match[i] = 0   if no such point matches xa[i], ya[i], za[i] */
-{ 
+) { 
   int i, j, Na, Nb, maxchunk; 
   int xai, yai, zai;
 
@@ -117,16 +125,19 @@ void CUmatch3int(na, xa, ya, za, nb, xb, yb, zb, match)
 
  */
 
-void CSmatch2int(na, xa, ya, nb, xb, yb, match)
+void CSmatch2int(
   /* inputs */
-  int *na, *nb;
-  int *xa, *ya; /* sorted into increasing order of (xa, ya) */
-  int *xb, *yb; /* sorted into increasing order of (xb, yb) */
+  int *na,
+  int *xa,
+  int *ya, /* sorted into increasing order of (xa, ya) */
+  int *nb,
+  int *xb,
+  int *yb, /* sorted into increasing order of (xb, yb) */
   /* output */
-  int *match; 
+  int *match 
   /* match[i] = j+1 if xb[j], yb[j] matches xa[i], ya[i] */
   /* match[i] = 0   if no such point matches xa[i], ya[i] */
-{ 
+) { 
   int i, j, Na, Nb, maxchunk; 
   int xai, yai;
 
@@ -161,16 +172,21 @@ void CSmatch2int(na, xa, ya, nb, xb, yb, match)
 
  */
 
-void CSmatch3int(na, xa, ya, za, nb, xb, yb, zb, match)
+void CSmatch3int(
   /* inputs */
-  int *na, *nb;
-  int *xa, *ya, *za; /* sorted into increasing order of (xa, ya, za) */
-  int *xb, *yb, *zb; /* sorted into increasing order of (xb, yb, zb) */
+  int *na,
+  int *xa,
+  int *ya,
+  int *za, /* sorted into increasing order of (xa, ya, za) */
+  int *nb,
+  int *xb,
+  int *yb,
+  int *zb, /* sorted into increasing order of (xb, yb, zb) */
   /* output */
-  int *match; 
+  int *match
   /* match[i] = j+1 if xb[j], yb[j], zb[j] matches xa[i], ya[i], za[i] */
   /* match[i] = 0   if no such point matches xa[i], ya[i], za[i] */
-{ 
+) { 
   int i, j, Na, Nb, maxchunk; 
   int xai, yai, zai;
 

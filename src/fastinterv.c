@@ -8,18 +8,20 @@
   Fast version of findInterval when breaks are known to be evenly spaced
   and are known to embrace the data.
 
-  $Revision: 1.3 $ $Date: 2018/12/18 02:43:11 $
+  $Revision: 1.5 $ $Date: 2022/10/19 03:29:04 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
 
 */
 
-void fastinterv(x, n, brange, nintervals, y) 
-     double *x, *brange;
-     int *n, *nintervals;
-     int *y;
-{
+void fastinterv(
+		double *x,           /* values to be classified */
+		int    *n,           /* number of x values */
+		double *brange,      /* range of breakpoints */
+		int    *nintervals,  /* number of intervals */
+		int    *y            /* resulting indices (start from 1) */
+) {
   double bmin, bmax, db;
   int i, j, m, N;
 

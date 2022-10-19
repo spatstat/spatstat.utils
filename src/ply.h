@@ -10,39 +10,30 @@
 
     Adrian Baddeley and Tilman Davies
 
-    $Revision: 1.3 $  $Date: 2017/11/13 08:43:37 $
+    $Revision: 1.4 $  $Date: 2022/10/19 03:13:26 $
 
 */
 
 
-void FNAME(nin, 
-	   xin,  
-	   iin,
+void FNAME(int *nin, 
+	   double *xin,  
+	   int *iin,
 #if (NDIM > 1)	   
-	   jin,
+	   int *jin,
 #if (NDIM > 2)
-	   kin,  
+	   int *kin,  
 #endif
 #endif	   
-	   nout,
-	   xout, 
-	   iout	
+	   int *nout,
+	   double *xout, 
+	   int *iout	
 #if (NDIM > 1)	      
-	   , jout
+	   , int *jout
 #if (NDIM > 2)
-	   , kout
+	   , int *kout
 #endif
 #endif
 ) 
-     int *nin, *nout;
-     double *xin, *xout;
-     int *iin, *iout;
-#if (NDIM > 1)     
-     int *jin, *jout;
-#if (NDIM > 2)
-     int *kin, *kout;
-#endif
-#endif
 {
   int Nin, l, m, icur;
 #if (NDIM > 1)  

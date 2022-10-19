@@ -4,7 +4,7 @@
 
   Prime numbers and prime factorisation
 
-  $Revision: 1.2 $  $Date: 2016/12/31 08:40:29 $
+  $Revision: 1.3 $  $Date: 2022/10/19 03:15:53 $
 
 */
 
@@ -112,10 +112,11 @@ int primetable[] = {
 
 #undef BUGGY
   
-void primefax(n, factors, nfactors) 
-     int *n;
-     int *factors; 
-     int *nfactors;
+void primefax(
+	      int *n,
+	      int *factors,
+	      int *nfactors
+)
 {
   int m, p, dmax, k, d;
   int *ptr;

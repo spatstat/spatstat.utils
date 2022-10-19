@@ -2,7 +2,7 @@
 
   matchpoints.c
 
-  $Revision: 1.2 $  $Date: 2018/12/18 02:43:11 $
+  $Revision: 1.4 $  $Date: 2022/10/19 03:39:15 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
@@ -23,15 +23,19 @@
 
  */
 
-void Cmatchxy(na, xa, ya, nb, xb, yb, match)
+void Cmatchxy(
      /* inputs */
-     int *na, *nb;
-     double *xa, *ya, *xb, *yb;
+     int *na,
+     double *xa,
+     double *ya,
+     int *nb,
+     double *xb,
+     double *yb,
      /* output */
-     int *match; 
+     int *match 
      /* match[i] = j+1 if xb[j], yb[j] matches xa[i], ya[i] */
      /* match[i] = 0   if no such point matches xa[i], ya[i] */
-{ 
+){ 
   int i, j, Na, Nb, maxchunk; 
   double xai, yai;
 

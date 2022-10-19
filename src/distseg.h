@@ -16,31 +16,30 @@
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2021
   Licence: GNU Public Licence >= 2
 
-  $Revision: 1.1 $ $Date: 2021/05/20 08:29:45 $
+  $Revision: 1.3 $ $Date: 2022/10/19 02:58:46 $
 
 */
 
 void
-FNAME(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2
-#ifdef WANT_INDEX      
-      , index
-#endif      
-      )
+FNAME(
      /* input */
-     double	*xp, *yp;		/* point/pixel coordinates */
-     int	*npoints;
-     double	*x0, *y0, *x1, *y1;	/* line segment endpoints */
-     int	*nsegments;
-     double     *epsilon;               /* tolerance for short segments */
+     double	*xp,
+     double     *yp,		        /* point/pixel coordinates */
+     int	*npoints,
+     double	*x0,
+     double     *y0,
+     double     *x1,
+     double     *y1,	                /* line segment endpoints */
+     int	*nsegments,
+     double     *epsilon,               /* tolerance for short segments */
      /* output */
-     double	*dist2;		        /* squared distance from pixel 
-                                        to nearest line segment 
-					  INITIALISED TO LARGE VALUE 
-					*/
+     double	*dist2		        /* squared distance from pixel 
+					   to nearest line segment 
+					   INITIALISED TO LARGE VALUE */
 #ifdef WANT_INDEX
-     int	*index;		        /* which line segment is closest */
+     , int	*index		        /* which line segment is closest */
 #endif
-{
+) {
   int	i,j, np, nseg, maxchunk;
   double dx,dy,leng,co,si;  /* parameters of segment */
   double xdif0,ydif0,xdif1,ydif1,xpr,ypr; /* vectors */

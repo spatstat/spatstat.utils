@@ -8,7 +8,7 @@
        nndist2segs: minimum distance from point to any line segment (with index)
        prdist2segs: pairwise distances from each point to each line segment
 
-       $Revision: 1.11 $ $Date: 2021/05/20 08:27:04 $
+       $Revision: 1.12 $ $Date: 2022/10/19 02:56:36 $
 
        Author: Adrian Baddeley
 
@@ -36,17 +36,21 @@
 
 
 void
-prdist2segs(xp, yp, npoints, x0, y0, x1, y1, nsegments, epsilon, dist2)
+prdist2segs(
      /* input */
-     double	*xp, *yp;		/* point/pixel coordinates */
-     int	*npoints;
-     double	*x0, *y0, *x1, *y1;	/* line segment endpoints */
-     int	*nsegments;
-     double     *epsilon;               /* tolerance for short segments */
+     double	*xp,
+     double     *yp,		        /* point/pixel coordinates */
+     int	*npoints,
+     double	*x0,
+     double     *y0,
+     double     *x1,
+     double     *y1, 	                /* line segment endpoints */
+     int	*nsegments,
+     double     *epsilon,               /* tolerance for short segments */
      /* output */
-     double	*dist2;		        /* squared distances from each pixel 
+     double	*dist2		        /* squared distances from each pixel 
                                         to each line segment */
-{
+) {
   int	i,j, np, nseg, maxchunk;
   double dx,dy,leng,co,si;  /* parameters of segment */
   double xdif0,ydif0,xdif1,ydif1,xpr,ypr; /* vectors */

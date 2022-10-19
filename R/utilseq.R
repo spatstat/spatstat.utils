@@ -265,10 +265,9 @@ adjustthinrange <- function(ur,vstep,vr) {
 fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
   nintervals <- length(b) - 1
   nx <- length(x)
-  if(nx == 0)
-    return(rep(0, nintervals))
-  ##
-  if(equispaced(b, reltol)) {
+  if(nx == 0) {
+    y <- integer(0)
+  } else if(equispaced(b, reltol)) {
     ## breaks are equally spaced
     zz <- .C(C_fastinterv,
              x          = as.double(x),

@@ -6,7 +6,7 @@
   NB: relative to other versions, 'score' is multiplied by 2
   (and is an integer)
 
-  $Revision: 1.8 $   $Date: 2018/12/18 02:43:11 $
+  $Revision: 1.11 $   $Date: 2022/10/19 03:38:17 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
@@ -16,15 +16,17 @@
 #include <R_ext/Utils.h>
 #include "chunkloop.h"
 
-void inxyp(x,y,xp,yp,npts,nedges,score,onbndry) 
+void inxyp(
   /* inputs */
-  double *x, *y; /* points to be tested */
-  int *npts;    
-  double *xp, *yp; /* polygon vertices */
-  int *nedges;
+  double *x,
+  double *y,       /* points to be tested */
+  double *xp,
+  double *yp,      /* polygon vertices */
+  int *npts,    
+  int *nedges,
   /* outputs */
-  int *score;
-  int *onbndry;
+  int *score,
+  int *onbndry)
 {
   int i, j, Npts, Nedges, Ne1, contrib, maxchunk;
   double x0, y0, x1, y1, dx, dy, xj, yj, xcrit, ycrit;
