@@ -1,5 +1,17 @@
 
-        CHANGES IN spatstat.utils VERSION 2.999-999.001
+        CHANGES IN spatstat.utils VERSION 3.0-1
+
+OVERVIEW
+
+    o Minor changes to package information.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Package dependence
+    The suggested package 'spatstat.model' is available from
+    spatstat.r-universe.dev until it is released on CRAN.
+    
+        CHANGES IN spatstat.utils VERSION 3.0-0
 
 OVERVIEW
 
