@@ -2,7 +2,7 @@
 
 ## Utility functions
 
-[![CRAN status](http://www.r-pkg.org/badges/version/spatstat.utils)](http://cran.r-project.org/web/packages/spatstat.utils)
+[![CRAN status](http://www.r-pkg.org/badges/version/spatstat.utils)](http://CRAN.R-project.org/package=spatstat.utils)
 [![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.utils)](https://github.com/spatstat/spatstat.utils)
 [![Travis-CI Build Status](https://travis-ci.org/spatstat/spatstat.utils.png?branch=master)](https://travis-ci.org/spatstat/spatstat.utils)
 [![Code Coverage Score](https://codecov.io/github/spatstat/spatstat.utils/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.utils?branch=master)
@@ -36,5 +36,5 @@ The utilities support
 
 This repository contains the current _development version_ of the
 `spatstat.utils` package. For the most recent _public release_ of
-`spatstat.utils`, see the [CRAN page](https://cran.r-project.org/web/packages/spatstat.utils).
+`spatstat.utils`, see the [CRAN page](https://CRAN.R-project.org/package=spatstat.utils).
 
