@@ -290,6 +290,8 @@ sensiblevarname <- function(guess, fallback, maxlen=12) {
 }
 
 ## deparse() can sometimes be equivalent to dumping the whole object
+## Use this for creating data name for main title, error message etc.
+## It may truncate the information.
 short.deparse <- function(x, maxlen=60) {
   deparse(x,
           nlines=1,
@@ -298,8 +300,9 @@ short.deparse <- function(x, maxlen=60) {
 }
 
 ## deparse() can produce multiple lines of text
+## Use this for expressions that must be converted to a single string
 flat.deparse <- function(x) {
-  y <- paste(short.deparse(x), collapse=" ")
+  y <- paste(deparse(x), collapse=" ") 
   y <- gsub("\n", " ", y)
   y <- gsub(" ", "", y)
   return(y)
