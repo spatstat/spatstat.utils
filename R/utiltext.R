@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.10 $ $Date: 2021/08/26 10:24:47 $
+#'   $Revision: 1.11 $ $Date: 2023/02/28 02:00:22 $
 #'
 
 # text magic
@@ -299,7 +299,7 @@ short.deparse <- function(x, maxlen=60) {
 
 ## deparse() can produce multiple lines of text
 flat.deparse <- function(x) {
-  y <- paste(deparse(x), collapse=" ")
+  y <- paste(short.deparse(x), collapse=" ")
   y <- gsub("\n", " ", y)
   y <- gsub(" ", "", y)
   return(y)

@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.19 $ $Date: 2022/06/16 05:37:48 $
+#'       $Revision: 1.21 $ $Date: 2023/02/28 01:47:56 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -59,36 +59,40 @@ revcumsum <- function(x) {
 as2vector <- function(x) {
   ## convert various wacky formats to numeric vector of length 2
   ## for use as coordinates of a single point.
-  xname <- deparse(substitute(x))
   if(is.numeric(x)) {
-    if(length(x) != 2)
-      stop(paste(xname, "should have length 2"))
-    return(x)
+    if(length(x) == 2)
+      return(x)
+    xname <- short.deparse(substitute(x))
+    stop(paste(xname, "should have length 2"))
   }
   if(inherits(x, "ppp")) {
     #' coded so that it works even if spatstat is not loaded
-    if(x$n != 1)
-      stop(paste(xname, "should consist of exactly one point"))
-    return(c(x$x, x$y))
+    if(x$n == 1)
+      return(c(x$x, x$y))
+    xname <- short.deparse(substitute(x))
+    stop(paste(xname, "should consist of exactly one point"))
   }
   if(is.list(x) && all(c("x", "y") %in% names(x))) {
+    if(length(x$x) == 1 && length(x$y == 1))
+      return(c(x$x, x$y))
+    xname <- short.deparse(substitute(x))
     if(length(x$x) != 1) stop(paste0(xname, "$x should have length 1"))
     if(length(x$y) != 1) stop(paste0(xname, "$y should have length 1"))
-    return(c(x$x, x$y))
+
   }
   stop(paste("Format of", sQuote(xname), "not understood"))
 }
 
 ensure2vector <- function(x) {
-  xname <- deparse(substitute(x))
-  if(!is.numeric(x))
+  if(!is.numeric(x)) {
+    xname <- short.deparse(substitute(x))
     stop(paste(xname, "is not numeric"))
+  }
   n <- length(x)
-  if(n == 0 || n > 2)
-    stop(paste(xname, "should be of length 1 or 2"))
-  if(n == 1)
-    return(rep(x,2))
-  return(x)
+  if(n == 2) return(x)
+  if(n == 1) return(rep(x,2))
+  xname <- short.deparse(substitute(x))
+  stop(paste(xname, "should be of length 1 or 2"))
 }
 
 
@@ -145,13 +149,15 @@ prolongseq <- function(x, newrange, step=NULL) {
 
 ## fill gaps in a sequence
 fillseq <- function(x, step=NULL) {
-  xname <- short.deparse(substitute(x))
   n <- length(x)
   if(n <= 1) return(x)
   rx <- range(x)
   dx <- diff(x)
-  if(any(dx < 0)) stop(paste(xname, "should be an increasing sequence"),
-                       call.=FALSE)
+  if(any(dx < 0)) {
+    xname <- short.deparse(substitute(x))
+    stop(paste(xname, "should be an increasing sequence"),
+         call.=FALSE)
+  }
   ## guess step length
   if(is.null(step)) {
     eps <- diff(rx)/1e7
@@ -193,14 +199,14 @@ inside.range <- function(x, r) {
 }
 
 check.in.range <- function(x, r, fatal=TRUE) {
-  xname <- deparse(substitute(x))
-  if(inside.range(x, r))
+  if(all(inside.range(x, r)))
     return(TRUE)
-  if(fatal) 
-    stop(paste(xname, "should be a number between",
-               r[1L], "and", r[2L]),
-         call.=FALSE)
-  return(FALSE)
+  if(!fatal)
+    return(FALSE)
+  xname <- deparse(substitute(x))
+  stop(paste(xname, "should be a number between",
+             r[1L], "and", r[2L]),
+       call.=FALSE)
 }
 
 startinrange <- function(x0, dx, r) {
@@ -230,12 +236,12 @@ prettydiscrete <- function(x, n=10) {
 
 
 check.range <- function(r, fatal=TRUE) {
-  rname <- deparse(substitute(r))
   if(is.numeric(r) && identical(r, range(r, na.rm=TRUE)))
     return(TRUE)
-  if(fatal) 
-    stop(paste(rname, "should be a vector of length 2 giving (min, max)"))
-  return(FALSE)
+  if(!fatal)
+    return(FALSE)
+  rname <- deparse(substitute(r))
+  stop(paste(rname, "should be a vector of length 2 giving (min, max)"))
 }
 
 evenly.spaced <- function(x, tol=1e-07) {

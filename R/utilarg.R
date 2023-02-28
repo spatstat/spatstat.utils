@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.6 $  $Date: 2022/04/28 03:35:44 $
+#'  $Revision: 1.8 $  $Date: 2023/02/28 04:34:36 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -16,7 +16,7 @@ check.anyvector <- function(v, npoints=NULL, fatal=TRUE, things="data points",
                             naok=FALSE, warn=FALSE, vname, oneok=FALSE) {
   # vector or factor of values for each point/thing
   if(missing(vname))
-    vname <- sQuote(deparse(substitute(v)))
+    vname <- sQuote(short.deparse(substitute(v)))
   whinge <- NULL
   nv <- length(v)
   if(!is.atomic(v) || !is.null(dim(v)))  # vector with attributes
@@ -44,7 +44,7 @@ check.nvector <- function(v, npoints=NULL, fatal=TRUE, things="data points",
                           naok=FALSE, warn=FALSE, vname, oneok=FALSE) {
   # vector of numeric values for each point/thing
   if(missing(vname))
-    vname <- sQuote(deparse(substitute(v)))
+    vname <- sQuote(short.deparse(substitute(v)))
   whinge <- NULL
   nv <- length(v)
   if(!is.numeric(v))
@@ -74,7 +74,7 @@ check.nmatrix <- function(m, npoints=NULL, fatal=TRUE, things="data points",
                           naok=FALSE, squarematrix=TRUE, matchto="nrow",
                           warn=FALSE, mname) {
   ## matrix of values for each thing or each pair of things
-  if(missing(mname)) mname <- sQuote(deparse(substitute(m)))
+  if(missing(mname)) mname <- sQuote(short.deparse(substitute(m)))
   whinge <- NULL
   if(!is.matrix(m))
     whinge <- paste(mname, "should be a matrix")
@@ -105,8 +105,10 @@ check.nmatrix <- function(m, npoints=NULL, fatal=TRUE, things="data points",
 
 check.named.vector <- function(x, nam, context="", namopt=character(0),
                                onError=c("fatal", "null")) {
-  xtitle <- deparse(substitute(x))
   onError <- match.arg(onError)
+  xtitle <- switch(onError,
+                   null  = "",
+                   fatal = short.deparse(substitute(x)))
   problem <- check.named.thing(x, nam, namopt, sQuote(xtitle),
                                is.numeric(x), "vector", context,
                                fatal=(onError == "fatal"))
@@ -118,8 +120,10 @@ check.named.vector <- function(x, nam, context="", namopt=character(0),
 
 check.named.list <- function(x, nam, context="", namopt=character(0),
                                onError=c("fatal", "null")) {
-  xtitle <- deparse(substitute(x))
   onError <- match.arg(onError)
+  xtitle <- switch(onError,
+                   null  = "",
+                   fatal = short.deparse(substitute(x)))
   problem <- check.named.thing(x, nam, namopt, sQuote(xtitle),
                                is.list(x), "list", context,
                                fatal=(onError == "fatal"))
@@ -132,8 +136,6 @@ check.named.list <- function(x, nam, context="", namopt=character(0),
 check.named.thing <- function(x, nam, namopt=character(0), xtitle=NULL,
                               valid=TRUE, type="object", context="",
                               fatal=TRUE) {
-  if(is.null(xtitle))
-    xtitle <- sQuote(deparse(substitute(x)))
   # check whether names(x) contains all obligatory names 'nam'
   # and possibly some of the optional names 'namopt'
   namesx <- names(x)
@@ -142,6 +144,8 @@ check.named.thing <- function(x, nam, namopt=character(0), xtitle=NULL,
   if(valid && !any(omitted) && !any(foreign))
     return(character(0))
   # some condition violated
+  if(is.null(xtitle))
+    xtitle <- sQuote(short.deparse(substitute(x)))
   if(nzchar(context))
     xtitle <- paste(context, xtitle)
   whinge <- paste(xtitle,
@@ -168,11 +172,11 @@ check.named.thing <- function(x, nam, namopt=character(0), xtitle=NULL,
 
 
 validposint <- function(n, caller, fatal=TRUE) {
-  nname <- deparse(substitute(n))
   if(length(n) != 1 || n != round(n) || n <=0) {
     if(!fatal)
       return(FALSE)
     prefix <- if(!missing(caller)) paste("In ", caller, ", ", sep="") else NULL
+    nname <- short.deparse(substitute(n))
     stop(paste0(prefix, nname, "should be a single positive integer"),
          call.=FALSE)
   }
@@ -185,7 +189,7 @@ validposint <- function(n, caller, fatal=TRUE) {
 forbidNA <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE, warn=TRUE) {
   if(!anyNA(x)) return(TRUE)
   if(fatal || warn) {
-    if(missing(xname)) xname <- sQuote(deparse(substitute(x)))
+    if(missing(xname)) xname <- sQuote(short.deparse(substitute(x)))
     if(usergiven) {
       ## argument came from user
       offence <- ngettext(length(x), "be NA", "contain NA values")
@@ -204,7 +208,7 @@ check.finite <- function(x, context="", xname, fatal=TRUE, usergiven=TRUE, warn=
   offence <- if(anyNA(x)) "na" else if(any(!is.finite(x))) "NaNInf" else NULL
   if(is.null(offence)) return(TRUE)
   if(fatal || warn) {
-    if(missing(xname)) xname <- sQuote(deparse(substitute(x)))     
+    if(missing(xname)) xname <- sQuote(short.deparse(substitute(x)))     
     if(usergiven) {
       ## argument came from user
       violates <- switch(offence,
@@ -245,7 +249,7 @@ check.1.real <- function(x, context="", fatal=TRUE, warn=TRUE) {
   if(is.numeric(x) && length(x) == 1)
     return(TRUE)
   if(fatal || warn) {
-    xname <- deparse(substitute(x))
+    xname <- short.deparse(substitute(x))
     whinge <- paste(sQuote(xname), "should be a single number")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
@@ -257,7 +261,7 @@ check.1.integer <- function(x, context="", fatal=TRUE, warn=TRUE) {
   if(is.numeric(x) && length(x) == 1 && is.finite(x) && x %% 1 == 0)
     return(TRUE)
   if(fatal || warn) {
-    xname <- deparse(substitute(x))
+    xname <- short.deparse(substitute(x))
     whinge <- paste(sQuote(xname), "should be a single finite integer")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
@@ -269,7 +273,7 @@ check.1.string <- function(x, context="", fatal=TRUE, warn=TRUE) {
   if(is.character(x) && length(x) == 1)
     return(TRUE)
   if(fatal || warn) {
-    xname <- deparse(substitute(x))
+    xname <- short.deparse(substitute(x))
     whinge <- paste(sQuote(xname), "should be a single character string")
     if(nzchar(context)) whinge <- paste(context, whinge)
     if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)

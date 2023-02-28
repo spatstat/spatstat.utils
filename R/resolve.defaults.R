@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.38 $ $Date: 2022/06/15 09:03:42 $
+#  $Revision: 1.40 $ $Date: 2023/02/28 04:41:31 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -10,11 +10,10 @@
 #
 
 resolve.defaults <- function(..., .MatchNull=TRUE, .StripNull=FALSE) {
-  # Each argument is a list. Append them.
+  ## Each argument is a list. Append them.
   argue <- c(...)
-  # does a NULL value 
-  # overwrite a non-null value occurring later in the sequence?
-  if(!.MatchNull) {
+  ## does a NULL value overwrite a non-null value occurring later in the sequence?
+  if(isFALSE(.MatchNull)) {
     isnul <- sapply(argue, is.null)
     argue <- argue[!isnul]
   }
@@ -26,8 +25,8 @@ resolve.defaults <- function(..., .MatchNull=TRUE, .StripNull=FALSE) {
       arg.named <- arg.named[!discard]
     argue <- append(arg.unnamed, arg.named)
   }
-  # should a NULL value mean that the argument is missing?
-  if(.StripNull) {
+  ## should a NULL value mean that the argument is missing?
+  if(isTRUE(.StripNull)) {
     isnull <- sapply(argue, is.null)
     argue <- argue[!isnull]
   }
