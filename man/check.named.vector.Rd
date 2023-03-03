@@ -12,10 +12,10 @@
 }
 \usage{
 check.named.vector(x, nam, context = "", namopt = character(0),
-                   onError = c("fatal", "null"))
+                   onError = c("fatal", "null"), xtitle=NULL)
 
 check.named.list(x, nam, context = "", namopt = character(0),
-                   onError = c("fatal", "null"))
+                   onError = c("fatal", "null"), xtitle=NULL)
 
 check.named.thing(x, nam, namopt = character(0),
                   xtitle = NULL, valid = TRUE, type = "object",
@@ -34,10 +34,12 @@ check.named.thing(x, nam, namopt = character(0),
     which may optionally be present.
   }
   \item{context}{
-    Character string describing the context in which \code{x} is being checked.
+    Character string describing the context in which \code{x} is being
+    checked, for use in error messages.
   }
   \item{xtitle}{
-    Optional character string to be used when referring to \code{x}.
+    Optional character string to be used when referring to \code{x}
+    in error messages.
   }
   \item{valid}{
     Logical value indicating whether \code{x} belongs to the required

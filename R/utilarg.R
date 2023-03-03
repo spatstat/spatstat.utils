@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.8 $  $Date: 2023/02/28 04:34:36 $
+#'  $Revision: 1.11 $  $Date: 2023/03/03 02:02:49 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -104,30 +104,29 @@ check.nmatrix <- function(m, npoints=NULL, fatal=TRUE, things="data points",
 }
 
 check.named.vector <- function(x, nam, context="", namopt=character(0),
-                               onError=c("fatal", "null")) {
+                               onError=c("fatal", "null"), xtitle=NULL) {
   onError <- match.arg(onError)
-  xtitle <- switch(onError,
-                   null  = "",
-                   fatal = short.deparse(substitute(x)))
+  fatal <- (onError == "fatal")
+  if(is.null(xtitle) && fatal)
+    xtitle <- short.deparse(substitute(x))
   problem <- check.named.thing(x, nam, namopt, sQuote(xtitle),
                                is.numeric(x), "vector", context,
-                               fatal=(onError == "fatal"))
-  if(length(problem) > 0 && onError == "null")
+                               fatal=fatal)
+  if(length(problem) > 0)
     return(NULL)
   opt <- namopt %in% names(x)
   return(x[c(nam, namopt[opt])])
 }
 
 check.named.list <- function(x, nam, context="", namopt=character(0),
-                               onError=c("fatal", "null")) {
+                             onError=c("fatal", "null"), xtitle=NULL) {
   onError <- match.arg(onError)
-  xtitle <- switch(onError,
-                   null  = "",
-                   fatal = short.deparse(substitute(x)))
+  fatal <- (onError == "fatal")
+  if(is.null(xtitle) && fatal)
+    xtitle <- short.deparse(substitute(x))
   problem <- check.named.thing(x, nam, namopt, sQuote(xtitle),
-                               is.list(x), "list", context,
-                               fatal=(onError == "fatal"))
-  if(length(problem) > 0 && onError == "null")
+                               is.list(x), "list", context, fatal=fatal)
+  if(length(problem) > 0)
     return(NULL)
   opt <- namopt %in% names(x)
   return(x[c(nam, namopt[opt])])
@@ -136,14 +135,16 @@ check.named.list <- function(x, nam, context="", namopt=character(0),
 check.named.thing <- function(x, nam, namopt=character(0), xtitle=NULL,
                               valid=TRUE, type="object", context="",
                               fatal=TRUE) {
-  # check whether names(x) contains all obligatory names 'nam'
-  # and possibly some of the optional names 'namopt'
+  ## Check whether names(x) contains all obligatory names 'nam'
+  ## and possibly some of the optional names 'namopt'.
+  ## Return a character string, length 0 if OK, otherwise contains message
   namesx <- names(x)
   omitted <- !(nam %in% namesx)
   foreign <- !(namesx %in% c(nam, namopt))
   if(valid && !any(omitted) && !any(foreign))
     return(character(0))
-  # some condition violated
+  ## Some condition violated
+  ## give details
   if(is.null(xtitle))
     xtitle <- sQuote(short.deparse(substitute(x)))
   if(nzchar(context))

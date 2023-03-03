@@ -1,6 +1,6 @@
 Package: spatstat.utils
-Version: 3.0-1.003
-Date: 2023-02-28
+Version: 3.0-1.004
+Date: 2023-03-03
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
