@@ -1,11 +1,16 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-1.005
+        CHANGES IN spatstat.utils VERSION 3.0-2
 
 OVERVIEW
 
     o Modest improvements in speed.
 
     o Minor changes to package information.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o check.named.vector, check.named.list
+    New argument 'xtitle'
 
         CHANGES IN spatstat.utils VERSION 3.0-1
 
