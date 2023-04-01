@@ -3,7 +3,7 @@
 #'
 #'  Utilities for matrices and arrays
 #'
-#'       $Revision: 1.2 $ $Date: 2020/02/03 10:04:42 $
+#'       $Revision: 1.3 $ $Date: 2023/04/01 02:50:44 $
 #'
 
 matrowsum <- function(x) {
@@ -145,6 +145,7 @@ blockdiagarray <- function(...) {
 
 asNumericMatrix <- function(x) {
   ## workaround for strange artefact of as.matrix.data.frame
+  if(is.list(x)) x <- as.data.frame(x)
   x <- as.matrix(x)
   storage.mode(x) <- "double"
   x
