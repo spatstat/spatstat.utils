@@ -1,5 +1,5 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-2.001
+        CHANGES IN spatstat.utils VERSION 3.0-2.002
 
 OVERVIEW
 
@@ -9,6 +9,9 @@ SIGNIFICANT USER-VISIBLE CHANGES
 
     o asNumericMatrix
     Argument x can be a list, provided it can be converted to a data frame.
+
+    o articlebeforenumber
+    Now handles non-integer values correctly.
     
         CHANGES IN spatstat.utils VERSION 3.0-2
 
