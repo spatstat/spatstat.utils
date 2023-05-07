@@ -1,5 +1,5 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-2.002
+        CHANGES IN spatstat.utils VERSION 3.0-2.003
 
 OVERVIEW
 
@@ -12,6 +12,9 @@ SIGNIFICANT USER-VISIBLE CHANGES
 
     o articlebeforenumber
     Now handles non-integer values correctly.
+    
+    o articlebeforenumber
+    New argument 'teenhundreds'.
     
         CHANGES IN spatstat.utils VERSION 3.0-2
 

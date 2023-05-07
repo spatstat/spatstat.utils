@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.13 $ $Date: 2023/05/06 10:53:29 $
+#'   $Revision: 1.14 $ $Date: 2023/05/07 09:52:27 $
 #'
 
 # text magic
@@ -225,7 +225,7 @@ ordinalsuffix <- function(k) {
   return(ending)
 }
 
-articlebeforenumber <- function(k) {
+articlebeforenumber <- function(k, teenhundreds=FALSE) {
   if(k < 0) return("a")  
   k <- floor(k)
   if(k == 0) return("a")
@@ -235,6 +235,12 @@ articlebeforenumber <- function(k) {
   ## leading digits in front of power of 1000
   kilo <- floor(k/10^(3*floor(log10(k)/3)))
   if(kilo == 11 || kilo == 18) return("an")
+  ## 
+  if(teenhundreds) {
+    hundreds <- floor(k/100)
+    if(hundreds == 11 || hundreds == 18)
+      return("an")
+  }
   return("a")
 }
 
