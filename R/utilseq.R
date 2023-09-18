@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.21 $ $Date: 2023/02/28 01:47:56 $
+#'       $Revision: 1.22 $ $Date: 2023/09/18 08:33:36 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -173,6 +173,8 @@ fillseq <- function(x, step=NULL) {
 }
 
 geomseq <- function(from, to, length.out) {
+  check.1.real(from)
+  check.1.real(to)
   if(from <= 0 || to <= 0) stop("range limits must be positive")
   y <- exp(seq(from=log(from), to=log(to), length.out=length.out))
   y[1L] <- from  #' avoid numerical error

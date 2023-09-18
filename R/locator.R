@@ -3,7 +3,7 @@
 #'
 #'    Replacement for locator()
 #' 
-#'    $Revision: 1.7 $  $Date: 2018/10/19 04:19:09 $
+#'    $Revision: 1.9 $  $Date: 2023/09/18 08:47:45 $
 
 .spatstatLocatorEnv <- new.env()
 
@@ -45,7 +45,7 @@ spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
     return(as.list(result))
   }
   # ............... interactive ......................
-  if(!identical(TRUE, dev.capabilities()$locator))
+  if(!isTRUE(dev.capabilities()$locator))
     stop("Sorry, this graphics device does not support the locator() function")
   # validate
   type <- match.arg(type)
