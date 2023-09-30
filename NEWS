@@ -1,9 +1,19 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-3.001
+        CHANGES IN spatstat.utils VERSION 3.0-3.002
 
 OVERVIEW
 
     o Improved error messages.
+
+    o Bug fix.
+
+BUG FIXES
+
+    o primefactors
+    The default method (method = "C") did not handle numbers
+    greater than the largest integer (n > .Machine$integer.max).
+    Fixed.
+
 
         CHANGES IN spatstat.utils VERSION 3.0-3
 

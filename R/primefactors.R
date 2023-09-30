@@ -128,13 +128,14 @@ primefactors <- function(n, method=c("C", "interpreted")) {
   check.1.integer(n)
   if(n <= 0) return(integer(0))
   method <- match.arg(method)
+  if(method == "C" && n > .Machine$integer.max)
+    method <- "interpreted"
   switch(method,
          interpreted = {
            prmax <- floor(sqrt(n))
            result <- findprimefactors(n, primesbelow(prmax))
          },
          C = {
-           check.1.integer(n)
            kmax <- ceiling(log2(n))
            z <- .C(C_primefax,
                    n=as.integer(n),
