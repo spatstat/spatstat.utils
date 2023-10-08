@@ -1,11 +1,13 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-3.002
+        CHANGES IN spatstat.utils VERSION 3.0-3.003
 
 OVERVIEW
 
     o Improved error messages.
 
     o Bug fix.
+
+    o Minor changes to package information.
 
 BUG FIXES
 
