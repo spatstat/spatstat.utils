@@ -82,6 +82,7 @@
 \alias{startinrange}
 \alias{strsplitretain}
 \alias{substringcount}
+\alias{there.can.be.only.one}
 \alias{there.is.no.try}
 \alias{trap.extra.arguments}
 \alias{truncline}
@@ -192,6 +193,7 @@ sortunique(x)
 startinrange(x0, dx, r)
 strsplitretain(x, split)
 substringcount(x,y)
+there.can.be.only.one(\dots, .NeedOne, .Fatal)
 there.is.no.try(\dots)
 trap.extra.arguments(\dots, .Context, .Fatal)
 truncline(x, nc)
