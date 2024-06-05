@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.12 $  $Date: 2024/02/20 08:30:09 $
+#'  $Revision: 1.13 $  $Date: 2024/06/05 08:16:37 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -335,15 +335,17 @@ trap.extra.arguments <- function(..., .Context="", .Fatal=FALSE) {
 there.can.be.only.one <- function(..., .NeedOne=TRUE, .Fatal=TRUE) {
   argh <- list(...)
   given <- !sapply(argh, is.null)
-  nama <- sQuote(names(argh))
-  if(.NeedOne && !any(given)) {
+  ngiven <- sum(given)
+  if(.NeedOne && ngiven == 0) {
     if(!.Fatal) return(FALSE)
+    nama <- sQuote(names(argh))
     stop(paste("One of the arguments", commasep(nama, "or"), "is required"),
          call.=FALSE)
   }
-  if(sum(given) > 1) {
+  if(ngiven > 1) {
     if(!.Fatal) return(FALSE)
-    stop(paste("The arguments", commasep(nama[given]), "are incompatible"),
+    namesgiven <- sQuote(names(argh)[given])
+    stop(paste("The arguments", commasep(namesgiven), "are incompatible"),
          call.=FALSE)
   }
   return(TRUE)
