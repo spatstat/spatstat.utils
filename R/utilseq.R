@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.22 $ $Date: 2023/09/18 08:33:36 $
+#'       $Revision: 1.23 $ $Date: 2024/06/16 09:07:13 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -258,6 +258,7 @@ evenly.spaced <- function(x, tol=1e-07) {
 }
 
 equispaced <- function(z, reltol=0.001) {
+  .Deprecated("evenly.spaced")
   evenly.spaced(z, reltol)
 }
 
@@ -275,7 +276,7 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
   nx <- length(x)
   if(nx == 0) {
     y <- integer(0)
-  } else if(equispaced(b, reltol)) {
+  } else if(evenly.spaced(b, reltol)) {
     ## breaks are equally spaced
     zz <- .C(C_fastinterv,
              x          = as.double(x),

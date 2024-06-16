@@ -1,5 +1,6 @@
 \name{spatstat.utils-internal} 
 \title{Internal Functions of spatstat.utils Package}
+\alias{spatstat.utils-internal}  %DoNotExport
 \alias{adjustthinrange}
 \alias{apply23sum}
 \alias{as2vector}
@@ -23,9 +24,7 @@
 \alias{dround}
 \alias{ensure2vector}
 \alias{ensure3Darray}
-\alias{equispaced}          
 \alias{eratosthenes}
-\alias{evenly.spaced}
 \alias{exceedsMaxArraySize}
 \alias{exhibitStringList}
 \alias{explain.ifnot}
@@ -134,9 +133,7 @@ dropifsingle(x)
 dround(x)
 ensure2vector(x)
 ensure3Darray(x)
-equispaced(z, reltol)
 eratosthenes(nmax, startset)
-evenly.spaced(x, tol)
 exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)
 explain.ifnot(expr, context)
