@@ -1,4 +1,16 @@
 
+        CHANGES IN spatstat.utils VERSION 3.0-5.001
+
+OVERVIEW
+
+    o Efficiency improvement for prime factorisation.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o primefactors, divisors, is.prime
+    Computation for very large numbers accelerated.
+
+
         CHANGES IN spatstat.utils VERSION 3.0-5
 
 OVERVIEW

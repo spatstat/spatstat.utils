@@ -133,7 +133,25 @@ primefactors <- function(n, method=c("C", "interpreted")) {
   switch(method,
          interpreted = {
            prmax <- floor(sqrt(n))
-           result <- findprimefactors(n, primesbelow(prmax))
+           if(prmax <= primestableMax) {
+             ## table of primes is sufficient
+             result <- findprimefactors(n, primesbelow(prmax))
+           } else {
+             ## try all tabulated primes first
+             result <- integer(0)
+             while(n > 1 && any(divides <- (n %% primestable == 0))) {
+               ## reduce problem size
+               divisors <- primestable[divides]
+               result <- sort(c(result, divisors))
+               n <- as.integer(n/prod(divisors))
+               prmax <- floor(sqrt(n))
+             }
+             if(n > 1) {
+               ## dang it's hard
+               secondresult <- findprimefactors(n, primesbelow(prmax))
+               result <- sort(c(result, secondresult))
+             }
+           }
          },
          C = {
            kmax <- ceiling(log2(n))
