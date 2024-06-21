@@ -139,12 +139,14 @@ primefactors <- function(n, method=c("C", "interpreted")) {
            } else {
              ## try all tabulated primes first
              result <- integer(0)
-             while(n > 1 && any(divides <- (n %% primestable == 0))) {
+             candidateprimes <- primestable
+             while(n > 1 && any(divides <- (n %% candidateprimes == 0))) {
                ## reduce problem size
-               divisors <- primestable[divides]
-               result <- sort(c(result, divisors))
-               n <- as.integer(n/prod(divisors))
+               primedivisors <- candidateprimes[divides]
+               result <- sort(c(result, primedivisors))
+               n <- as.integer(n/prod(primedivisors))
                prmax <- floor(sqrt(n))
+               candidateprimes <- primedivisors
              }
              if(n > 1) {
                ## dang it's hard
