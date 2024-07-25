@@ -1,6 +1,6 @@
 Package: spatstat.utils
-Version: 3.0-5.002
-Date: 2024-06-21
+Version: 3.0-5.003
+Date: 2024-07-26
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre"),
@@ -15,7 +15,7 @@ Authors@R: c(person("Adrian", "Baddeley",
 		    email = "rubak@math.aau.dk",
 		    comment=c(ORCID="0000-0002-6675-533X")))
 Maintainer: Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>
-Depends: R (>= 3.3.0), stats, graphics, grDevices, utils, methods
+Depends: R (>= 3.5.0), stats, graphics, grDevices, utils, methods
 Suggests: spatstat.model
 Description: Contains utility functions for the 'spatstat' family of packages
              which may also be useful for other purposes.

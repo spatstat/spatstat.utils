@@ -1,14 +1,16 @@
 
-        CHANGES IN spatstat.utils VERSION 3.0-5.002
+        CHANGES IN spatstat.utils VERSION 3.0-5.003
 
 OVERVIEW
 
     o Efficiency improvement for prime factorisation.
 
+    o spatstat.utils now requires R 3.5.0 or later.
+
 SIGNIFICANT USER-VISIBLE CHANGES
 
     o primefactors, divisors, is.prime
-    Computation for very large numbers accelerated.
+    Computation for large numbers accelerated.
 
 
         CHANGES IN spatstat.utils VERSION 3.0-5
