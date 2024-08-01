@@ -3,7 +3,7 @@
 #'
 #'   Low-level utilities for circle geometry
 #'
-#'  $Revision: 1.10 $   $Date: 2021/11/15 00:53:45 $
+#'  $Revision: 1.11 $   $Date: 2024/08/01 01:15:18 $
 #'
 
 xysegXcircle <- function(xcentres, ycentres, radii, x0, y0, x1, y1,
@@ -119,7 +119,7 @@ xysegPcircle <- function(xc, yc, rc, x0, y0, x1, y1,
   storage.mode(x0) <- storage.mode(y0) <- "double"
   storage.mode(x1) <- storage.mode(y1) <- "double"
   storage.mode(rc) <- "double"
-  z <- .Call(C_circXseg,
+  z <- .Call(C_circPseg,
              XC = xc,
              YC = yc,
              RC = rc,

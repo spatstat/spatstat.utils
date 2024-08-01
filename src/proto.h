@@ -36,4 +36,4 @@ void nnd2segs(double *, double *, int *, double *, double *, double *, double *,
 */
 SEXP circXseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP); 
 SEXP circMseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP); 
-SEXP circXseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+SEXP circPseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
