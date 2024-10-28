@@ -1,7 +1,7 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.40 $ $Date: 2023/02/28 04:41:31 $
+#  $Revision: 1.41 $ $Date: 2024/10/28 05:40:08 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
@@ -154,6 +154,7 @@ graphicsPars <- local({
            "claim.title.space"),
          lines = c("lwd", "lty", "col", "lend", "ljoin", "lmitre"),
          symbols = c(PlotArgs, "fg", "bg"),
+         points = c("pch", "col", "bg", "fg", "cex", "lwd", "lty"),
          text = TextArgs,
          persp = c("x", "y", "z",
            "xlim", "ylim", "zlim",
@@ -167,7 +168,7 @@ graphicsPars <- local({
 
     TheTable$ppp <- unique(c(TheTable$owin,
                              TheTable$symbols,
-                             "pch", "cex", "lty", "lwd",
+                             TheTable$points,
                              "etch",
                              "annotate", "labelmap",
                              "markrange", "marklevels"))
