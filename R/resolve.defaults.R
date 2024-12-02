@@ -1,13 +1,17 @@
 #
 #   resolve.defaults.R
 #
-#  $Revision: 1.41 $ $Date: 2024/10/28 05:40:08 $
+#  $Revision: 1.44 $ $Date: 2024/12/02 04:15:06 $
 #
 # Resolve conflicts between several sets of defaults
 # Usage:
 #     resolve.defaults(list1, list2, list3, .......)
 # where the earlier lists have priority 
 #
+# Also
+#     graphicsPars(functionname)
+# gives names of arguments recognised by 'functionname'
+# which may not be formal arguments.
 
 resolve.defaults <- function(..., .MatchNull=TRUE, .StripNull=FALSE) {
   ## Each argument is a list. Append them.
@@ -115,15 +119,20 @@ passthrough <- function(.Fun, ..., .Fname=NULL) {
 
 graphicsPars <- local({
   ## recognised additional arguments to image.default(), axis() etc
+    AxisArgs <-  c("cex", "font", 
+                   "cex.axis", "cex.lab",
+                   "col.axis", "col.lab",
+                   "font.axis", "font.lab", 
+                   "mgp", "xaxp", "yaxp", "tck", "tcl", "las", "fg", "xpd")
     PlotArgs <- c(
         "main", "asp", "sub", "axes", "ann",
-        "cex", "font", 
-        "cex.axis", "cex.lab", "cex.main", "cex.sub",
-        "col.axis", "col.lab", "col.main", "col.sub",
-        "font.axis", "font.lab", "font.main", "font.sub")
-
+        AxisArgs, 
+        "cex.main", "cex.sub",
+        "col.main", "col.sub",
+        "font.main", "font.sub")
     TextDefArgs <- setdiff(names(formals(text.default)), "...")
     TextArgs <- c(TextDefArgs, "srt", "family", "xpd")
+    TitleArgs <- c("line", "outer", "adj")
                         
   TheTable <- 
     list(plot = PlotArgs,
@@ -135,7 +144,7 @@ graphicsPars <- local({
            "cex.axis", "cex.lab", "cex.main", "cex.sub",
            "col.axis", "col.lab", "col.main", "col.sub",
            "font.axis", "font.lab", "font.main", "font.sub",
-           "claim.title.space"),
+           "claim.title.space", "adj.main"),
          axis = c(
            "cex", 
            "cex.axis", "cex.lab",
@@ -151,19 +160,21 @@ graphicsPars <- local({
            "col.main", "col.sub",
            "font.main", "font.sub",
            "xaxs", "yaxs",
-           "claim.title.space"),
+           "claim.title.space", "adj.main"),
          lines = c("lwd", "lty", "col", "lend", "ljoin", "lmitre"),
          symbols = c(PlotArgs, "fg", "bg"),
          points = c("pch", "col", "bg", "fg", "cex", "lwd", "lty"),
          text = TextArgs,
-         persp = c("x", "y", "z",
-           "xlim", "ylim", "zlim",
-           "xlab", "ylab", "zlab",
-           "main", "sub",
-           "theta", "phi", "r", "d", "scale",
-           "expand", "col", "border",
-           "ltheta", "lphi", "shade", "box",
-           "axes", "nticks", "ticktype")
+         title = union(TitleArgs, AxisArgs),
+         persp = union(TitleArgs,
+                       c("x", "y", "z",
+                         "xlim", "ylim", "zlim",
+                         "xlab", "ylab", "zlab",
+                         "main", "sub",
+                         "theta", "phi", "r", "d", "scale",
+                         "expand", "col", "border",
+                         "ltheta", "lphi", "shade", "box",
+                         "axes", "nticks", "ticktype"))
          )
 
     TheTable$ppp <- unique(c(TheTable$owin,
