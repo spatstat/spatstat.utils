@@ -134,3 +134,4 @@ primefactors(8209 * 3)
 stopifnot(identical(primefactors(42),
                     primefactors(42, "interpreted")))
 
+stopifnot(is.prime(399137))

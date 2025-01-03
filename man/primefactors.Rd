@@ -74,9 +74,13 @@ primesbelow(nmax)
 \examples{
   is.prime(17)
 
+  is.prime(399137)
+
   relatively.prime(2, 3)
   
   primefactors(24) ## Note repeated factors
+
+  primefactors(713291035)
 
   divisors(24)
 
