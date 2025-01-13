@@ -1,7 +1,7 @@
 #
 #  primefactors.R
 #
-#  $Revision: 1.13 $   $Date: 2024/07/25 23:45:18 $
+#  $Revision: 1.14 $   $Date: 2025/01/13 09:01:24 $
 #
 
 ## Table of prime numbers is now in sysdata object 'Spatstat.PrimesTable'
@@ -129,3 +129,24 @@ divisors <- local({
 
   divisors
 })
+
+is.square <- function(n) {
+  check.1.integer(n)
+  if(n < 0) return(FALSE)
+  tp <- table(primefactors(n))
+  all(tp %% 2 == 0)
+}
+
+is.cube <- function(n) {
+  check.1.integer(n)
+  tp <- table(primefactors(abs(n)))
+  all(tp %% 3 == 0)
+}
+
+is.power <- function(n) {
+  check.1.integer(n)
+  tp <- table(primefactors(abs(n)))
+  if(length(tp) == 0) return(TRUE)
+  m <- Reduce(greatest.common.divisor, tp)
+  (m > 1) && ((n > 0) || any(primefactors(m) > 2))
+}
