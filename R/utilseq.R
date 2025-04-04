@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.23 $ $Date: 2024/06/16 09:07:13 $
+#'       $Revision: 1.25 $ $Date: 2025/04/04 07:00:04 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -271,24 +271,37 @@ adjustthinrange <- function(ur,vstep,vr) {
   return(ur)
 }
 
-fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
+fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L,
+                             left.open=TRUE) {
   nintervals <- length(b) - 1
   nx <- length(x)
   if(nx == 0) {
     y <- integer(0)
   } else if(evenly.spaced(b, reltol)) {
     ## breaks are equally spaced
-    zz <- .C(C_fastinterv,
-             x          = as.double(x),
-             n          = as.integer(nx),
-             brange     = as.double(range(b)),
-             nintervals = as.integer(nintervals),
-             y          = as.integer(integer(nx))
-             )
+    if(left.open) {
+      ## intervals are left-open, right-closed ( ] except the first interval
+      zz <- .C(C_fastCinterv,
+               x          = as.double(x),
+               n          = as.integer(nx),
+               brange     = as.double(range(b)),
+               nintervals = as.integer(nintervals),
+               y          = as.integer(integer(nx))
+               )
+    } else {
+      ## intervals are left-closed, right-open [ ) except the last interval
+      zz <- .C(C_fastFinterv,
+               x          = as.double(x),
+               n          = as.integer(nx),
+               brange     = as.double(range(b)),
+               nintervals = as.integer(nintervals),
+               y          = as.integer(integer(nx))
+               )
+    }
     y <- zz$y
   } else {
     ## use R's interval search algorithm
-    y <- findInterval(x, b, rightmost.closed=TRUE)
+    y <- findInterval(x, b, rightmost.closed=TRUE, left.open=left.open)
   }
   if(labels) {
     #' digits in labels code copied from base::cut.default (with adaptations)
@@ -297,11 +310,21 @@ fastFindInterval <- function(x, b, labels=FALSE, reltol=0.001, dig.lab=3L) {
       if(all(ch.br[-1L] != ch.br[1L:nintervals]))
         break
     }
-    blab <- paste0("[",
-                   ch.br[1:nintervals],
-                   ",",
-                   ch.br[-1L],
-                   c(rep(")", nintervals-1), "]"))
+    if(left.open) {
+      ## left-open except the first one
+      blab <- paste0(c("[", rep("(", nintervals-1)), 
+                     ch.br[1:nintervals],
+                     ",",
+                     ch.br[-1L],
+                     "]")
+    } else {
+      ## right-open except the last one
+      blab <- paste0("[",
+                     ch.br[1:nintervals],
+                     ",",
+                     ch.br[-1L],
+                     c(rep(")", nintervals-1), "]"))
+    }
     y <- as.integer(y)
     levels(y) <- as.character(blab)
     class(y) <- "factor"

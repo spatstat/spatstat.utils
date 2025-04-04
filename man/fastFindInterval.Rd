@@ -8,7 +8,8 @@
   for intervals which are equally-spaced.
 }
 \usage{
-fastFindInterval(x, b, labels = FALSE, reltol = 0.001, dig.lab = 3L)
+fastFindInterval(x, b, labels = FALSE, reltol = 0.001, dig.lab = 3L,
+                 left.open=TRUE)
 }
 \arguments{
   \item{x}{
@@ -29,6 +30,11 @@ fastFindInterval(x, b, labels = FALSE, reltol = 0.001, dig.lab = 3L)
     Integer. Maximum number of digits to use in the labels
     for the intervals, when \code{labels=TRUE}.
   }
+  \item{left.open}{
+    Logical value specifying whether intervals are left-open and
+    right-closed (\code{left.open=TRUE}, the default)
+    or left-closed and right-open (\code{left.open=FALSE}).
+  }
 }
 \details{
   This is an alternative to
@@ -38,11 +44,30 @@ fastFindInterval(x, b, labels = FALSE, reltol = 0.001, dig.lab = 3L)
 
   If \code{labels=FALSE} (the default), the result is an integer vector
   giving, for each value \code{x[i]}, the index \code{j} of the interval that
-  contains \code{x[i]}, such that \code{b[j] <= x[i] < b[j + 1]}.
+  contains \code{x[i]}:
+  \itemize{
+    \item
+    If \code{left.open=TRUE} (the default), the intervals are left-open
+    and right-closed, except for the first interval. This means that
+    \code{x[i]} belongs to the \code{j}th interval if 
+    \code{b[j] < x[i] <= b[j+1]} for \code{j > 1}
+    and \code{b[1] <= x[i] <= b[2]} for \code{j=1}.
+    \item
+    If \code{left.open=FALSE}, the intervals are left-closed
+    and right-open, except for the last interval. This means that
+    \code{x[i]} belongs to the \code{j}th interval if 
+    \code{b[j] <= x[i] < b[j+1]} for \code{j < m}
+    and \code{b[m] <= x[i] <= b[m+1]} for \code{j=m}
+    where \code{m = length(b)-1} is the number of intervals.
+  }
 
   If \code{labels=TRUE}, the result is a factor, and the levels are
   synthetic labels for the intervals, similar to those produced by
   \code{\link[base]{findInterval}}.
+
+  Note that the default value of \code{left.open}
+  is \code{TRUE} for \code{fastFindInterval} 
+  but \code{FALSE} for \code{\link[base]{findInterval}}.
 }
 \value{
   Integer vector, or factor.
