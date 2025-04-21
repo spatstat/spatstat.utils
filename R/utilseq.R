@@ -223,7 +223,10 @@ startinrange <- function(x0, dx, r) {
 prettyinside <- function(x, ...) {
   r <- range(x, na.rm=TRUE)
   if(diff(r) == 0) return(r[1L])
-  p <- pretty(x, ...)
+  ## call 'pretty' after removing any NULL arguments
+  p <- do.call(pretty, resolve.defaults(list(x=quote(x), ...),
+                                        .MatchNull=FALSE,
+                                        .StripNull=TRUE))
   ok <- inside.range(p, r)
   return(p[ok])
 }
