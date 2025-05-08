@@ -89,6 +89,7 @@
 \alias{validposint}
 \alias{variablesintext}
 \alias{warn.ignored.args}
+\alias{warn.reset.arg}
 %%
 \alias{inside.triangle}
 \alias{overlap.trapezium}
@@ -198,6 +199,7 @@ uptrimat(x)
 validposint(n, caller, fatal)
 variablesintext(x)
 warn.ignored.args(\dots, context)
+warn.reset.arg(argname, argval, argset, context)
 %% xypolygon %%%
 inside.triangle(x, y, xx, yy)
 overlap.trapezium(xa, ya, xb, yb, verb = FALSE)

@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.13 $  $Date: 2024/06/05 08:16:37 $
+#'  $Revision: 1.15 $  $Date: 2025/05/08 04:07:06 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -294,6 +294,18 @@ explain.ifnot <- function(expr, context="") {
     stop(paste(context, "it must be TRUE that", sQuote(ex)), call.=FALSE)
   }
 }
+
+warn.reset.arg <- function(argname, argval, argset, context="") {
+  ## force an argument to have a specified value, with a warning if it was changed.
+  if(!identical(argval, argset)) {
+    warning(paste("Argument", sQuote(argname),
+                  "was reset to", sQuote(paste(argset)),
+                  context),
+            call.=FALSE)
+  }
+  return(argset)
+}
+
 
 warn.ignored.args <- function(..., context=NULL) {
   if((narg <- length(list(...))) > 0) {
