@@ -199,7 +199,7 @@ uptrimat(x)
 validposint(n, caller, fatal)
 variablesintext(x)
 warn.ignored.args(\dots, context)
-warn.reset.arg(argname, argval, argset, context)
+warn.reset.arg(x, xset, context)
 %% xypolygon %%%
 inside.triangle(x, y, xx, yy)
 overlap.trapezium(xa, ya, xb, yb, verb = FALSE)
