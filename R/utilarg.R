@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.16 $  $Date: 2025/05/08 04:21:49 $
+#'  $Revision: 1.18 $  $Date: 2025/06/28 02:29:54 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -469,5 +469,19 @@ getdataobjects <- function(nama, envir, datalist=NULL, fatal=FALSE) {
   names(y) <- nama
   attr(y, "external") <- external
   return(y)
+}
+
+sideCode <- function(side, what=c("number", "word")) {
+  words <- c("bottom", "left", "top", "right")
+  if(is.numeric(side)) {
+    stopifnot(side %in% 1:4)
+    n <- side
+  } else if(is.character(side)) {
+    side <- match.arg(side, words)
+    n <- match(side, words)
+  } else stop("Unrecognised format for 'side'")
+  what <- match.arg(what)
+  result <- switch(what, number=n, word=words[n])
+  return(result)
 }
 
