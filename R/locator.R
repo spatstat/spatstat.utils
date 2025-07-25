@@ -3,7 +3,7 @@
 #'
 #'    Replacement for locator()
 #' 
-#'    $Revision: 1.9 $  $Date: 2023/09/18 08:47:45 $
+#'    $Revision: 1.10 $  $Date: 2025/07/25 06:12:11 $
 
 .spatstatLocatorEnv <- new.env()
 
@@ -29,7 +29,8 @@ queueSpatstatLocator <- function(x, y) {
   return(nrow(locatorqueue))
 }
 
-spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
+spatstatLocator <- function(n, type=c("p","l","o","n"), ...,
+                            snap.step=NULL, snap.origin=c(0,0)) {
   #' Replacement for locator()
   #' Remedy for failure of locator(type="p") in RStudio
   #' Also allows software testing in non-interactive sessions
@@ -40,6 +41,8 @@ spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
     navail <- nrow(locatorqueue)
     popoff <- (seq_len(navail) <= n)
     result <- locatorqueue[popoff, , drop=FALSE]
+    if(!is.null(snap.step)) 
+      result[,c("x","y")] <- with(result, snapxy(x, y, snap.step, snap.origin))
     locatorqueue <- locatorqueue[!popoff, , drop=FALSE]
     putSpatstatLocatorQueue(locatorqueue)
     return(as.list(result))
@@ -61,6 +64,8 @@ spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
   while(i<=n){
     tmp <- locator(n=1)
     if(is.null(tmp)) return(res)
+    if(!is.null(snap.step)) 
+      tmp <- with(tmp, snapxy(x, y, snap.step, snap.origin))
     if(do.points)
       do.call.matched(points.default, append(tmp, argh), extrargs=pointsArgs)
     res$x <- c(res$x,tmp$x)
@@ -74,3 +79,11 @@ spatstatLocator <- function(n, type=c("p","l","o","n"), ...) {
   return(res)
 }
 
+snapxy <- function(x, y, step=c(1,1), origin=c(0,0)) {
+  step <- ensure2vector(step)
+  origin <- ensure2vector(origin)
+  xx <- origin[1] + step[1] * round((x-origin[1])/step[1])
+  yy <- origin[2] + step[2] * round((y-origin[2])/step[2])
+  result <- list(x=xx, y=yy)
+  return(result)
+}

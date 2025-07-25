@@ -78,6 +78,7 @@
 \alias{short.deparse}
 \alias{sideCode}
 \alias{singlestring}
+\alias{snapxy}
 \alias{sortunique}
 \alias{startinrange}
 \alias{strsplitretain}
@@ -189,6 +190,7 @@ sensiblevarname(guess, fallback, maxlen)
 short.deparse(x, maxlen)
 sideCode(side, what)
 singlestring(s, coll)
+snapxy(x, y, step, origin)
 sortunique(x)
 startinrange(x0, dx, r)
 strsplitretain(x, split)
