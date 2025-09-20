@@ -14,7 +14,7 @@ revcumsum(x)
 }
 \arguments{
   \item{x}{
-    A numeric or complex vector. 
+    A numeric, logical or complex vector. 
   }
 }
 \details{
@@ -29,7 +29,8 @@ revcumsum(x)
   values: this would lead to an error.
 }
 \value{
-  A vector of the same length and type as \code{x}.
+  A vector of the same length and type as \code{x}
+  (except that if \code{x} is logical then the result is an integer vector).
 }
 \author{
   \adrian.

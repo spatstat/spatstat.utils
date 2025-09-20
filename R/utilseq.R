@@ -41,7 +41,7 @@ revcumsum <- function(x) {
     return(complex(real=a, imaginary=b))
   }
   n <- length(x)
-  if(identical(storage.mode(x), "integer")) {
+  if(storage.mode(x) %in% c("integer", "logical")) {
     z <- .C(C_irevcumsum,
             x=as.integer(x),
             as.integer(n))

@@ -1,9 +1,21 @@
 
-        CHANGES IN spatstat.utils VERSION 3.1-5.001
+        CHANGES IN spatstat.utils VERSION 3.2-0
 
 OVERVIEW
 
     o spatstatLocator now supports `snap' behaviour (rounding).
+
+    o Minor improvements.
+    
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o spatstatLocator
+    Now supports rounding of the location to the nearest point on a grid.
+    New arguments 'snap.step' and 'snap.origin' control the grid spacing
+    and grid position, respectively.
+
+    o revcumsum
+    If x is logical, the result is now an integer vector.
 
         CHANGES IN spatstat.utils VERSION 3.1-5
 
