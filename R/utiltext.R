@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.15 $ $Date: 2025/11/19 03:09:25 $
+#'   $Revision: 1.16 $ $Date: 2025/11/19 03:14:45 $
 #'
 
 # text magic
@@ -333,7 +333,8 @@ good.names <- function(nama, defaults, suffices) {
     else if(any(blank <- !nzchar(result)))
       result[blank] <- defaults[blank]
   }
-  result <- make.names(result, unique=TRUE)
+  if(anyDuplicated(result))
+    result <- make.names(result, unique=TRUE)
   return(result)
 }
 
