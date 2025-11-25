@@ -34,7 +34,24 @@ The utilities support
 
 * Workarounds for known bugs or undesirable features in other software.
 
+### Installing the package
+
 This repository contains the current _development version_ of the
 `spatstat.utils` package. For the most recent _public release_ of
 `spatstat.utils`, see the [CRAN page](https://CRAN.R-project.org/package=spatstat.utils).
+
+The easiest way to install the development version
+is to start R and type
+
+```R
+repo <- c('https://spatstat.r-universe.dev', 'https://cloud.r-project.org')
+install.packages("spatstat.utils", dependencies=TRUE, repos=repo)
+```
+
+To install the latest _public release_ of `spatstat.utils`,
+type
+
+```R
+install.packages("spatstat.utils")
+```
 
