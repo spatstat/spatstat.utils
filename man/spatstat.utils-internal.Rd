@@ -14,6 +14,7 @@
 \alias{choptext}
 \alias{choptextline}
 \alias{complaining}
+\alias{difflong}
 \alias{distpl}               
 \alias{distppl}
 \alias{distppll}
@@ -126,6 +127,7 @@ check.satisfies(cond, xname, should, context, fatal, warn)
 choptext(\dots, prefix, indent)
 choptextline(st, w, prefix, indent)
 complaining(whinge, fatal, value)
+difflong(x, drop)
 distpl(p, l)               
 distppl(p, l)
 distppll(p, l, mintype, method, listit)

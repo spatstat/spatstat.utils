@@ -38,9 +38,11 @@ static const R_CMethodDef CEntries[] = {
 };
 
 static const R_CallMethodDef CallEntries[] = {
-    {"circMseg", (DL_FUNC) &circMseg, 7},
-    {"circPseg", (DL_FUNC) &circPseg, 7},
-    {"circXseg", (DL_FUNC) &circXseg, 7},
+    {"Cdiffdouble", (DL_FUNC) &Cdiffdouble, 1},
+    {"Cdiffint",    (DL_FUNC) &Cdiffint,    1},
+    {"circMseg",    (DL_FUNC) &circMseg,    7},
+    {"circPseg",    (DL_FUNC) &circPseg,    7},
+    {"circXseg",    (DL_FUNC) &circXseg,    7},
     {NULL, NULL, 0}
 };
 

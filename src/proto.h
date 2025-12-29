@@ -35,6 +35,8 @@ void nnd2segs(double *, double *, int *, double *, double *, double *, double *,
              Functions invoked by .Call
 
 */
+SEXP Cdiffdouble(SEXP); SEXP Cdiffint(SEXP); SEXP Cdiffint(SEXP); 
+SEXP Cdiffdouble(SEXP); SEXP Cdiffdouble(SEXP);
 SEXP circXseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP); 
 SEXP circMseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP); 
 SEXP circPseg(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
