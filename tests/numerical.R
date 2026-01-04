@@ -3,6 +3,13 @@
 
 require(spatstat.utils)
 
+#' difflong() calculates diff() for long vectors
+#' Test agreement on a short vector
+n <- sample((-1000):1000, 1000, replace=TRUE)
+stopifnot(all(diff(n) == difflong(n)))
+x <- as.double(n)
+stopifnot(all(diff(x) == difflong(x)))
+
 #' validity of orderstats, orderwhich
 x <- unique(runif(100))
 if(!all(orderstats(x, 2:5) == sort(x)[2:5]))
