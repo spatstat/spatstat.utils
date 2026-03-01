@@ -1,4 +1,15 @@
 
+        CHANGES IN spatstat.utils VERSION 3.2-1.001
+
+OVERVIEW
+
+    o Capitalise words
+
+NEW FUNCTIONS
+
+    o capitalise
+    Make the first letter of each word a capital letter.
+
         CHANGES IN spatstat.utils VERSION 3.2-1
 
 OVERVIEW

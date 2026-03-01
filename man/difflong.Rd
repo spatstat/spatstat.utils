@@ -19,7 +19,7 @@ difflong(x, drop = TRUE)
 }
 \details{
   A \sQuote{long vector} is a vector with more than
-  \eqn{2^31 - 1} elements (the largest possible 32-bit integer).
+  \eqn{2^{31} - 1}{2^31 - 1} elements (the largest possible 32-bit integer).
   Long vectors are supported in \R on 64-bit computer systems.
   This feature was introduced in \R version 3.0.0.
   

@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.25 $ $Date: 2025/04/04 07:00:04 $
+#'       $Revision: 1.26 $ $Date: 2026/01/21 06:26:39 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 

@@ -3,7 +3,7 @@
 #'
 #'   Utilities for text output, etc
 #'
-#'   $Revision: 1.16 $ $Date: 2025/11/19 03:14:45 $
+#'   $Revision: 1.18 $ $Date: 2026/02/28 12:41:29 $
 #'
 
 # text magic
@@ -53,6 +53,30 @@ unparen <- function(x) {
     x[enclosed] <- substr(x[enclosed], 2, n-1)
   return(x)
 }
+
+capitalise <- local({
+  capfirst <- function(s) {
+    paste(toupper(substring(s, 1, 1)),
+          substring(s, 2),
+          sep="", collapse=" ")
+  }
+  capstrict <- function(s) {
+    paste(toupper(substring(s, 1, 1)),
+          tolower(substring(s, 2)),
+          sep="", collapse=" ")
+  }
+
+  capitalise <- function(s, strict = FALSE) {
+    sp <- strsplit(s, split = " ")
+    if(strict) {
+      sapply(sp, capstrict, USE.NAMES = !is.null(names(s)))
+    } else {
+      sapply(sp, capfirst, USE.NAMES = !is.null(names(s)))
+    }
+  }
+
+  capitalise
+})
 
 percentage <- function(x, digits=3) {
   # works when x is a fraction or a logical vector

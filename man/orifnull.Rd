@@ -25,7 +25,7 @@ a \%orifnull\% b
   The operator \code{\%orifnull\%} is designed to improve the
   readability of code.
 
-  \code{a \%orifnull\% b} is equivalent to \code{if(is.null(a)) a else b}.
+  \code{a \%orifnull\% b} is equivalent to \code{if(!is.null(a)) a else b}.
 
   That is, \code{a \%orifnull\% b} is equal to 
   \code{a} provided \code{a} is not null, and otherwise
