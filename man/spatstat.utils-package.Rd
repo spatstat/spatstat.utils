@@ -50,7 +50,8 @@
       inside the declared text margin (\code{\link{getOption}("width")})
       and can also perform automatic indentation.
       There are useful functions to add or remove parentheses
-      (\code{\link{paren}}, \code{\link{unparen}}) and
+      (\code{\link{paren}}, \code{\link{unparen}}), capitalise words
+      (\code{\link{capitalise}}) and
       to make comma-separated lists (\code{\link{commasep}}).
     }
     \item{Handling intervals (ranges) of real numbers}{

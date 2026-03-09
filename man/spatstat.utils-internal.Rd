@@ -9,7 +9,6 @@
 \alias{badprobability}
 \alias{blockdiagarray}
 \alias{blockdiagmatrix}
-\alias{capitalise}
 \alias{check.finite}
 \alias{check.satisfies}
 \alias{choptext}
@@ -122,7 +121,6 @@ assignDFcolumn(x, name, value, \dots)
 badprobability(x, NAvalue)
 blockdiagarray(\dots)
 blockdiagmatrix(\dots)
-capitalise(s, strict)
 check.finite(x, context, xname, fatal, usergiven, warn)
 check.satisfies(cond, xname, should, context, fatal, warn)
 choptext(\dots, prefix, indent)
