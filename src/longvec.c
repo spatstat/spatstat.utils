@@ -11,16 +11,19 @@
   Cdiffint
   Cnzdiff         'nonzero diff'
 
-  $Revision: 1.4 $ $Date: 2025/12/29 05:36:18 $
+  $Revision: 1.7 $ $Date: 2026/04/15 03:57:26 $
 
  */
 
 SEXP Cdiffdouble(SEXP rx) {
-  // diff for long vectors of doubles
-  R_xlen_t n = xlength(rx);
-  R_xlen_t i;
-  double *x = REAL(rx);
+  // diff for long vectors of double precision numeric values
+  R_xlen_t n, i;
+  double *x;
   double xcur, xprev;
+
+  x = REAL(rx);
+  n = xlength(rx);
+  
   // compute successive differences, with leading 0
   i = 1;
   xprev = x[i];
@@ -34,11 +37,13 @@ SEXP Cdiffdouble(SEXP rx) {
 
 SEXP Cdiffint(SEXP rx) {
   // diff for long vectors of integers
-  R_xlen_t n = xlength(rx);
-  R_xlen_t i;
-  // pointer to data
-  int *x = INTEGER(rx);
+  R_xlen_t n, i;
+  int *x;
   int xcur, xprev;
+
+  x = INTEGER(rx);
+  n = xlength(rx);
+  
   // compute successive differences, with leading 0
   i = 1;
   xprev = x[i];
@@ -52,11 +57,13 @@ SEXP Cdiffint(SEXP rx) {
 
 SEXP Cnzdiffint(SEXP rx) {
   // test whether diff() is non-zero (with leading TRUE)
-  R_xlen_t n = xlength(rx);
-  R_xlen_t i;
-  // pointer to data
-  int *x = INTEGER(rx);
+  R_xlen_t n, i;
+  int *x;
   int xcur, xprev;
+
+  x = INTEGER(rx);
+  n = xlength(rx);
+  
   i = 1;
   xprev = x[i];
   for(i = 0; i < n; i++) {
