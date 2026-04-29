@@ -3,7 +3,7 @@
 #'
 #'  Utilities for sequences, vectors, ranges of values
 #'
-#'       $Revision: 1.26 $ $Date: 2026/01/21 06:26:39 $
+#'       $Revision: 1.27 $ $Date: 2026/04/29 06:58:44 $
 #'
 #'  ==>>  ORIGINAL FILE is in spatstat/develop/Spatstat/R  <<==
 
@@ -220,15 +220,21 @@ startinrange <- function(x0, dx, r) {
   return(y)
 }
 
-prettyinside <- function(x, ...) {
+prettyinside <- function(x, ..., n=NULL) {
   r <- range(x, na.rm=TRUE)
   if(diff(r) == 0) return(r[1L])
   ## call 'pretty' after removing any NULL arguments
-  p <- do.call(pretty, resolve.defaults(list(x=quote(x), ...),
+  p <- do.call(pretty, resolve.defaults(list(x=quote(x), ..., n=n),
                                         .MatchNull=FALSE,
                                         .StripNull=TRUE))
-  ok <- inside.range(p, r)
-  return(p[ok])
+  p <- p[inside.range(p, r)]
+  if(!is.null(n) && length(p) < n) {
+    p <- do.call(pretty, resolve.defaults(list(x=quote(x), ..., n=n+2),
+                                          .MatchNull=FALSE,
+                                          .StripNull=TRUE))
+    p <- p[inside.range(p, r)]
+  }
+  return(p)
 }
 
 prettydiscrete <- function(x, n=10) {
