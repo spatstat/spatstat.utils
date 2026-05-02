@@ -1,7 +1,7 @@
 #
 #      xysegment.S
 #
-#     $Revision: 1.22 $    $Date: 2022/04/28 03:25:59 $
+#     $Revision: 1.23 $    $Date: 2026/05/02 06:04:37 $
 #
 # Low level utilities for analytic geometry for line segments
 #
@@ -25,8 +25,9 @@
 #
 # NNdist2segs
 #       distance to nearest line segment, from each point in a list.
-
-
+#
+# Copyright (c) Adrian Baddeley and Rob Foxall 1997-2026
+# GNU Public Licence (>= 2.0)
 
 distpl <- function(p, l) {
   xp <- p[1]
