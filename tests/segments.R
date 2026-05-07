@@ -1,4 +1,6 @@
 #'  spatstat.utils/tests/segments.R
+#'
+#'  $Revision: 1.2 $ $Date: 2026/05/07 05:23:48 $
 
 require(spatstat.utils)
 
@@ -15,3 +17,9 @@ if(a$min.which != d$min.which)
 b <- distppllmin(p, l)
 if(a$min.which != b$min.which)
   stop("conflict between distppll and distppllmin")
+
+#' check execution of NNdist2segments
+u <- NNdist2segments(p[,1], p[,2], l[,1], l[,2], l[,3], l[,4],
+                     bigvalue = 100, wantindex=TRUE, wantproj=TRUE)
+if(u$index != d$min.which)
+  stop("Conflict between C code in distppll and NNdist2segments")

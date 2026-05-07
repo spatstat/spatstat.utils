@@ -29,6 +29,7 @@ static const R_CMethodDef CEntries[] = {
     {"irevcumsum",  (DL_FUNC) &irevcumsum,   2},
     {"nnd2segs",    (DL_FUNC) &nnd2segs,    10},
     {"nndist2segs", (DL_FUNC) &nndist2segs, 11},
+    {"nnproj2segs", (DL_FUNC) &nnproj2segs, 14},
     {"ply1sum",     (DL_FUNC) &ply1sum,      6},
     {"ply2sum",     (DL_FUNC) &ply2sum,      8},
     {"ply3sum",     (DL_FUNC) &ply3sum,     10},

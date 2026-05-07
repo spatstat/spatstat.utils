@@ -14,6 +14,10 @@
 
 */
 
+void prdist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *); 
+void nnproj2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *, double *, double *, double *); 
+void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *); 
+void nnd2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *);
 void primefax(int *, int *, int *);
 void ply1sum(int *, double *, int *, int *, double *, int *); 
 void ply2sum(int *, double *, int *, int *, int *, double *, int *, int *); 
@@ -27,9 +31,6 @@ void fastCinterv(double *, int *, double *, int *, int *);
 void fastFinterv(double *, int *, double *, int *, int *);
 void Cmatchxy(int *, double *, double *, int *, double *, double *, int *); 
 void inxyp(double *, double *, double *, double *, int *, int *, int *, int *);
-void prdist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *); 
-void nndist2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *, int *); 
-void nnd2segs(double *, double *, int *, double *, double *, double *, double *, int *, double *, double *);
 /*
 
              Functions invoked by .Call

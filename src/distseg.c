@@ -4,11 +4,15 @@
        Distances from point pattern to line segment pattern
        Distance transform of a line segment pattern
 
-       nnd2segs:    minimum distance from point to any line segment
-       nndist2segs: minimum distance from point to any line segment (with index)
+       (1) Nearest neighbour: For each point, find closest line segment
+       nnd2segs:    return distance
+       nndist2segs: return distance and index of segment
+       nnproj2segs: return distance, index, and coordinates of projection
+
+       (2) Pairwise:
        prdist2segs: pairwise distances from each point to each line segment
 
-       $Revision: 1.12 $ $Date: 2022/10/19 02:56:36 $
+       $Revision: 1.13 $ $Date: 2026/05/06 09:54:45 $
 
        Author: Adrian Baddeley
 
@@ -24,15 +28,27 @@
 
 #include "chunkloop.h"
 
+#undef WANT_INDEX
+#undef WANT_PROJ
+
+#define FNAME nnd2segs
+#include "distseg.h"
+#undef FNAME
+
 #define FNAME nndist2segs
 #define WANT_INDEX
 #include "distseg.h"
 #undef WANT_INDEX
 #undef FNAME
 
-#define FNAME nnd2segs
+#define FNAME nnproj2segs
+#define WANT_INDEX
+#define WANT_PROJ
 #include "distseg.h"
+#undef WANT_INDEX
 #undef FNAME
+#undef WANT_INDEX
+#undef WANT_PROJ
 
 
 void
