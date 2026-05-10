@@ -2,7 +2,7 @@
 #'      distppll.R
 #'                 (formerly 'xysegment.R')
 #'
-#'     $Revision: 1.24 $    $Date: 2026/05/07 05:08:01 $
+#'     $Revision: 1.26 $    $Date: 2026/05/10 03:56:17 $
 #'
 #' Low level utilities for analytic geometry for line segments
 #'
@@ -22,10 +22,11 @@
 #'       distances from each of a list of points p[i,]
 #'       to each of a list of line segments l[i,] 
 #'       [interpreted code uses large matrices and 'outer()']
-#'       [Fortran implementation included!]
+#'       [Partial C implementation included!]
 #'
 #' NNdist2segs
 #'       distance to nearest line segment, from each point in a list.
+#'       Efficient C code used.
 #'
 #' Copyright (c) Adrian Baddeley and Rob Foxall 1997-2026
 #' GNU Public Licence (>= 2.0)
@@ -51,10 +52,11 @@ distpl <- function(p, l) {
   si <- dy/leng
   #' back-rotated coords of p
   xpr <- co * xpl + si * ypl
-  ypr <-  - si * xpl + co * ypl
-  #' test
-  if(xpr >= 0 && xpr <= leng)
+  ## ypr <-  - si * xpl + co * ypl
+  if(xpr >= 0 && xpr <= leng) {
+    ypr <- - si * xpl + co * ypl
     dmin <- min(dmin, abs(ypr))
+  }
   return(dmin)
 }
 
@@ -79,13 +81,14 @@ distppl <- function(p, l) {
   si <- dy/leng
   #' back-rotated coords of p
   xpr <- co * xpl + si * ypl
-  ypr <-  - si * xpl + co * ypl
+  ## ypr <-  - si * xpl + co * ypl
   #' ypr is perpendicular distance to infinite line
   #' Applies only when xp, yp in the middle
   middle <- (xpr >= 0 & xpr <= leng)
-  if(any(middle))
+  if(any(middle)) {
+    ypr <-  - si * xpl + co * ypl
     dmin[middle] <- pmin.int(dmin[middle], abs(ypr[middle]))
-  
+  }
   return(dmin)
 }
 
@@ -173,6 +176,8 @@ distppll <- function(p, l, mintype=0,
 #' (distance to) nearest segment 
 
 distppllmin <- function(p, l, big=NULL) {
+  ## find distance from each point to nearest segment
+  ## and identifier of nearest segment
   if(is.null(big)) {
     xdif <- diff(range(c(p[,1],l[, c(1,3)])))
     ydif <- diff(range(c(p[,2],l[, c(2,4)])))
@@ -180,12 +185,16 @@ distppllmin <- function(p, l, big=NULL) {
   }
   z <- NNdist2segments(p[,1], p[,2],
                        l[,1], l[,2], l[,3], l[,4],
-                       big)
+                       bigvalue=big,
+                       wantindex=TRUE, wantproj=FALSE)
   return(list(min.d=sqrt(z$dist2), min.which=z$index))
 }
 
 NNdist2segments <- function(xp, yp, x0, y0, x1, y1, bigvalue,
                             wantindex=TRUE, wantproj=FALSE) {
+  ## find distance from each point to nearest segment
+  ## If 'wantindex' then also return index of segment  
+  ## If 'wantproj' then also return (x,y) and (tp) coordinates of projection
   np <- length(xp)
   ns <- length(x0)
   dist2 <- rep(bigvalue, np)
