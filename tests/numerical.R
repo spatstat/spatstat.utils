@@ -90,6 +90,9 @@ revcumsum(1:5 * (1 + 2i))
 
 as2vector(3:4)
 as2vector(list(x=1, y=1))
+#' regression test for list-coordinate length validation (utilseq.R)
+stopifnot(identical(as2vector(list(x=1, y=1)), c(1, 1)))
+stopifnot(inherits(try(as2vector(list(x=1, y=1:2)), silent=TRUE), "try-error"))
 ensure2vector(3:4)
 ensure2vector(3)
 

@@ -73,7 +73,7 @@ as2vector <- function(x) {
     stop(paste(xname, "should consist of exactly one point"))
   }
   if(is.list(x) && all(c("x", "y") %in% names(x))) {
-    if(length(x$x) == 1 && length(x$y == 1))
+    if(length(x$x) == 1 && length(x$y) == 1)
       return(c(x$x, x$y))
     xname <- short.deparse(substitute(x))
     if(length(x$x) != 1) stop(paste0(xname, "$x should have length 1"))
