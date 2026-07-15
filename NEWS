@@ -1,4 +1,17 @@
 
+        CHANGES IN spatstat.utils VERSION 3.2-3.002
+
+OVERVIEW
+
+    o Check logical arguments.
+
+    o Internal improvements.
+
+NEW FUNCTIONS
+
+    o check.1.logical
+    Check whether an argument is a single logical value.
+
         CHANGES IN spatstat.utils VERSION 3.2-3
 
 OVERVIEW

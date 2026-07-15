@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.18 $  $Date: 2025/06/28 02:29:54 $
+#'  $Revision: 1.19 $  $Date: 2026/07/15 03:11:51 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -281,6 +281,18 @@ check.1.string <- function(x, context="", fatal=TRUE, warn=TRUE) {
   return(FALSE)
 }
 
+check.1.logical <- function(x, context="", fatal=TRUE, warn=TRUE) {
+  if(is.logical(x) && length(x) == 1)
+    return(TRUE)
+  if(fatal || warn) {
+    xname <- short.deparse(substitute(x))
+    whinge <- paste(sQuote(xname), "should be a single logical value")
+    if(nzchar(context)) whinge <- paste(context, whinge)
+    if(fatal) stop(whinge, call.=FALSE) else warning(whinge, call.=FALSE)
+  }
+  return(FALSE)
+}
+
 complaining <- function(whinge, fatal=FALSE, value=NULL) {
   if(fatal) stop(whinge, call.=FALSE)
   warning(whinge, call.=FALSE)
@@ -364,6 +376,46 @@ there.can.be.only.one <- function(..., .NeedOne=TRUE, .Fatal=TRUE) {
   return(TRUE)
 }
 
+## Ensure that x is a list of length n,
+## which can be passed to 'mapply'
+## Input 'x' can be a single object of a recognised class,
+## which will be replicated to the required length.
+
+ensure.nlist <- function(x, n, singletypes=character(0), 
+                         xtitle=NULL, things="point patterns") {
+  if(length(singletypes) && inherits(x, singletypes)) {
+    ## single object of recognised class: replicate it
+    x <- rep(list(x), n)
+    return(x)
+  } 
+  if(!is.list(x)) {
+    ## error 
+    if(is.null(xtitle)) xtitle <- short.deparse(substitute(x))
+    whinge <- paste(xtitle, "should be a list")
+    if(length(singletypes)) {
+      otypes <- setdiff(singletypes, "NULL")
+      if(length(otypes))
+        whinge <- paste(whinge,
+                        "or an object of class",
+                        commasep(dQuote(otypes), "or"))
+      if("NULL" %in% singletypes)
+        whinge <- paste(whinge, "or NULL")
+    }
+    stop(whinge, call.=FALSE)
+  }
+  nx <- length(x)
+  if(nx != n) {
+    if(is.null(xtitle)) xtitle <- short.deparse(substitute(x))
+    whinge <- paste("The length of",
+                    sQuote(xtitle), 
+                    "should equal the number of",
+                    things,
+                    paren(paste(nx, "!=", n)))
+    stop(whinge, call.=FALSE)
+  }
+  return(x)
+}
+  
 ## replace recognised keywords by other keywords
 mapstrings <- function(x, map=NULL) {
   if(is.null(map)) return(x)

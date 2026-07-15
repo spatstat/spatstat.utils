@@ -24,6 +24,7 @@
 \alias{dround}
 \alias{ensure2vector}
 \alias{ensure3Darray}
+\alias{ensure.nlist}
 \alias{eratosthenes}
 \alias{exceedsMaxArraySize}
 \alias{exhibitStringList}
@@ -136,6 +137,7 @@ dropifsingle(x)
 dround(x)
 ensure2vector(x)
 ensure3Darray(x)
+ensure.nlist(x, n, singletypes, xtitle, things)
 eratosthenes(nmax, startset)
 exhibitStringList(prefix, strings)
 exceedsMaxArraySize(\dots)

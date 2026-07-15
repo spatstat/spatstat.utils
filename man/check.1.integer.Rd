@@ -2,6 +2,7 @@
 \alias{check.1.integer}
 \alias{check.1.real}
 \alias{check.1.string}
+\alias{check.1.logical}
 \title{
   Check Argument Type and Length
 }
@@ -13,6 +14,7 @@
 check.1.real(x, context = "", fatal = TRUE, warn=TRUE)
 check.1.integer(x, context = "", fatal = TRUE, warn=TRUE)
 check.1.string(x, context = "", fatal = TRUE, warn=TRUE)
+check.1.logical(x, context = "", fatal = TRUE, warn=TRUE)
 }
 \arguments{
   \item{x}{
@@ -33,8 +35,8 @@ check.1.string(x, context = "", fatal = TRUE, warn=TRUE)
 }
 \details{
   These functions check whether the argument \code{x} is a single
-  atomic value of type \code{numeric}, \code{integer} or
-  \code{character}.
+  atomic value of type \code{numeric}, \code{integer},
+  \code{character} or \code{logical}.
 
   If \code{x} does have the required length and type, the result
   of the function is the logical value \code{TRUE}.
@@ -58,6 +60,7 @@ check.1.string(x, context = "", fatal = TRUE, warn=TRUE)
   check.1.integer(pi, fatal=FALSE, context="In your dreams,")
   check.1.string(x, fatal=FALSE)
   check.1.integer(x, fatal=FALSE, warn=FALSE)
+  check.1.logical(pi, fatal=FALSE, warn=FALSE)
 }
 \keyword{classes}
 \keyword{error}
