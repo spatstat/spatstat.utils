@@ -1,11 +1,13 @@
 
-        CHANGES IN spatstat.utils VERSION 3.2-3.002
+        CHANGES IN spatstat.utils VERSION 3.2-3.003
 
 OVERVIEW
 
+    o We thank Maximilian Scholz for contributions.
+
     o Check logical arguments.
 
-    o Internal improvements.
+    o Internal improvements and bug fixes.
 
 NEW FUNCTIONS
 

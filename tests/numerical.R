@@ -1,5 +1,9 @@
 #'   spatstat.utils/tests/numerical.R
 #'   Tests of numerical code
+#' 
+#'   $Revision: 1.3 $ $Date: 2026/07/16 02:35:14 $
+#' 
+#'   Original is in spatstat/SUB/utils/original-files/tests/numerical.R
 
 require(spatstat.utils)
 
