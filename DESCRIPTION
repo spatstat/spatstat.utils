@@ -1,5 +1,5 @@
 Package: spatstat.utils
-Version: 3.2-3.003
+Version: 3.2-4
 Date: 2026-07-16
 Title: Utility Functions for 'spatstat'
 Authors@R: c(person("Adrian", "Baddeley", 
