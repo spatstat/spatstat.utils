@@ -6,7 +6,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'   GNU Public Licence >= 2.0 
 #' 
-#'   $Revision: 1.15 $  $Date: 2021/03/06 09:30:27 $
+#'   $Revision: 1.16 $  $Date: 2026/07/31 01:35:40 $
 #'
 
 grokIndexVector <- function(ind, len, nama=NULL) {
@@ -181,11 +181,12 @@ replacementIndex <- function(ii, stuff) {
 positiveIndex <- function(i, nama, len=length(nama)) {
   #' convert any kind of index to a positive integer sequence
   x <- seq_len(len)
-  if(is.null(i)) return(x)
+  if(is.null(i)) return(x) ## NULL <=> missing <=> entire array
   stopifnot(is.vector(i))
-  if(is.numeric(i) && !all(ok <- (abs(i) <= len))) {
-    warning("Index values lie outside array bounds", call.=FALSE)
-    i <- i[ok]
+  if(is.numeric(i) && max(abs(range(i))) > len) {
+    warning("Some index values lying outside array bounds were omitted",
+            call.=FALSE)
+    i <- i[abs(i) <= len]
   }
   names(x) <- nama
   y <- x[i]
@@ -194,15 +195,10 @@ positiveIndex <- function(i, nama, len=length(nama)) {
 
 logicalIndex <- function(i, nama, len=length(nama)) {
   #' convert any kind of index to a logical vector
-  if(is.null(i)) return(rep(TRUE, len))
-  stopifnot(is.vector(i))
-  if(is.numeric(i) && !all(ok <- (abs(i) <= len))) {
-    warning("Index values lie outside array bounds", call.=FALSE)
-    i <- i[ok]
-  }
-  x <- logical(len)
-  names(x) <- nama
-  x[i] <- TRUE
-  return(unname(x))
+  if(is.null(i)) return(rep(TRUE, len)) ## NULL <=> missing <=> entire array
+  j <- positiveIndex(i, nama, len)
+  y <- logical(len)
+  y[j] <- TRUE
+  return(unname(y))
 }
 
