@@ -4,6 +4,7 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/spatstat.utils)](http://CRAN.R-project.org/package=spatstat.utils)
 [![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.utils)](https://github.com/spatstat/spatstat.utils)
+[![R-universe](https://spatstat.r-universe.dev/spatstat.utils/badges/version)](http://https://spatstat.r-universe.dev/spatstat.utils)
 
 The R package `spatstat.utils` contains utility functions, originally from the 
 [spatstat](https://github.com/spatstat/spatstat) 
