@@ -6,7 +6,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'   GNU Public Licence >= 2.0 
 #' 
-#'   $Revision: 1.16 $  $Date: 2026/07/31 01:35:40 $
+#'   $Revision: 1.17 $  $Date: 2026/09/08 02:23:44 $
 #'
 
 grokIndexVector <- function(ind, len, nama=NULL) {
@@ -183,10 +183,10 @@ positiveIndex <- function(i, nama, len=length(nama)) {
   x <- seq_len(len)
   if(is.null(i)) return(x) ## NULL <=> missing <=> entire array
   stopifnot(is.vector(i))
-  if(is.numeric(i) && max(abs(range(i))) > len) {
+  if(is.numeric(i) && max(abs(range(i, na.rm=TRUE))) > len) {
     warning("Some index values lying outside array bounds were omitted",
             call.=FALSE)
-    i <- i[abs(i) <= len]
+    i <- i[is.na(i) | abs(i) <= len]
   }
   names(x) <- nama
   y <- x[i]
