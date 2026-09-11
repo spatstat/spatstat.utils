@@ -1,10 +1,19 @@
 
-        CHANGES IN spatstat.utils VERSION 3.2-4.002
+        CHANGES IN spatstat.utils VERSION 3.2-5
 
 OVERVIEW
 
+    o More utilities for handling indices.
+    
     o Internal improvements and bug fixes.
 
+NEW FUNCTIONS
+
+    o positiveIndex
+    Convert any kind of index to a vector of positive integers.
+
+    o logicalIndex
+    Convert any kind of index to a logical vector.
 
         CHANGES IN spatstat.utils VERSION 3.2-4
 

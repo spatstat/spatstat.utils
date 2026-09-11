@@ -107,8 +107,6 @@
 \alias{strictIndexSequence}
 \alias{fullIndexSequence}
 \alias{replacementIndex}
-\alias{positiveIndex}
-\alias{logicalIndex}
 %%
 \description{
   Internal utility functions of the \code{spatstat.utils} package.
@@ -208,7 +206,7 @@ warn.ignored.args(\dots, context)
 warn.reset.arg(x, xset, context)
 %% xypolygon %%%
 inside.triangle(x, y, xx, yy)
-overlap.trapezium(xa, ya, xb, yb, verb = FALSE)
+overlap.trapezium(xa, ya, xb, yb, verb)
 %%
 xysegXcircle(xcentres, ycentres, radii, x0, y0, x1, y1, check)
 xysegMcircle(xcentres, ycentres, radmat, x0, y0, x1, y1, check)
@@ -220,8 +218,6 @@ grokIndexVector(ind, len, nama)
 strictIndexSequence(g)
 fullIndexSequence(g)
 replacementIndex(ii, stuff)
-positiveIndex(i, nama, len)
-logicalIndex(i, nama, len)
 }
 \details{
   These internal \pkg{spatstat.utils} functions are not usually called
