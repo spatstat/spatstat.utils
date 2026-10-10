@@ -60,6 +60,7 @@
 \alias{matrowany}
 \alias{matrowsum}
 \alias{natozero}
+\alias{need.all.or.none}
 \alias{niceround}
 \alias{NNdist2segments}
 \alias{numalign}
@@ -171,6 +172,7 @@ matrowall(x)
 matrowany(x)
 matrowsum(x)
 natozero(x)
+need.all.or.none(\dots, .Warn, .Fatal)
 niceround(x, m)
 NNdist2segments(xp, yp, x0, y0, x1, y1, bigvalue, wantindex, wantproj)
 numalign(i, nmax, zero)
