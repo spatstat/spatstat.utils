@@ -3,7 +3,7 @@
 #'
 #'   Utilities for checking/handling arguments
 #'
-#'  $Revision: 1.20 $  $Date: 2026/10/10 01:28:59 $
+#'  $Revision: 1.21 $  $Date: 2026/10/13 07:22:14 $
 #'
 
 "%orifnull%" <- function(a, b) {
@@ -376,10 +376,11 @@ there.can.be.only.one <- function(..., .NeedOne=TRUE, .Fatal=TRUE) {
   return(TRUE)
 }
 
-need.all.or.none <- function(..., .Warn=TRUE, .Fatal=FALSE) {
+need.all.or.none <- function(..., .Warn=TRUE, .Fatal=FALSE, .Logical=FALSE) {
   argh <- list(...)
   given <- !sapply(argh, is.null)
-  if(all(given) || !any(given)) return(TRUE)
+  if(all(given)) return(if(.Logical) TRUE else "all")
+  if(!any(given)) return(if(.Logical) TRUE else "none")
   nama <- split(names(argh), given)
   nn <- lengths(nama)
   gripe <- paste(ngettext(nn[["TRUE"]], "Argument", "Arguments"),
@@ -391,7 +392,7 @@ need.all.or.none <- function(..., .Warn=TRUE, .Fatal=FALSE) {
                  "also required")
   if(.Fatal) stop(gripe, call.=FALSE)
   warning(gripe, call.=FALSE)
-  return(FALSE)
+  return(if(.Logical) FALSE else "some")
 }
 
 ## Ensure that x is a list of length n,
